@@ -1,5 +1,6 @@
+import { CognitoUserAttribute } from "amazon-cognito-identity-js"
 import React, { useState } from "react"
-import FansPool from "../fanspool"
+import FansPool from "../../FansPool"
 //TODO: look up what a useState hook is 
 const Signup = () => {
     const [firstName, setFName] = useState("")
@@ -9,10 +10,51 @@ const Signup = () => {
     const [birthdate, setBirthdate] = useState("")
     const [password, setPassword] = useState("")
 
+
+//Phone numbers must follow these formatting rules: A phone number must start with a plus (+) sign,
+//followed immediately by the country code. A phone number can only contain the + sign and digits.
+//You must remove any other characters from a phone number, such as parentheses, spaces, or dashes (-)
+//before submitting the value to the service. For example, a United States-based phone number must follow this format: +14325551212.
+
+
     const onSubmit = (event) => {
         event.preventDefault()
         
-        FansPool.Signup(firstName, lastName, email, phone, birthdate, password, [], null, (err, data) => {
+        var attributeList = []
+        var dataFirstName = {
+            Name: 'given_name',
+            Value: firstName,
+        }
+        var dataLastName = {
+            Name: 'family_name',
+            Value: lastName,
+        }
+        var dataEmail = {
+            Name: 'email',
+            Value: email,
+        }
+        var dataPhone = {
+            Name: 'phone_number',
+            Value: phone,
+        }
+        var dataBirthdate = {
+            Name: 'birthdate',
+            Value: birthdate,
+        }
+
+        var attributeFirstName = new CognitoUserAttribute(dataFirstName)
+        var attributeLastName = new CognitoUserAttribute(dataLastName)
+        var attributeEmail = new CognitoUserAttribute(dataEmail)
+        var attributePhone = new CognitoUserAttribute(dataPhone)
+        var attributeBirthdate = new CognitoUserAttribute(dataBirthdate)
+
+        attributeList.push(attributeFirstName)
+        attributeList.push(attributeLastName)
+        attributeList.push(attributeEmail)
+        attributeList.push(attributePhone)
+        attributeList.push(attributeBirthdate)
+
+        FansPool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
             }

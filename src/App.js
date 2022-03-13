@@ -1,28 +1,29 @@
-import logo from './logo.svg';
-// import './App.css';
+// import logo from './logo.svg';
+import './App.css';
 
 import React from 'react';
-import './App.css';
-import Signup from './components/signup';
-
-// const App = () => {
-//   return (
-//     <div>
-//       <Signup />
-//     </div>
-//   )
-// }
-
+import Signup from './components/auth/Signup';
+import Login from './components/auth/Login';
+import ForgotPassword from './components/auth/ForgotPassword'
+import { Account } from "./components/auth/Account"
+import Status from './components/auth/Status';
+import Settings from './components/auth/Settings';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Signup />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Account>
+          <label>Sign up</label>
+          <Signup />
+          <label>Login</label>
+          <Login />
+          <ForgotPassword />
+          <label>Status</label>
+          <Status />
+          <label>Settings</label>
+          <Settings />
+        </Account>
       </header>
     </div>
   );
