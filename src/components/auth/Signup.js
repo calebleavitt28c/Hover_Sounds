@@ -1,21 +1,21 @@
-import { CognitoUserAttribute } from "amazon-cognito-identity-js"
-import React, { useState } from "react"
+import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
+import React, { useState, createContext, userContext } from "react"
 import FansPool from "../../FansPool"
+
+let username = ''
+
+function setUsername(un) {
+    username = un
+}
+
 //TODO: look up what a useState hook is 
-const Signup = () => {
-    const [firstName, setFName] = useState("")
-    const [lastName, setLName] = useState("")
-    const [email, setEmail] = useState("")
-    const [phone, setPhone] = useState("")
-    const [birthdate, setBirthdate] = useState("")
-    const [password, setPassword] = useState("")
-
-
-//Phone numbers must follow these formatting rules: A phone number must start with a plus (+) sign,
-//followed immediately by the country code. A phone number can only contain the + sign and digits.
-//You must remove any other characters from a phone number, such as parentheses, spaces, or dashes (-)
-//before submitting the value to the service. For example, a United States-based phone number must follow this format: +14325551212.
-
+export const Signup = () => {
+    const [firstName, setFName] = useState('')
+    const [lastName, setLName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [birthdate, setBirthdate] = useState('')
+    const [password, setPassword] = useState('')
 
     const onSubmit = (event) => {
         event.preventDefault()
@@ -23,23 +23,23 @@ const Signup = () => {
         var attributeList = []
         var dataFirstName = {
             Name: 'given_name',
-            Value: firstName,
+            Value: firstName.replace(/\s+/g, ''),
         }
         var dataLastName = {
             Name: 'family_name',
-            Value: lastName,
+            Value: lastName.replace(/\s+/g, ''),
         }
         var dataEmail = {
             Name: 'email',
-            Value: email,
+            Value: email.replace(/\s+/g, ''),
         }
         var dataPhone = {
             Name: 'phone_number',
-            Value: phone,
+            Value: '+'+phone.replace(/\s+/g, ''),
         }
         var dataBirthdate = {
             Name: 'birthdate',
-            Value: birthdate,
+            Value: birthdate.replace(/\s+/g, ''),
         }
 
         var attributeFirstName = new CognitoUserAttribute(dataFirstName)
@@ -57,8 +57,10 @@ const Signup = () => {
         FansPool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
+            } else {
+                console.log(data)
+                setUsername(data.user.username)
             }
-            console.log(data)
         })
     }
 
@@ -102,4 +104,35 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export const VerifyEmail = () => {
+    const [verificationCode, setVerificationCode] = useState('')
+
+    const onSubmit = (event) => {
+        event.preventDefault()
+
+        const cognitoUser = new CognitoUser({
+            Username: username,
+            Pool: FansPool
+        })
+
+        cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(result)
+            }
+        })
+    }
+
+    return (
+        <div>
+            <form onSubmit={onSubmit}>
+                <label>Verification Code</label>
+                <input value={verificationCode} onChange={event => setVerificationCode(event.target.value)} />
+
+                <button type='submit'>Verify Email</button>
+            </form>
+        </div>
+    )
+}
+
