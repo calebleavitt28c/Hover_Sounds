@@ -1,23 +1,43 @@
+import { render } from "@testing-library/react"
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
-import React, { useState, createContext, userContext } from "react"
+import React, { Component, useState } from "react"
 import FansPool from "../../FansPool"
 
-let username = ''
-
-function setUsername(un) {
-    username = un
-}
-
 //TODO: look up what a useState hook is 
-export const Signup = () => {
-    const [firstName, setFName] = useState('')
-    const [lastName, setLName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [birthdate, setBirthdate] = useState('')
-    const [password, setPassword] = useState('')
+class Signup extends Component {
+    constructor() {
+        super()
+        this.state = {
+            showHideSignup: true,
+            showHideConfirm: false,
 
-    const onSubmit = (event) => {
+            const [firstName, setFName] = useState(''),
+            const [lastName, setLName] = useState(''),
+            const [email, setEmail] = useState(''),
+            const [phone, setPhone] = useState(''),
+            const [birthdate, setBirthdate] = useState(''),
+            const [password, setPassword] = useState(''),
+    
+            const [verificationCode, setVerificationCode] = useState('')
+        };
+        this.hideComponent = this.hideComponent.bind(this)
+    }
+
+    hideComponent(name) {
+        console.log(name)
+        swith (name) {
+            case "showHideSignup":
+                this.setState({ showHideSignup: !this.state.showHideSignup });
+                break;
+            case "showHideConfirm":
+                this.setState({ showHideConfirm: !this.state.showHideConfirm });
+                break;
+            default:
+                null;
+        }
+    }
+
+    submitUser = (event) => {
         event.preventDefault()
         
         var attributeList = []
@@ -62,56 +82,17 @@ export const Signup = () => {
                 setUsername(data.user.username)
             }
         })
+
+        hideComponent("showHideSignup")
+        hideComponent("showHideConfirm")
+
     }
 
-    return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <label htmlFor="firstName">First Name</label>
-                <input 
-                    value={firstName}
-                    onChange={(event) => setFName(event.target.value)}
-                ></input>
-                <label htmlFor="lastName">Last Name</label>
-                <input 
-                    value={lastName}
-                    onChange={(event) => setLName(event.target.value)}
-                ></input>
-                <label htmlFor="email">Email</label>
-                <input 
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                ></input>
-                <label htmlFor="phone">Phone</label>
-                <input 
-                    value={phone}
-                    onChange={(event) => setPhone(event.target.value)}
-                ></input>
-                <label htmlFor="birthdate">Birthdate</label>
-                <input 
-                    value={birthdate}
-                    onChange={(event) => setBirthdate(event.target.value)}
-                ></input>
-                <label htmlFor="password">Password</label>
-                <input
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                ></input>
-                
-                <button type="submit">Signup</button>
-            </form>
-        </div>
-    )
-}
-
-export const VerifyEmail = () => {
-    const [verificationCode, setVerificationCode] = useState('')
-
-    const onSubmit = (event) => {
+    confirmUser = (event) => {
         event.preventDefault()
 
         const cognitoUser = new CognitoUser({
-            Username: username,
+            Username: email,
             Pool: FansPool
         })
 
@@ -122,17 +103,61 @@ export const VerifyEmail = () => {
                 console.log(result)
             }
         })
+
+        hideComponent("showHideConfirm")
     }
 
-    return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <label>Verification Code</label>
-                <input value={verificationCode} onChange={event => setVerificationCode(event.target.value)} />
-
-                <button type='submit'>Verify Email</button>
-            </form>
-        </div>
-    )
+    render() {
+        const { showHideSignup, showHideConfirm } = this.state
+        return (
+            <div>
+                {showHideSignup && (
+                    <form onSubmit={this.submitUser}>
+                        <label htmlFor="firstName">First Name</label>
+                        <input 
+                            value={firstName}
+                            onChange={(event) => setFName(event.target.value)}
+                        ></input>
+                        <label htmlFor="lastName">Last Name</label>
+                        <input 
+                            value={lastName}
+                            onChange={(event) => setLName(event.target.value)}
+                        ></input>
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        ></input>
+                        <label htmlFor="phone">Phone</label>
+                        <input 
+                            value={phone}
+                            onChange={(event) => setPhone(event.target.value)}
+                        ></input>
+                        <label htmlFor="birthdate">Birthdate</label>
+                        <input 
+                            value={birthdate}
+                            onChange={(event) => setBirthdate(event.target.value)}
+                        ></input>
+                        <label htmlFor="password">Password</label>
+                        <input
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        ></input>
+                        
+                        <button type="submit">Signup</button>
+                    </form>
+                )}
+                {showHideConfirm && (
+                    <form onSubmit={this.CognitoUser.bind(this)}>
+                        <label>Verification Code</label>
+                        <input value={verificationCode} onChange={event => setVerificationCode(event.target.value)} />
+        
+                        <button type='submit'>Verify Email</button>
+                    </form>
+                )}
+            </div>
+        );
+    }
 }
 
+export default Signup
