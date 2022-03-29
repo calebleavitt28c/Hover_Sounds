@@ -25,7 +25,7 @@ class Signup extends Component {
 
     hideComponent(name) {
         console.log(name)
-        swith (name) {
+        switch (name) {
             case "showHideSignup":
                 this.setState({ showHideSignup: !this.state.showHideSignup });
                 break;
