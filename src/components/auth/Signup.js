@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react"
+// import { render } from "@testing-library/react"
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
 import React, { Component, useState } from "react"
 import Pool from "./FansPool"
@@ -123,32 +123,32 @@ class Signup extends Component {
                     <form onSubmit={this.submitUser}>
                         <label htmlFor="firstName">First Name</label>
                         <input 
-                            value={this.firstName}
+                            value={this.state.firstName}
                             onChange={(event) => this.setState({firstName: event.target.value})}
                         ></input>
                         <label htmlFor="lastName">Last Name</label>
                         <input 
-                            value={this.lastName}
+                            value={this.state.lastName}
                             onChange={(event) => this.setState({lastName: event.target.value})}
                         ></input>
                         <label htmlFor="email">Email</label>
                         <input 
-                            value={this.email}
+                            value={this.state.email}
                             onChange={(event) => this.setState({email: event.target.value})}
                         ></input>
                         <label htmlFor="phone">Phone</label>
                         <input 
-                            value={this.phone}
+                            value={this.state.phone}
                             onChange={(event) => this.setState({phone: event.target.value})}
                         ></input>
                         <label htmlFor="birthdate">Birthdate</label>
                         <input 
-                            value={this.birthdate}
+                            value={this.state.birthdate}
                             onChange={(event) => this.setState({birthdate: event.target.value})}
                         ></input>
                         <label htmlFor="password">Password</label>
                         <input
-                            value={this.password}
+                            value={this.state.password}
                             onChange={(event) => this.setState({password: event.target.value})}
                         ></input>
                         
@@ -158,7 +158,7 @@ class Signup extends Component {
                 {showHideConfirm && (
                     <form onSubmit={this.CognitoUser.bind(this)}>
                         <label>Verification Code</label>
-                        <input value={this.verificationCode} onChange={event => this.setState({verificationCode: event.target.value})} />
+                        <input value={this.state.verificationCode} onChange={event => this.setState({verificationCode: event.target.value})} />
         
                         <button type='submit'>Verify Email</button>
                     </form>
