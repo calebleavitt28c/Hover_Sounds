@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react"
 import { AccountContext } from "./Account"
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
-import FansPool from "../../FansPool" 
+import Pool from "./FansPool"
 
 //TODO: look up what a useState hook is 
 const Login = () => {

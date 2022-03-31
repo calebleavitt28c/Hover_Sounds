@@ -1,6 +1,6 @@
 // import { CognitoUser } from 'amazon-cognito-identity-js'
 // import React, { useState, useContext } from 'react'
-// import Pool from '../../FansPool'
+// import Pool from "./FansPool.js"
 // import { SignupContext } from './Signup'
 
 

@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
 import React, { Component, useState } from "react"
-import FansPool from "../../FansPool"
+import Pool from "./FansPool"
 
 //TODO: look up what a useState hook is 
 class Signup extends Component {

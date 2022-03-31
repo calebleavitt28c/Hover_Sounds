@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CognitoUser } from 'amazon-cognito-identity-js'
-import Pool from '../../FansPool'
+import Pool from "./FansPool"
 
 export default () => {
     const [stage, setStage] = useState(1) //1 = email stage, 2 = code stage
