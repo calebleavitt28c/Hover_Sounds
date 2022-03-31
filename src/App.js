@@ -2,7 +2,7 @@
 import './App.css';
 
 import React from 'react';
-import { Signup, VerifyEmail } from './components/auth/Signup';
+import { Signup } from './components/auth/Signup';
 // import VerifyEmail from './components/auth/VerifyEmail';
 import Login from './components/auth/Login';
 import ForgotPassword from './components/auth/ForgotPassword'
