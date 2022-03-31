@@ -2,7 +2,7 @@
 import './App.css';
 
 import React from 'react';
-import { Signup } from './components/auth/Signup';
+import Signup from './components/auth/Signup';
 // import VerifyEmail from './components/auth/VerifyEmail';
 import Login from './components/auth/Login';
 import ForgotPassword from './components/auth/ForgotPassword'
@@ -17,8 +17,6 @@ function App() {
         <Account>
           <label>Sign up</label>
           <Signup />
-          <label>Verify Email</label>
-          <VerifyEmail />
           <label>Login</label>
           <Login />
           <ForgotPassword />
