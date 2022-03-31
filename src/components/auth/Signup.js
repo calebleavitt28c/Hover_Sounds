@@ -1,12 +1,12 @@
 // import { render } from "@testing-library/react"
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
-import React, { Component, useState } from "react"
+import React, { Component } from "react"
 import Pool from "./FansPool"
 
 //TODO: look up what a useState hook is 
 class Signup extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             showHideSignup: true,
             showHideConfirm: false,
@@ -20,16 +20,9 @@ class Signup extends Component {
 
             verificationCode: '',
         };
-        // const [firstName, setFName] = useState('')
-        // const [lastName, setLName] = useState('')
-        // const [email, setEmail] = useState('')
-        // const [phone, setPhone] = useState('')
-        // const [birthdate, setBirthdate] = useState('')
-        // const [password, setPassword] = useState('')
-
-        //const [verificationCode, setVerificationCode] = useState('')
 
         this.hideComponent = this.hideComponent.bind(this)
+        // this.handleFirstName = this.handleFirstName.bind(this)
     }
 
     hideComponent(name) {
@@ -52,23 +45,23 @@ class Signup extends Component {
         var attributeList = []
         var dataFirstName = {
             Name: 'given_name',
-            Value: this.firstName.replace(/\s+/g, ''),
+            Value: this.state.firstName.replace(/\s+/g, ''),
         }
         var dataLastName = {
             Name: 'family_name',
-            Value: this.lastName.replace(/\s+/g, ''),
+            Value: this.state.lastName.replace(/\s+/g, ''),
         }
         var dataEmail = {
             Name: 'email',
-            Value: this.email.replace(/\s+/g, ''),
+            Value: this.state.email.replace(/\s+/g, ''),
         }
         var dataPhone = {
             Name: 'phone_number',
-            Value: '+'+this.phone.replace(/\s+/g, ''),
+            Value: '+'+this.state.phone.replace(/\s+/g, ''),
         }
         var dataBirthdate = {
             Name: 'birthdate',
-            Value: this.birthdate.replace(/\s+/g, ''),
+            Value: this.state.birthdate.replace(/\s+/g, ''),
         }
 
         var attributeFirstName = new CognitoUserAttribute(dataFirstName)
@@ -83,7 +76,7 @@ class Signup extends Component {
         attributeList.push(attributePhone)
         attributeList.push(attributeBirthdate)
 
-        Pool.signUp(this.email, this.password, attributeList, null, (err, data) => {
+        Pool.signUp(this.state.email, this.state.password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
             } else {
@@ -100,11 +93,11 @@ class Signup extends Component {
         event.preventDefault()
 
         const cognitoUser = new CognitoUser({
-            Username: this.email,
+            Username: this.state.email,
             Pool
         })
 
-        cognitoUser.confirmRegistration(this.verificationCode, true, (err, result) => {
+        cognitoUser.confirmRegistration(this.state.verificationCode, true, (err, result) => {
             if (err) {
                 console.error(err)
             } else {
@@ -114,6 +107,10 @@ class Signup extends Component {
 
         this.hideComponent("showHideConfirm")
     }
+
+    // handleFirstName(event) {
+    //     this.setState({firstName: event.target.value})
+    // }
 
     render() {
         const { showHideSignup, showHideConfirm } = this.state
@@ -156,7 +153,7 @@ class Signup extends Component {
                     </form>
                 )}
                 {showHideConfirm && (
-                    <form onSubmit={this.CognitoUser.bind(this)}>
+                    <form onSubmit={this.confirmUser}>
                         <label>Verification Code</label>
                         <input value={this.state.verificationCode} onChange={event => this.setState({verificationCode: event.target.value})} />
         
