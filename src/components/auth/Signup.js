@@ -10,16 +10,17 @@ class Signup extends Component {
         this.state = {
             showHideSignup: true,
             showHideConfirm: false,
-
-            const [firstName, setFName] = useState(''),
-            const [lastName, setLName] = useState(''),
-            const [email, setEmail] = useState(''),
-            const [phone, setPhone] = useState(''),
-            const [birthdate, setBirthdate] = useState(''),
-            const [password, setPassword] = useState(''),
-    
-            const [verificationCode, setVerificationCode] = useState('')
         };
+
+        const [firstName, setFName] = useState('')
+        const [lastName, setLName] = useState('')
+        const [email, setEmail] = useState('')
+        const [phone, setPhone] = useState('')
+        const [birthdate, setBirthdate] = useState('')
+        const [password, setPassword] = useState('')
+
+        const [verificationCode, setVerificationCode] = useState('')
+
         this.hideComponent = this.hideComponent.bind(this)
     }
 

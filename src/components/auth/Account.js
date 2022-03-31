@@ -1,6 +1,6 @@
 import React, { createContext } from "react"
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
-import Pool from "../../fanspool.js"
+import Pool from "./FansPool"
 //we use this as context verify that the user is actually logged in 
 //using this to verify sessions while user is loged in
 //for example when the user is changing their email or password or any profile information 
