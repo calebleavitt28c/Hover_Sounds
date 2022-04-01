@@ -8,9 +8,12 @@ class Signup extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            showHideSignup: true,
+            showHideSignUpFan: true,
+            showHideSignUpArtistAndVenue: false,
             showHideConfirm: false,
 
+            userType: 'fans',
+            name: '',
             firstName: '',
             lastName: '',
             email: '',
@@ -22,14 +25,16 @@ class Signup extends Component {
         };
 
         this.hideComponent = this.hideComponent.bind(this)
-        // this.handleFirstName = this.handleFirstName.bind(this)
+        this.hideForm = this.hideForm.bind(this)
     }
 
     hideComponent(name) {
-        console.log(name)
         switch (name) {
-            case "showHideSignup":
-                this.setState({ showHideSignup: !this.state.showHideSignup });
+            case "showHideSignUpFan":
+                this.setState({ showHideSignUpFan: !this.state.showHideSignUpFan });
+                break;
+            case "showHideSignUpArtistAndVenue":
+                this.setState({ showHideSignUpArtistAndVenue: !this.state.showHideSignUpArtistAndVenue });
                 break;
             case "showHideConfirm":
                 this.setState({ showHideConfirm: !this.state.showHideConfirm });
@@ -39,10 +44,30 @@ class Signup extends Component {
         }
     }
 
-    submitUser = (event) => {
+    hideForm(type) {
+        switch (type) {
+            case "fans":
+                this.setState({ showHideSignUpFan: true })
+                this.setState({ showHideSignUpArtistAndVenue: false })
+                break;
+                case "artists":
+                    case "venues":
+                        this.setState({ showHideSignUpFan: false })
+                        this.setState({ showHideSignUpArtistAndVenue: true })
+                break;
+            default:
+                break;
+        }
+    }
+
+    submitFanUser = (event) => {
         event.preventDefault()
         
         var attributeList = []
+        var dataUserType = {
+            Name: 'profile',
+            Value: this.state.userType
+        }
         var dataFirstName = {
             Name: 'given_name',
             Value: this.state.firstName.replace(/\s+/g, ''),
@@ -64,12 +89,14 @@ class Signup extends Component {
             Value: this.state.birthdate.replace(/\s+/g, ''),
         }
 
+        var attributeUserType = new CognitoUserAttribute(dataUserType)
         var attributeFirstName = new CognitoUserAttribute(dataFirstName)
         var attributeLastName = new CognitoUserAttribute(dataLastName)
         var attributeEmail = new CognitoUserAttribute(dataEmail)
         var attributePhone = new CognitoUserAttribute(dataPhone)
         var attributeBirthdate = new CognitoUserAttribute(dataBirthdate)
 
+        attributeList.push(attributeUserType)
         attributeList.push(attributeFirstName)
         attributeList.push(attributeLastName)
         attributeList.push(attributeEmail)
@@ -84,9 +111,45 @@ class Signup extends Component {
             }
         })
 
-        this.hideComponent("showHideSignup")
+        this.hideComponent("showHideSignUpFan")
         this.hideComponent("showHideConfirm")
+    }
 
+    submitArtOrVenUser = (event) => {
+        event.preventDefault()
+        
+        var attributeList = []
+        var dataUserType = {
+            Name: 'profile',
+            Value: this.state.userType
+        }
+        var dataName = {
+            Name: 'name',
+            Value: this.state.name.replace(/\s+/g, ''),
+        }
+        var dataEmail = {
+            Name: 'email',
+            Value: this.state.email.replace(/\s+/g, ''),
+        }
+
+        var attributeUserType = new CognitoUserAttribute(dataUserType)
+        var attributeName = new CognitoUserAttribute(dataName)
+        var attributeEmail = new CognitoUserAttribute(dataEmail)
+
+        attributeList.push(attributeUserType)
+        attributeList.push(attributeName)
+        attributeList.push(attributeEmail)
+
+        Pool.signUp(this.state.email, this.state.password, attributeList, null, (err, data) => {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(data)
+            }
+        })
+
+        this.hideComponent("showHideSignUpArtistAndVenue")
+        this.hideComponent("showHideConfirm")
     }
 
     confirmUser = (event) => {
@@ -108,41 +171,82 @@ class Signup extends Component {
         this.hideComponent("showHideConfirm")
     }
 
-    // handleFirstName(event) {
-    //     this.setState({firstName: event.target.value})
-    // }
-
     render() {
-        const { showHideSignup, showHideConfirm } = this.state
+        const { showHideSignUpFan, showHideSignUpArtistAndVenue, showHideConfirm } = this.state
         return (
             <div>
-                {showHideSignup && (
-                    <form onSubmit={this.submitUser}>
+                {(showHideSignUpFan || showHideSignUpArtistAndVenue) && (
+                    <div>
+                        <label htmlFor="userType">User Type</label>
+                        <select
+                            value={this.state.userType}
+                            onChange={(event) => {
+                                this.setState({ userType: event.target.value });
+                                this.hideForm(event.target.value);
+                            } }>
+
+                            <option value="fans">Fan</option>
+                            <option value="artists">Artist</option>
+                            <option value="venues">Venue</option>
+                        </select>
+                    </div>
+                )}
+                {showHideSignUpFan && (
+                    <form onSubmit={this.submitFanUser}>
                         <label htmlFor="firstName">First Name</label>
-                        <input 
-                            value={this.state.firstName}
-                            onChange={(event) => this.setState({firstName: event.target.value})}
+                        <input
+                                value={this.state.firstName}
+                                onChange={(event) => this.setState({ firstName: event.target.value })}
                         ></input>
+
                         <label htmlFor="lastName">Last Name</label>
-                        <input 
-                            value={this.state.lastName}
-                            onChange={(event) => this.setState({lastName: event.target.value})}
+                        <input
+                                value={this.state.lastName}
+                                onChange={(event) => this.setState({ lastName: event.target.value })}
                         ></input>
+                              
                         <label htmlFor="email">Email</label>
                         <input 
                             value={this.state.email}
                             onChange={(event) => this.setState({email: event.target.value})}
                         ></input>
+                
                         <label htmlFor="phone">Phone</label>
-                        <input 
+                        <input
                             value={this.state.phone}
-                            onChange={(event) => this.setState({phone: event.target.value})}
+                            onChange={(event) => this.setState({ phone: event.target.value })}
                         ></input>
+
                         <label htmlFor="birthdate">Birthdate</label>
-                        <input 
+                        <input
+                            type="date"
                             value={this.state.birthdate}
-                            onChange={(event) => this.setState({birthdate: event.target.value})}
+                            onChange={(event) => this.setState({ birthdate: event.target.value })}
                         ></input>
+                          
+                        <label htmlFor="password">Password</label>
+                        <input
+                            value={this.state.password}
+                            onChange={(event) => this.setState({password: event.target.value})}
+                        ></input>
+                        
+                        <button type="submit">Signup</button>
+                    </form>
+                )}
+                {showHideSignUpArtistAndVenue && (
+                    <form onSubmit={this.submitArtOrVenUser}>
+                        <label htmlFor="name">Name</label>
+                        <input
+                            value={this.state.name}
+                            onChange={(event) => this.setState({ name: event.target.value })}>
+                        </input>
+
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            value={this.state.email}
+                            onChange={(event) => this.setState({email: event.target.value})}
+                        ></input>
+
                         <label htmlFor="password">Password</label>
                         <input
                             value={this.state.password}
