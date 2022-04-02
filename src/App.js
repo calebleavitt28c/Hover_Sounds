@@ -15,7 +15,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Account>
-          <label>Sign up</label>
           <Signup />
           {/* <label>Login</label>
           <Login />

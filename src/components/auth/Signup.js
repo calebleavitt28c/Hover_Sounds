@@ -177,6 +177,7 @@ class Signup extends Component {
             <div>
                 {(showHideSignUpFan || showHideSignUpArtistAndVenue) && (
                     <div>
+                        <label>Sign up</label>
                         <label htmlFor="userType">User Type</label>
                         <select
                             value={this.state.userType}
@@ -258,6 +259,7 @@ class Signup extends Component {
                 )}
                 {showHideConfirm && (
                     <form onSubmit={this.confirmUser}>
+                        <label>Verify Email</label>
                         <label>Verification Code</label>
                         <input value={this.state.verificationCode} onChange={event => this.setState({verificationCode: event.target.value})} />
         
