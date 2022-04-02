@@ -174,10 +174,10 @@ class Signup extends Component {
     render() {
         const { showHideSignUpFan, showHideSignUpArtistAndVenue, showHideConfirm } = this.state
         return (
-            <div>
+            <div id="signUp">
                 {(showHideSignUpFan || showHideSignUpArtistAndVenue) && (
                     <div>
-                        <label>Sign up</label>
+                        <label name='fromTitle'>Sign up</label><br></br><br></br>
                         <label htmlFor="userType">User Type</label>
                         <select
                             value={this.state.userType}
@@ -189,79 +189,95 @@ class Signup extends Component {
                             <option value="fans">Fan</option>
                             <option value="artists">Artist</option>
                             <option value="venues">Venue</option>
-                        </select>
+                        </select><br></br>
                     </div>
                 )}
                 {showHideSignUpFan && (
                     <form onSubmit={this.submitFanUser}>
-                        <label htmlFor="firstName">First Name</label>
                         <input
+                                name="firstName"
+                                placeholder="first name"
                                 value={this.state.firstName}
                                 onChange={(event) => this.setState({ firstName: event.target.value })}
-                        ></input>
+                        ></input><br></br>
 
-                        <label htmlFor="lastName">Last Name</label>
                         <input
+                                name="lastName"
+                                placeholder="last name"
                                 value={this.state.lastName}
                                 onChange={(event) => this.setState({ lastName: event.target.value })}
-                        ></input>
+                        ></input><br></br>
                               
-                        <label htmlFor="email">Email</label>
                         <input 
+                            name="email"
+                            placeholder="email"
                             value={this.state.email}
                             onChange={(event) => this.setState({email: event.target.value})}
-                        ></input>
+                        ></input><br></br>
                 
-                        <label htmlFor="phone">Phone</label>
                         <input
+                            name="phone"
+                            placeholder="phone"
                             value={this.state.phone}
                             onChange={(event) => this.setState({ phone: event.target.value })}
-                        ></input>
+                        ></input><br></br>
 
-                        <label htmlFor="birthdate">Birthdate</label>
                         <input
+                            name="birthdate"
+                            placeholder="birthdate"
                             type="date"
                             value={this.state.birthdate}
                             onChange={(event) => this.setState({ birthdate: event.target.value })}
-                        ></input>
+                        ></input><br></br>
                           
-                        <label htmlFor="password">Password</label>
                         <input
+                            name="password"
+                            placeholder="password"
                             value={this.state.password}
                             onChange={(event) => this.setState({password: event.target.value})}
-                        ></input>
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                            title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
+                        ></input><br></br>
                         
                         <button type="submit">Signup</button>
                     </form>
                 )}
                 {showHideSignUpArtistAndVenue && (
                     <form onSubmit={this.submitArtOrVenUser}>
-                        <label htmlFor="name">Name</label>
                         <input
+                            name="name"
+                            placeholder="name"
                             value={this.state.name}
                             onChange={(event) => this.setState({ name: event.target.value })}>
-                        </input>
+                        </input><br></br>
 
-                        <label htmlFor="email">Email</label>
                         <input 
+                            name="email"
+                            placeholder="email"
                             value={this.state.email}
                             onChange={(event) => this.setState({email: event.target.value})}
-                        ></input>
+                        ></input><br></br>
 
-                        <label htmlFor="password">Password</label>
                         <input
+                            name="password"
+                            placeholder="password"
                             value={this.state.password}
                             onChange={(event) => this.setState({password: event.target.value})}
-                        ></input>
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                            title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
+                        ></input><br></br>
                         
                         <button type="submit">Signup</button>
                     </form>
                 )}
                 {showHideConfirm && (
                     <form onSubmit={this.confirmUser}>
-                        <label>Verify Email</label>
-                        <label>Verification Code</label>
-                        <input value={this.state.verificationCode} onChange={event => this.setState({verificationCode: event.target.value})} />
+                        <label name='fromTitle'>Verify Email</label>
+                        <input 
+                            name="verificationCode"
+                            placeholder="Verification Code"
+                            value={this.state.verificationCode} 
+                            onChange={event => this.setState({verificationCode: event.target.value})} />
         
                         <button type='submit'>Verify Email</button>
                     </form>
