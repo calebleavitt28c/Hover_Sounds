@@ -1,3 +1,5 @@
+import React from 'react'
+
 class Post extends React.Component {
   constructor(props) {
     super(props)
@@ -14,7 +16,7 @@ class Post extends React.Component {
       <>
       <div class="row">
         <div class="column">
-          <img src={this.props.profile} height="75px" width="auto"/>
+          <img src={this.props.profile} alt={this.props.name} height="75px" width="auto"/>
         </div>
         <div class="column">
           <h3>{this.props.name}</h3>
@@ -22,7 +24,7 @@ class Post extends React.Component {
       </div>
       <div class="row">
         <div class="column">
-          <img src={this.prop.image} height="400px" width="auto"/>
+          <img src={this.props.image} alt={this.props.name} height="400px" width="auto"/>
         </div>
         <div class="column">
           <p>{this.props.caption}</p>
@@ -32,3 +34,5 @@ class Post extends React.Component {
     );
   }
 }
+
+export default Post

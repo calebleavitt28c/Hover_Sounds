@@ -1,3 +1,5 @@
+import React from 'react'
+
 class TopEvent extends React.Component {
   constructor(props) {
     super(props)
@@ -16,7 +18,7 @@ class TopEvent extends React.Component {
             <h1>{this.props.place}.</h1>
           </div>
           <div class="column">
-            <img src={this.props.profile} height="75px" width="auto"/>
+            <img src={this.props.profile} alt={this.props.name} height="75px" width="auto"/>
           </div>
           <div class="column">
             <h3>{this.props.name}</h3>
@@ -26,3 +28,5 @@ class TopEvent extends React.Component {
     );
   }
 }
+
+export default TopEvent
