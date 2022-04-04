@@ -1,3 +1,5 @@
+import React from 'react'
+
 class EventRow extends React.Component {
   constructor(props) {
     super(props)
@@ -20,3 +22,5 @@ class EventRow extends React.Component {
     );
   }
 }
+
+export default EventRow
