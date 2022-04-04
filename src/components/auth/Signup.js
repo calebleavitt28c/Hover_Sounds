@@ -220,6 +220,8 @@ class Signup extends Component {
                             placeholder="phone"
                             value={this.state.phone}
                             onChange={(event) => this.setState({ phone: event.target.value })}
+                            pattern="^[0-9]{10}$" 
+                            title="Required format: 0123456789 Don't include parenthesis or dashes in your phone number"
                         ></input><br></br>
 
                         <input
