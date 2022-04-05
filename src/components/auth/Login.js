@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { AccountContext } from "./Account"
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
 import Pool from "./FansPool"
@@ -8,12 +8,20 @@ const Login = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [loggedIn, setLoggedIn] = useState(false)
 
-    const { authenticate } = useContext(AccountContext)
+    const { getSession, authenticate } = useContext(AccountContext)
+
+    useEffect(() => {
+        getSession()
+            .then(session => {
+                setLoggedIn(true)
+            })
+    })
 
     const onSubmit = (event) => {
         event.preventDefault()
-        
+
         authenticate(email, password)
             .then(data => {
                 console.log("Logged in!", data)
@@ -25,21 +33,26 @@ const Login = () => {
 
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <label htmlFor="email">Email</label>
-                <input 
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                ></input>
-                
-                <label htmlFor="password">Password</label>
-                <input
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                ></input>
-                
-                <button type="submit">Login</button>
-            </form>
+            {(!loggedIn) && (
+                <div>
+                    <label>Login</label><br></br>
+                    <form onSubmit={onSubmit}>
+                        <input 
+                            value={email}
+                            placeholder="email"
+                            onChange={(event) => setEmail(event.target.value)}
+                        ></input><br></br>
+                        
+                        <input
+                            value={password}
+                            placeholder="password"
+                            onChange={(event) => setPassword(event.target.value)}
+                        ></input><br></br>
+                        
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            )}
         </div>
     )
 }

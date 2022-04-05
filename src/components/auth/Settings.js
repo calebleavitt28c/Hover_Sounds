@@ -3,7 +3,7 @@ import { AccountContext } from './Account'
 import ChangePassword from './ChangePassword'
 import ChangeEmail from './ChangeEmail'
 
-
+//this will contain our settings dashboard
 export default () => {
     const { getSession } = useContext(AccountContext)
 

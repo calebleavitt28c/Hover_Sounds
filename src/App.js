@@ -4,10 +4,10 @@ import './App.css';
 import React from 'react';
 import Signup from './components/auth/Signup';
 // import VerifyEmail from './components/auth/VerifyEmail';
-// import Login from './components/auth/Login';
+import Login from './components/auth/Login';
 // import ForgotPassword from './components/auth/ForgotPassword'
 import { Account } from "./components/auth/Account"
-// import Status from './components/auth/Status';
+import Status from './components/auth/Status';
 // import Settings from './components/auth/Settings';
 
 function App() {
@@ -15,13 +15,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Account>
-          <Signup />
-          {/* <label>Login</label>
-          <Login />
-          <ForgotPassword />
-          <label>Status</label>
           <Status />
-          <label>Settings</label>
+          <Signup />
+          <Login />
+          {/* <ForgotPassword /> */}
+          {/* <label>Settings</label>
           <Settings /> */}
         </Account>
       </header>
