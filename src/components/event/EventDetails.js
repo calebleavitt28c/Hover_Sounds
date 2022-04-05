@@ -12,6 +12,7 @@ class EventDetails extends React.Component {
       images: [],
     }
   }
+  
   render() {
     return(
       <>
@@ -20,7 +21,7 @@ class EventDetails extends React.Component {
             <h1>{this.props.price}</h1>
           </div>
           <div class="column">
-            <Map google={this.props.address} />
+            <Map google={this.props.google} />
           </div>
         </div>
         <div class="row">
