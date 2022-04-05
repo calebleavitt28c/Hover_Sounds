@@ -37,13 +37,15 @@ const Login = () => {
                 <div>
                     <label>Login</label><br></br>
                     <form onSubmit={onSubmit}>
-                        <input 
+                        <input
+                            className="text-text-base"
                             value={email}
                             placeholder="email"
                             onChange={(event) => setEmail(event.target.value)}
                         ></input><br></br>
                         
                         <input
+                            className="text-text-base"
                             value={password}
                             placeholder="password"
                             onChange={(event) => setPassword(event.target.value)}

@@ -13,7 +13,7 @@ import Status from './components/auth/Status';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header bg-primary">
         <Account>
           <Status />
           <Signup />
