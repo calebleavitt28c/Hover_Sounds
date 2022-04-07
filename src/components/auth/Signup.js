@@ -239,6 +239,7 @@ const Signup = () => {
                                 <input
                                     name="password"
                                     placeholder="password"
+                                    type="password"
                                     value={password}
                                     onChange={(event) => setPassword(event.target.value)}
                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 

@@ -47,6 +47,7 @@ const Login = () => {
                         <input
                             className="text-text-base"
                             value={password}
+                            type="password"
                             placeholder="password"
                             onChange={(event) => setPassword(event.target.value)}
                         ></input><br></br>
