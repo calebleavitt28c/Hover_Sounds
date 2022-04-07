@@ -27,7 +27,7 @@ function App() {
           <Settings /> */}
         </Account>
       </header>
-      <SpotifyWebPlayer token="BQD7WWRcU7NB3u9D0YmaCLCjLIck_32XS1lYBOyXFAt5Cypyp-yYATPoQpCp2JRN9UooG5pqVO08Lj3sd0eCyISmNb9FEIorLpWeqJ04UlJ9jRxjRtdsIxLSnAOmiHv45-noQ97ezuqSXALOc91ofqy5dwPA9gSTL6ji-A5Xorx6Y14eOl9WVgHXkuUW3HeGmW2qsD9uK3dRHN3aOA"></SpotifyWebPlayer>
+      {/* <SpotifyWebPlayer token="BQD7WWRcU7NB3u9D0YmaCLCjLIck_32XS1lYBOyXFAt5Cypyp-yYATPoQpCp2JRN9UooG5pqVO08Lj3sd0eCyISmNb9FEIorLpWeqJ04UlJ9jRxjRtdsIxLSnAOmiHv45-noQ97ezuqSXALOc91ofqy5dwPA9gSTL6ji-A5Xorx6Y14eOl9WVgHXkuUW3HeGmW2qsD9uK3dRHN3aOA"></SpotifyWebPlayer> */}
     </div>
   );
 }
