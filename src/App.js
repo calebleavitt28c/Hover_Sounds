@@ -12,6 +12,7 @@ import Status from './components/auth/Status';
 import SpotifyWebPlayer from 'react-spotify-web-playback/lib';
 import EventForm from './components/event/EventForm';
 import MerchForm from './components/store/MerchForm';
+import ArtistProfileForm from './components/artist/ArtistProfileForm';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <header className="App-header bg-primary">
         {/* <EventForm />
         <MerchForm /> */}
+        <ArtistProfileForm />
         <Account>
           <Status />
           <Signup />
