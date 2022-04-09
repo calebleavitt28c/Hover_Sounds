@@ -1,20 +1,20 @@
 import React from 'react'
 
-class AboutVenue extends React.Component {
+class AboutArtist extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
       name: '',
       bio: '',
-      address: '',
+      image: '',
     }
   }
   render() {
     return(
       <div>
         <div class="row">
-          {/* google map + this.props.address */}
+          <img src={this.props.image} alt={this.props.name} height="400px" width="auto"/>
           <h1>{this.props.name}</h1>
           <p>{this.props.bio}</p>
         </div>
@@ -23,4 +23,4 @@ class AboutVenue extends React.Component {
   }
 }
 
-export default AboutVenue
+export default AboutArtist
