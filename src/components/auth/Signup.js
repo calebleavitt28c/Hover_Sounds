@@ -1,15 +1,14 @@
 // import { render } from "@testing-library/react"
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
 import React, { useContext, useEffect, useState } from "react"
-import Pool from "./FansPool"
+import Pool from "./UserPool"
 import { AccountContext } from "./Account"
 
 //TODO: look up what a useState hook is 
-const Signup = () => {
+const Signup = (props) => {
     const [showHideSignUpFan, setShowHideSignUpFan] = useState(true)
     const [showHideSignUpArtistAndVenue, setShowHideSignUpArtistAndVenue] = useState(false)
     const [showHideConfirm, setShowHideConfirm] = useState(false)
-    const [loggedIn, setLoggedIn] = useState(false)
 
     const [userType, setUserType] = useState('fans')
     const [name, setName] = useState('')
@@ -19,17 +18,6 @@ const Signup = () => {
     const [phone, setPhone] = useState('')
     const [birthdate, setBirthdate] = useState('')
     const [password, setPassword] = useState('')
-
-    const [verificationCode, setVerificationCode] = useState('')
-
-    const { getSession } = useContext(AccountContext)
-
-    useEffect(() => {
-        getSession()
-            .then(session => {
-                setLoggedIn(true)
-            })
-    })
 
     const hideComponent = (name) => {
         switch (name) {
@@ -53,10 +41,10 @@ const Signup = () => {
                 setShowHideSignUpFan(true)
                 setShowHideSignUpArtistAndVenue(false)
                 break;
-                case "artists":
-                    case "venues":
-                        setShowHideSignUpFan(false)
-                        setShowHideSignUpArtistAndVenue(true)
+            case "artists":
+            case "venues":
+                setShowHideSignUpFan(false)
+                setShowHideSignUpArtistAndVenue(true)
                 break;
             default:
                 break;
@@ -114,8 +102,8 @@ const Signup = () => {
             }
         })
 
-        this.hideComponent("showHideSignUpFan")
-        this.hideComponent("showHideConfirm")
+        hideComponent("showHideSignUpFan")
+        hideComponent("showHideConfirm")
         this.status()
     }
 
@@ -156,11 +144,127 @@ const Signup = () => {
         hideComponent("showHideConfirm")
     }
 
+    return (
+        <div id="signUp">
+                {(showHideSignUpFan || showHideSignUpArtistAndVenue) && (
+                    <div>
+                        <label name='fromTitle'>Sign up</label><br></br>
+                        <label htmlFor="userType">User Type</label>
+                        <select
+                            value={userType}
+                            onChange={(event) => {
+                                setUserType(event.target.value);
+                                hideForm(event.target.value);
+                            } }>
+
+                            <option value="fans">Fan</option>
+                            <option value="artists">Artist</option>
+                            <option value="venues">Venue</option>
+                        </select><br></br>
+                    </div>
+                )}
+                {showHideSignUpFan && (
+                    <form onSubmit={submitFanUser}>
+                        <input
+                                name="firstName"
+                                placeholder="first name"
+                                value={firstName}
+                                onChange={(event) => setFirstName(event.target.value)}
+                        ></input><br></br>
+
+                        <input
+                                name="lastName"
+                                placeholder="last name"
+                                value={lastName}
+                                onChange={(event) => setLastName(event.target.value)}
+                        ></input><br></br>
+                            
+                        <input 
+                            name="email"
+                            placeholder="email"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        ></input><br></br>
+                
+                        <input
+                            name="phone"
+                            placeholder="phone"
+                            value={phone}
+                            onChange={(event) => setPhone( event.target.value)}
+                            pattern="^[0-9]{10}$" 
+                            title="Required format: 0123456789 Don't include parenthesis or dashes in your phone number"
+                        ></input><br></br>
+
+                        <input
+                            name="birthdate"
+                            placeholder="birthdate"
+                            type="date"
+                            value={birthdate}
+                            onChange={(event) => setBirthdate(event.target.value)}
+                        ></input><br></br>
+                        
+                        <input
+                            name="password"
+                            placeholder="password"
+                            type="password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                            title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
+                        ></input><br></br>
+                        
+                        <button type="submit">Sign up</button><br></br>
+                    </form>
+                )}
+                {showHideSignUpArtistAndVenue && (
+                    <form onSubmit={submitArtOrVenUser}>
+                        <input
+                            name="name"
+                            placeholder="name"
+                            value={name}
+                            onChange={(event) => setName(event.target.value)}>
+                        </input><br></br>
+
+                        <input 
+                            name="email"
+                            placeholder="email"
+                            value={email}
+                            onChange={(event) => setEmail( event.target.value)}
+                        ></input><br></br>
+
+                        <input
+                            name="password"
+                            placeholder="password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                            title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
+                        ></input><br></br>
+                        
+                        <button type="submit">Sign up</button>
+                    </form>
+                )}
+                {showHideConfirm && (
+                    <VerifyEmail username={email} />
+                )}
+        </div>
+    )
+}
+
+const VerifyEmail = (props) => {
+    const [showHideConfirm, setShowHideConfirm] = useState(true)
+
+    const [verificationCode, setVerificationCode] = useState('')
+
+    const hideVerifyEmail = () => {
+        setShowHideConfirm(!showHideConfirm)
+    }
+
     const confirmUser = (event) => {
         event.preventDefault()
 
         const cognitoUser = new CognitoUser({
-            Username: email,
+            Username: props.username,
             Pool
         })
 
@@ -172,124 +276,25 @@ const Signup = () => {
             }
         })
 
-        this.hideComponent("showHideConfirm")
+        hideVerifyEmail()
     }
+
 
     return (
         <div>
-            {(!loggedIn) && (
-                <div id="signUp">
-                        {(showHideSignUpFan || showHideSignUpArtistAndVenue) && (
-                            <div>
-                                <label name='fromTitle'>Sign up</label><br></br><br></br>
-                                <label htmlFor="userType">User Type</label>
-                                <select
-                                    value={userType}
-                                    onChange={(event) => {
-                                        setUserType(event.target.value);
-                                        hideForm(event.target.value);
-                                    } }>
+            {showHideConfirm && (
+                <div>
+                    <form onSubmit={confirmUser}>
+                        <label name='fromTitle'>Verify Email</label><br></br>
+                        <input 
+                            name="verificationCode"
+                            placeholder="Verification Code"
+                            value={verificationCode} 
+                            onChange={event => setVerificationCode(event.target.value)} 
+                        /><br></br>
 
-                                    <option value="fans">Fan</option>
-                                    <option value="artists">Artist</option>
-                                    <option value="venues">Venue</option>
-                                </select><br></br>
-                            </div>
-                        )}
-                        {showHideSignUpFan && (
-                            <form onSubmit={submitFanUser}>
-                                <input
-                                        name="firstName"
-                                        placeholder="first name"
-                                        value={firstName}
-                                        onChange={(event) => setFirstName(event.target.value)}
-                                ></input><br></br>
-
-                                <input
-                                        name="lastName"
-                                        placeholder="last name"
-                                        value={lastName}
-                                        onChange={(event) => setLastName(event.target.value)}
-                                ></input><br></br>
-                                    
-                                <input 
-                                    name="email"
-                                    placeholder="email"
-                                    value={email}
-                                    onChange={(event) => setEmail(event.target.value)}
-                                ></input><br></br>
-                        
-                                <input
-                                    name="phone"
-                                    placeholder="phone"
-                                    value={phone}
-                                    onChange={(event) => setPhone( event.target.value)}
-                                    pattern="^[0-9]{10}$" 
-                                    title="Required format: 0123456789 Don't include parenthesis or dashes in your phone number"
-                                ></input><br></br>
-
-                                <input
-                                    name="birthdate"
-                                    placeholder="birthdate"
-                                    type="date"
-                                    value={birthdate}
-                                    onChange={(event) => setBirthdate(event.target.value)}
-                                ></input><br></br>
-                                
-                                <input
-                                    name="password"
-                                    placeholder="password"
-                                    type="password"
-                                    value={password}
-                                    onChange={(event) => setPassword(event.target.value)}
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                                    title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
-                                ></input><br></br>
-                                
-                                <button type="submit">Signup</button><br></br>
-                            </form>
-                        )}
-                        {showHideSignUpArtistAndVenue && (
-                            <form onSubmit={submitArtOrVenUser}>
-                                <input
-                                    name="name"
-                                    placeholder="name"
-                                    value={name}
-                                    onChange={(event) => setName(event.target.value)}>
-                                </input><br></br>
-
-                                <input 
-                                    name="email"
-                                    placeholder="email"
-                                    value={email}
-                                    onChange={(event) => setEmail( event.target.value)}
-                                ></input><br></br>
-
-                                <input
-                                    name="password"
-                                    placeholder="password"
-                                    value={password}
-                                    onChange={(event) => setPassword(event.target.value)}
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                                    title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
-                                ></input><br></br>
-                                
-                                <button type="submit">Signup</button>
-                            </form>
-                        )}
-                        {showHideConfirm && (
-                            <form onSubmit={confirmUser}>
-                                <label name='fromTitle'>Verify Email</label><br></br>
-                                <input 
-                                    name="verificationCode"
-                                    placeholder="Verification Code"
-                                    value={verificationCode} 
-                                    onChange={event => setVerificationCode(event.target.value)} 
-                                /><br></br>
-                
-                                <button type='submit'>Verify Email</button>
-                            </form>
-                        )}
+                        <button type='submit'>Verify Email</button>
+                    </form>
                 </div>
             )}
         </div>

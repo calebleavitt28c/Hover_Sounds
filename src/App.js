@@ -2,17 +2,15 @@
 import './App.css';
 
 import React from 'react';
-import Signup from './components/auth/Signup';
-// import VerifyEmail from './components/auth/VerifyEmail';
-import Login from './components/auth/Login';
 // import ForgotPassword from './components/auth/ForgotPassword'
 import { Account } from "./components/auth/Account"
 import Status from './components/auth/Status';
+import AuthPage from './components/auth/AuthPage';
 // import Settings from './components/auth/Settings';
-import SpotifyWebPlayer from 'react-spotify-web-playback/lib';
-import EventForm from './components/event/EventForm';
-import MerchForm from './components/store/MerchForm';
-import ArtistProfileForm from './components/artist/ArtistProfileForm';
+// import SpotifyWebPlayer from 'react-spotify-web-playback/lib';
+// import EventForm from './components/event/EventForm';
+// import MerchForm from './components/store/MerchForm';
+// import ArtistProfileForm from './components/artist/ArtistProfileForm';
 
 import Header from './components/universal/Header'
 import Footer from './components/universal/Footer'
@@ -24,11 +22,10 @@ function App() {
       <header className="App-header bg-white">
         {/* <EventForm />
         <MerchForm /> */}
-        <ArtistProfileForm />
+        {/* <ArtistProfileForm /> */}
         <Account>
-          <Status />
-          <Signup />
-          <Login />
+          <Status /><br></br>
+          <AuthPage />
           {/* <ForgotPassword />
           <Settings /> */}
         </Account>

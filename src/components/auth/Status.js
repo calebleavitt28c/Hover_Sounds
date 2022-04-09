@@ -15,7 +15,7 @@ const Status = () => {
             })
     }, [])
 
-    return <div> {status ? (<button onClick={logout}>Logout</button>) : "Please login or sign up"} </div>
+    return <div> {status ? (<button onClick={logout}>Logout</button>) : "Please Login or Sign up"} </div>
 }
 
 export default Status
