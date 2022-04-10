@@ -34,7 +34,7 @@ class Header extends React.Component {
             </a>
           </div>
           <div>
-            <a href="/" className="inline-block text-sm px-4 py-2 leading-none border rounded text-primary bg-secondary border-transparent hover:border-white hover:text-secondary hover:bg-primary mt-4 lg:mt-0 ease-in duration-300">Signup/Login/Profile</a>
+            <button className="inline-block text-sm px-4 py-2 leading-none border rounded text-primary bg-secondary border-transparent hover:border-white hover:text-secondary hover:bg-primary mt-4 lg:mt-0 ease-in duration-300">Logout</button>
           </div>
         </div>
       </nav>

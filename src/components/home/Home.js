@@ -7,11 +7,13 @@ class Home extends React.Component {
     super(props)
 
     this.state = {
+
       posts: [],
       events: []
     }
   }
   render() {
+
     const postItems = []
     const eventItems = []
 
@@ -31,6 +33,7 @@ class Home extends React.Component {
       <div>
         <div class="20% column">
           {/* top artists, events, venues */}
+
         </div>
         <div class="50% column">
           {/* POSTS */}
@@ -40,7 +43,7 @@ class Home extends React.Component {
         </div>
         <div class="30% column">
           {/* EVENTS */}
-          <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-black">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th class="px-6 py-3">Artist</th>

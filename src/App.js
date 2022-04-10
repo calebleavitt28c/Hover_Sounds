@@ -14,6 +14,7 @@ import AuthPage from './components/auth/AuthPage';
 
 import Header from './components/universal/Header'
 import Footer from './components/universal/Footer'
+import { render } from '@testing-library/react';
 
 function App() {
   return (
