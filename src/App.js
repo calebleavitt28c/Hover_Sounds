@@ -17,7 +17,7 @@ import Footer from './components/universal/Footer'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flex flex-col h-screen justify-between">
       <Header />
       <header className="App-header bg-white">
         {/* <EventForm />
