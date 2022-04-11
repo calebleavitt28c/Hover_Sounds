@@ -12,16 +12,6 @@ class Home extends React.Component {
     }
   }
   render() {
-    const posts = [
-      
-    ]
-    const postItems = []
-
-    // for (let post of this.props.posts) {
-    //   postItems.push(
-    //     <Post profile={post.profile} name={post.name} image={post.image} caption={post.caption}></Post>
-    //   )
-    // }
 
     return(
       <div className="grid grid-cols-12 px-4">
@@ -32,7 +22,7 @@ class Home extends React.Component {
         <div className="col-span-6">
           {/* POSTS */}
           <ul>
-            {postItems}
+            
           </ul>
         </div>
         <div className="col-span-3">

@@ -5,9 +5,7 @@ class TopArtist extends React.Component {
     super(props)
 
     this.state = {
-      place: '',
-      profile: '',
-      name: '',
+
     }
   }
   render() {

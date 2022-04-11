@@ -5,8 +5,7 @@ class TopVenue extends React.Component {
     super(props)
 
     this.state = {
-      place: '',
-      name: '',
+
     }
   }
   render() {
