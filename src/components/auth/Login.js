@@ -24,24 +24,24 @@ const Login = () => {
 
     return (
         <div>
-            <label>Login</label><br></br>
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Login</label><br></br>
             <form onSubmit={onSubmit}>
                 <input
-                    className="text-text-base"
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     value={email}
                     placeholder="email"
                     onChange={(event) => setEmail(event.target.value)}
                 ></input><br></br>
                 
                 <input
-                    className="text-text-base"
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     value={password}
                     type="password"
                     placeholder="password"
                     onChange={(event) => setPassword(event.target.value)}
                 ></input><br></br>
                 
-                <button type="submit">Login</button>
+                <button type="submit" className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
             </form>
         </div>
     )

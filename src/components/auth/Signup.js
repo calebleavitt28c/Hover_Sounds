@@ -148,9 +148,10 @@ const Signup = (props) => {
         <div id="signUp">
                 {(showHideSignUpFan || showHideSignUpArtistAndVenue) && (
                     <div>
-                        <label name='fromTitle'>Sign up</label><br></br>
-                        <label htmlFor="userType">User Type</label>
+                        <label name='fromTitle' className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Sign up</label><br></br>
+                        <label htmlFor="userType" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">User Type</label>
                         <select
+                            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             value={userType}
                             onChange={(event) => {
                                 setUserType(event.target.value);
@@ -166,6 +167,7 @@ const Signup = (props) => {
                 {showHideSignUpFan && (
                     <form onSubmit={submitFanUser}>
                         <input
+                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="firstName"
                                 placeholder="first name"
                                 value={firstName}
@@ -173,6 +175,7 @@ const Signup = (props) => {
                         ></input><br></br>
 
                         <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="lastName"
                                 placeholder="last name"
                                 value={lastName}
@@ -180,6 +183,7 @@ const Signup = (props) => {
                         ></input><br></br>
                             
                         <input 
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="email"
                             placeholder="email"
                             value={email}
@@ -187,6 +191,7 @@ const Signup = (props) => {
                         ></input><br></br>
                 
                         <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="phone"
                             placeholder="phone"
                             value={phone}
@@ -196,6 +201,7 @@ const Signup = (props) => {
                         ></input><br></br>
 
                         <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="birthdate"
                             placeholder="birthdate"
                             type="date"
@@ -204,6 +210,7 @@ const Signup = (props) => {
                         ></input><br></br>
                         
                         <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="password"
                             placeholder="password"
                             type="password"
@@ -213,12 +220,13 @@ const Signup = (props) => {
                             title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
                         ></input><br></br>
                         
-                        <button type="submit">Sign up</button><br></br>
+                        <button type="submit" className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign up</button><br></br>
                     </form>
                 )}
                 {showHideSignUpArtistAndVenue && (
                     <form onSubmit={submitArtOrVenUser}>
                         <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="name"
                             placeholder="name"
                             value={name}
@@ -226,6 +234,7 @@ const Signup = (props) => {
                         </input><br></br>
 
                         <input 
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="email"
                             placeholder="email"
                             value={email}
@@ -233,6 +242,7 @@ const Signup = (props) => {
                         ></input><br></br>
 
                         <input
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="password"
                             placeholder="password"
                             value={password}
@@ -241,7 +251,7 @@ const Signup = (props) => {
                             title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
                         ></input><br></br>
                         
-                        <button type="submit">Sign up</button>
+                        <button type="submit" className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign up</button>
                     </form>
                 )}
                 {showHideConfirm && (
@@ -285,15 +295,16 @@ const VerifyEmail = (props) => {
             {showHideConfirm && (
                 <div>
                     <form onSubmit={confirmUser}>
-                        <label name='fromTitle'>Verify Email</label><br></br>
+                        <label name='fromTitle' className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Verify Email</label><br></br>
                         <input 
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="verificationCode"
                             placeholder="Verification Code"
                             value={verificationCode} 
                             onChange={event => setVerificationCode(event.target.value)} 
                         /><br></br>
 
-                        <button type='submit'>Verify Email</button>
+                        <button type='submit' className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Verify Email</button>
                     </form>
                 </div>
             )}
