@@ -11,12 +11,27 @@ class EventTable extends React.Component {
   }
   render() {
     //call API for events
-    const events = []
+    const events = [
+      {
+        id: 0,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 1,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      }
+    ]
     const eventItems = []
 
     for (let event of events) {
       eventItems.push(
-        <EventRow artist={event.artist} venue={event.venue} date={event.date} time={event.time}></EventRow>
+        <EventRow key={event.id} artist={event.artist} venue={event.venue} date={event.date} time={event.time}></EventRow>
       )
     }
 

@@ -17,7 +17,7 @@ class TopArtist extends React.Component {
           <h1>{this.props.place}.</h1>
         </div>
         <div className="column">
-          <img src={this.props.profile} alt={this.props.name} height="75px" width="auto"/>
+          {/* <img src={this.props.profile} alt={this.props.name} height="75px" width="auto"/> */}
         </div>
         <div className="column">
           <h3>{this.props.name}</h3>

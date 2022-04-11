@@ -8,21 +8,18 @@ class TopList extends React.Component {
     super(props)
 
     this.state = {
-      selected: 'artists',
-      artists: [],
-      venues: [],
-      events: [],
 
     }
   }
   render() {
+    
     const current = []
 
     if (this.props.selected === 'artists') {
       //current = artists
       for (let [i, v] of this.props.artists.entries()) {
         current.push(
-          <TopArtist place={i + 1} profile={v.profile} name={v.name} />
+          <TopArtist key={v.id} place={i + 1} name={v.name} />
           )
       }
     }
