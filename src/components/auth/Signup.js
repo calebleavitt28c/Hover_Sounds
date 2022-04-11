@@ -23,15 +23,15 @@ const Signup = (props) => {
         switch (name) {
             case "showHideSignUpFan":
                 setShowHideSignUpFan(!showHideSignUpFan)
-                break;
+                break
             case "showHideSignUpArtistAndVenue":
                 setShowHideSignUpArtistAndVenue(!showHideSignUpArtistAndVenue)
-                break;
+                break
             case "showHideConfirm":
                 setShowHideConfirm(!showHideConfirm)
-                break;
+                break
             default:
-                break;
+                break
         }
     }
 
@@ -117,20 +117,32 @@ const Signup = (props) => {
         }
         var dataName = {
             Name: 'name',
-            Value: name.replace(/\s+/g, ''),
+            Value: name,
         }
         var dataEmail = {
             Name: 'email',
             Value: email.replace(/\s+/g, ''),
         }
+        var dataFirstName = {
+            Name: 'given_name',
+            Value: 'N/A',
+        }
+        var dataLastName = {
+            Name: 'family_name',
+            Value: 'N/A',
+        }
 
         var attributeUserType = new CognitoUserAttribute(dataUserType)
         var attributeName = new CognitoUserAttribute(dataName)
         var attributeEmail = new CognitoUserAttribute(dataEmail)
+        var attributeFirstName = new CognitoUserAttribute(dataFirstName)
+        var attributeLastName = new CognitoUserAttribute(dataLastName)
 
         attributeList.push(attributeUserType)
         attributeList.push(attributeName)
         attributeList.push(attributeEmail)
+        attributeList.push(attributeFirstName)
+        attributeList.push(attributeLastName)
 
         Pool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {

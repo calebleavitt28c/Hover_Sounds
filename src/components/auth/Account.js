@@ -30,12 +30,10 @@ const Account = (props) => {
                                         const { Name, Value } = attribute
                                         results[Name] = Value
                                     }
-
                                     resolve(results)
                                 }
                             })
                         })
-
                         resolve({ user, ...session, ...attributes })
                     }
                 })

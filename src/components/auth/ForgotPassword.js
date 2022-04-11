@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CognitoUser } from 'amazon-cognito-identity-js'
-import Pool from "./FansPool"
+import Pool from "./UserPool"
 
 export default () => {
     const [stage, setStage] = useState(1) //1 = email stage, 2 = code stage
@@ -56,7 +56,11 @@ export default () => {
         <div>
             {stage === 1 && (
                 <form onSubmit={sendCode}>
-                    <input value={email} onChange={event => setEmail(event.target.value)} />
+                    <input 
+                        value={email} 
+                        onChange={event => setEmail(event.target.value)} 
+                        placeholder="email"
+                    />
                     <button type='submit'>Send Verification Code</button>
                 </form>
             )}

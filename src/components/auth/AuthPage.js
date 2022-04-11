@@ -2,10 +2,12 @@ import React, {useState, useContext, useEffect } from 'react'
 import { AccountContext } from "./Account"
 import Signup from './Signup'
 import Login from './Login'
+import ForgotPassword from './ForgotPassword'
 
 const AuthPage = () => {
     const [loggedIn, setLoggedIn] = useState(false)
-    const [logOrSign, setLogOrSign] = useState(true)
+    // const [showLogSignForm, setShowLogSignForm] = useState(true)
+    const [stage, setStage] = useState(1) //1=Signup, 2=Login, 3=ForgotPassword
 
     const { getSession } = useContext(AccountContext)
 
@@ -42,22 +44,28 @@ const AuthPage = () => {
                                         shadow-sm"
                                     type="checkbox"
                                     role="switch"
-                                    value={logOrSign}
-                                    onChange={(event => setLogOrSign(!logOrSign))}
+                                    value={stage}
+                                    onChange={(event) => setStage(stage == 1 ? 2 : 1)}
                                 />
                             </div>
                          </div>
                         <span id="slider"></span>
                     </label><br></br>
-                    {logOrSign && (
+                    {stage == 1 && (
                         <div>
                             <Signup /><br></br>
                         </div>
                     )}
-                    {!logOrSign && (
-                        <dvi>
+                    {stage == 2 && (
+                        <div>
                             <Login />
-                        </dvi>
+                            <button onClick={(event => setStage(3))}>Forgot Password</button>
+                        </div>
+                    )}
+                    {stage == 3 && (
+                        <div>
+                            <ForgotPassword />
+                        </div>
                     )}
                 </div>
             )}

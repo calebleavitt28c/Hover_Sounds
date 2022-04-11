@@ -1,12 +1,15 @@
 import React, { useState } from "react"
 
-const FanProfileForm = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [phone, setPhone] = useState('')
-    const [birthdate, setBirthdate] = useState('')
+const FanProfileForm = (props) => {
+    const [firstName, setFirstName] = useState(props.firstName)
+    const [lastName, setLastName] = useState(props.lastName)
+    const [phone, setPhone] = useState(props.phone)
+    const [birthdate, setBirthdate] = useState(props.birtdate)
+
+    // const [curAtts, setCurAtts] = useState(props.attributes)
 
     const updateFan = (event) => {
+        event.preventDefault()
         //TODO: call Lambda Function that will UPDATE this fan in the fan table
     }
 

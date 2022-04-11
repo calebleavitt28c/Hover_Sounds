@@ -2,10 +2,9 @@
 import './App.css';
 
 import React from 'react';
-// import ForgotPassword from './components/auth/ForgotPassword'
 import { Account } from "./components/auth/Account"
-import Status from './components/auth/Status';
 import AuthPage from './components/auth/AuthPage';
+import UserInfo from './components/profile/UserInfo';
 // import Settings from './components/auth/Settings';
 // import SpotifyWebPlayer from 'react-spotify-web-playback/lib';
 // import EventForm from './components/event/EventForm';
@@ -25,10 +24,8 @@ function App() {
         <MerchForm /> */}
         {/* <ArtistProfileForm /> */}
         <Account>
-          <Status /><br></br>
           <AuthPage />
-          {/* <ForgotPassword />
-          <Settings /> */}
+          <UserInfo />
         </Account>
       </header>
       <Footer />

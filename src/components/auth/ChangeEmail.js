@@ -11,7 +11,7 @@ export default () => {
     const onSubmit = (event) => {
         event.preventDefault()
 
-        getSession().then(({user, email }) => {
+        getSession().then(({ user, email }) => {
             authenticate(email, password).then(()=> {
                 const attributes = [
                     new CognitoUserAttribute({ Name: 'email', Value: newEmail})
