@@ -12,11 +12,11 @@ class TopVenue extends React.Component {
   render() {
     return(
       <>
-        <div class="row">
-          <div class="column">
+        <div className="row">
+          <div className="column">
             <h1>{this.props.place}.</h1>
           </div>
-          <div class="column">
+          <div className="column">
             <h3>{this.props.name}</h3>
           </div>
         </div>
