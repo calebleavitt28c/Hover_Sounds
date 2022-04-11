@@ -1,31 +1,22 @@
 import React from 'react'
 import Post from './Post'
-import EventRow from './EventRow'
+import EventTable from './EventTable'
 
 class Home extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-
-      posts: [],
-      events: []
+      posts: []
     }
   }
   render() {
 
     const postItems = []
-    const eventItems = []
 
     for (let post of this.props.posts) {
       postItems.push(
         <Post profile={post.profile} name={post.name} image={post.image} caption={post.caption}></Post>
-      )
-    }
-
-    for (let event of this.props.events) {
-      eventItems.push(
-        <EventRow artist={event.artist} venue={event.venue} date={event.date} time={event.time}></EventRow>
       )
     }
 
@@ -43,19 +34,7 @@ class Home extends React.Component {
         </div>
         <div class="30% column">
           {/* EVENTS */}
-          <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-black">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th class="px-6 py-3">Artist</th>
-                <th class="px-6 py-3">Venue</th>
-                <th class="px-6 py-3">Date</th>
-                <th class="px-6 py-3">Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              {eventItems}
-            </tbody>
-          </table>
+          <EventTable />
         </div>
       </div>
     );
