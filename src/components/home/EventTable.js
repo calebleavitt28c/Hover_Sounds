@@ -6,27 +6,28 @@ class EventTable extends React.Component {
     super(props)
 
     this.state = {
-      events: []
+
     }
   }
   render() {
     //call API for events
+    const events = []
     const eventItems = []
 
-    for (let event of this.props.events) {
+    for (let event of events) {
       eventItems.push(
         <EventRow artist={event.artist} venue={event.venue} date={event.date} time={event.time}></EventRow>
       )
     }
 
     return(
-      <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-black">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table className="table-fixed w-full text-sm text-left text-gray-500 dark:text-black">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th class="px-6 py-3">Artist</th>
-            <th class="px-6 py-3">Venue</th>
-            <th class="px-6 py-3">Date</th>
-            <th class="px-6 py-3">Time</th>
+            <th className="px-6 py-3">Artist</th>
+            <th className="px-6 py-3">Venue</th>
+            <th className="px-6 py-3">Date</th>
+            <th className="px-6 py-3">Time</th>
           </tr>
         </thead>
         <tbody>

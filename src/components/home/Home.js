@@ -22,17 +22,17 @@ class Home extends React.Component {
 
     return(
       <div>
-        <div class="20% column">
+        <div className="">
           {/* top artists, events, venues */}
 
         </div>
-        <div class="50% column">
+        <div className="">
           {/* POSTS */}
           <ul>
             {postItems}
           </ul>
         </div>
-        <div class="30% column">
+        <div className="">
           {/* EVENTS */}
           <EventTable />
         </div>
