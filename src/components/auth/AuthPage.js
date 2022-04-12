@@ -19,47 +19,36 @@ const AuthPage = () => {
     })
 
     return (
-        <div>
+        <div className='grid grid-cols-11 pt-4'>
+            <div className="col-span-4"></div>
             {!loggedIn && (
-                <div>
-                    <label id="switch" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        <span>Sign up or  Log in</span>
-                        <div className="flex justify-center">
-                            <div className="form-check form-switch">
-                                <input 
-                                    className="form-check-input 
-                                        appearance-none 
-                                        w-9 
-                                        -ml-10 
-                                        rounded-full 
-                                        float-left 
-                                        h-5 
-                                        align-top 
-                                        bg-primary 
-                                        bg-no-repeat 
-                                        bg-contain
-                                        bg-secondary
-                                        focus:outline-none 
-                                        cursor-pointer 
-                                        shadow-sm"
-                                    type="checkbox"
-                                    role="switch"
-                                    value={stage}
-                                    onChange={(event) => setStage(stage == 1 ? 2 : 1)}
-                                />
-                            </div>
-                         </div>
-                        <span id="slider"></span>
-                    </label><br></br>
+                <div className="col-span-3">
+                    <label id="switch" className="grid grid-cols-11 p-2 uppercase tracking-wide text-gray text-center text-xs font-bold mb-2">
+                        <span className="col-span-11">Sign up or Log in</span>
+                        <input 
+                            className="appearance-none peer"
+                            type="checkbox"
+                            role="switch"
+                            value={stage}
+                            onChange={(event) => setStage(stage == 1 ? 2 : 1)}
+                        />
+                        <div className="col-span-4"></div>
+                        <span id="slider" className="col-span-1 mt-2 w-8 h-5 flex items-center flex-shrink-0 p-1 bg-lightgray rounded-full after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md peer-checked:bg-secondary ease-in-out duration-300 after:duration-300 peer-checked:after:translate-x-2"></span>
+                        <div className="col-span-5"></div>
+                    </label>
                     {stage == 1 && (
                         <div>
-                            <Signup /><br></br>
+                            <Signup />
                         </div>
                     )}
                     {stage == 2 && (
                         <div>
-                            <Login />
-                            <button onClick={(event => setStage(3))}>Forgot Password</button>
+                            <Login/>
+                            <div className="grid grid-cols-3 pt-2">
+                                <div className="col-span-1"></div>
+                                <button className="text-gray col-span-1 hover:text-primary ease-in duration-200" onClick={(event => setStage(3))}>Forgot Password</button>
+                                <div className="col-span-1"></div>
+                            </div>
                         </div>
                     )}
                     {stage == 3 && (
@@ -69,6 +58,7 @@ const AuthPage = () => {
                     )}
                 </div>
             )}
+            <div className="col-span-4"></div>
         </div>
     )
 }

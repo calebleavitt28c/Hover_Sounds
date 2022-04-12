@@ -160,10 +160,10 @@ const Signup = (props) => {
         <div id="signUp">
                 {(showHideSignUpFan || showHideSignUpArtistAndVenue) && (
                     <div>
-                        <label name='fromTitle' className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Sign up</label><br></br>
-                        <label htmlFor="userType" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">User Type</label>
+                        <label name='fromTitle' className="block uppercase text-center tracking-wide text-gray text-xs font-bold mb-2">Sign up</label>
+                        <label htmlFor="userType" className="block uppercase text-center tracking-wide text-gray text-xs font-bold mb-2">User Type</label>
                         <select
-                            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="block w-full bg-white border border-lightgray text-gray py-3 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray"
                             value={userType}
                             onChange={(event) => {
                                 setUserType(event.target.value);
@@ -177,52 +177,52 @@ const Signup = (props) => {
                     </div>
                 )}
                 {showHideSignUpFan && (
-                    <form onSubmit={submitFanUser}>
+                    <form className="grid grid-cols-4 gap-2" onSubmit={submitFanUser}>
                         <input
-                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                className="appearance-none col-span-2 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="firstName"
                                 placeholder="first name"
                                 value={firstName}
                                 onChange={(event) => setFirstName(event.target.value)}
-                        ></input><br></br>
+                        ></input>
 
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-2 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="lastName"
                                 placeholder="last name"
                                 value={lastName}
                                 onChange={(event) => setLastName(event.target.value)}
-                        ></input><br></br>
+                        ></input>
                             
                         <input 
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-4 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="email"
                             placeholder="email"
                             value={email}
                             onChange={(event) => setEmail(event.target.value)}
-                        ></input><br></br>
+                        ></input>
                 
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-2 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="phone"
                             placeholder="phone"
                             value={phone}
                             onChange={(event) => setPhone( event.target.value)}
                             pattern="^[0-9]{10}$" 
                             title="Required format: 0123456789 Don't include parenthesis or dashes in your phone number"
-                        ></input><br></br>
+                        ></input>
 
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-2 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="birthdate"
                             placeholder="birthdate"
                             type="date"
                             value={birthdate}
                             onChange={(event) => setBirthdate(event.target.value)}
-                        ></input><br></br>
+                        ></input>
                         
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-4 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="password"
                             placeholder="password"
                             type="password"
@@ -230,40 +230,42 @@ const Signup = (props) => {
                             onChange={(event) => setPassword(event.target.value)}
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                             title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
-                        ></input><br></br>
-                        
-                        <button type="submit" className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign up</button><br></br>
+                        ></input>
+                        <div className="col-span-1"></div>
+                        <button type="submit" className="bg-primary hover:bg-secondary col-span-2 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Sign up</button><br></br>
+                        <div className="col-span-1"></div>
                     </form>
                 )}
                 {showHideSignUpArtistAndVenue && (
-                    <form onSubmit={submitArtOrVenUser}>
+                    <form className="grid grid-cols-4 gap-2" onSubmit={submitArtOrVenUser}>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-4 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="name"
                             placeholder="name"
                             value={name}
                             onChange={(event) => setName(event.target.value)}>
-                        </input><br></br>
+                        </input>
 
                         <input 
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-4 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="email"
                             placeholder="email"
                             value={email}
                             onChange={(event) => setEmail( event.target.value)}
-                        ></input><br></br>
+                        ></input>
 
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none col-span-4 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="password"
                             placeholder="password"
                             value={password}
                             onChange={(event) => setPassword(event.target.value)}
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                             title="Your password must contain at least one number and one uppercase and lowercase letter, and be at least 8 or more characters long"
-                        ></input><br></br>
-                        
-                        <button type="submit" className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign up</button>
+                        ></input>
+                        <div className="col-span-1"></div>
+                        <button type="submit" className="bg-primary hover:bg-secondary col-span-2 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Sign up</button>
+                        <div className="col-span-1"></div>
                     </form>
                 )}
                 {showHideConfirm && (
@@ -307,16 +309,16 @@ const VerifyEmail = (props) => {
             {showHideConfirm && (
                 <div>
                     <form onSubmit={confirmUser}>
-                        <label name='fromTitle' className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Verify Email</label><br></br>
+                        <label name='fromTitle' className="block uppercase tracking-wide text-gray text-xs font-bold mb-2">Verify Email</label><br></br>
                         <input 
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearance-none block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray"
                             name="verificationCode"
                             placeholder="Verification Code"
                             value={verificationCode} 
                             onChange={event => setVerificationCode(event.target.value)} 
-                        /><br></br>
+                        />
 
-                        <button type='submit' className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Verify Email</button>
+                        <button type='submit' className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Verify Email</button>
                     </form>
                 </div>
             )}

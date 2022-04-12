@@ -5,22 +5,20 @@ class TopEvent extends React.Component {
     super(props)
 
     this.state = {
-      place: '',
-      profile: '',
-      name: '',
+
     }
   }
   render() {
     return(
       <>
         <div className="row">
-          <div className="column">
+          <div className="text-center">
             <h1>{this.props.place}.</h1>
           </div>
-          <div className="column">
+          <div className="text-center">
             <img src={this.props.profile} alt={this.props.name} height="75px" width="auto"/>
           </div>
-          <div className="column">
+          <div className="text-center">
             <h3>{this.props.name}</h3>
           </div>
         </div>

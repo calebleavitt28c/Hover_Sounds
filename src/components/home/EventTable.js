@@ -11,6 +11,7 @@ class EventTable extends React.Component {
   }
   render() {
     //call API for events
+
     const events = [
       {
         id: 0,
@@ -25,30 +26,84 @@ class EventTable extends React.Component {
         venue: 'Tuacahn',
         date: 'April 11, 2022',
         time: '9:00 PM'
-      }
+      },
+      {
+        id: 2,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 3,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 4,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 5,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 6,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 7,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 8,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 9,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
     ]
     const eventItems = []
 
     for (let event of events) {
       eventItems.push(
-        <EventRow key={event.id} artist={event.artist} venue={event.venue} date={event.date} time={event.time}></EventRow>
+        <EventRow key={event.id} id={event.id} artist={event.artist} venue={event.venue} date={event.date} time={event.time}></EventRow>
       )
     }
 
     return(
-      <table className="table-fixed w-full text-sm text-left text-gray-500 dark:text-black">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th className="px-6 py-3">Artist</th>
-            <th className="px-6 py-3">Venue</th>
-            <th className="px-6 py-3">Date</th>
-            <th className="px-6 py-3">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {eventItems}
-        </tbody>
-      </table>
+      <div>
+        <div className="grid grid-cols-12 text-xs border-b-2 uppercase bg-white">
+          <div className="col-span-4 py-3 text-gray text-center">Artist</div>
+          <div className="col-span-3 py-3 text-gray text-center">Venue</div>
+          <div className="col-span-3 py-3 text-gray text-center">Date</div>
+          <div className="col-span-2 py-3 text-gray text-center">Time</div>
+        </div>
+        <ul className="striped">
+            {eventItems}
+        </ul>
+      </div>
     );
   }
 }
