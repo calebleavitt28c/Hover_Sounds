@@ -5,33 +5,28 @@ class Post extends React.Component {
     super(props)
 
     this.state = {
-      profile: '',
-      name: '',
-      image: '',
-      caption: '',
+
     }
   }
   render() {
     return(
-      <>
-      <div className="row">
-        <div className="column">
-          <img src={this.props.profile} alt={this.props.name} height="75px" width="auto"/>
-        </div>
-        <div className="column">
-          <h3>{this.props.name}</h3>
-        </div>
-      </div>
-      <div className="row">
-        <div className="column">
-          <img src={this.props.image} alt={this.props.name} height="400px" width="auto"/>
-        </div>
-        <div className="column">
-          <p>{this.props.caption}</p>
-        </div>
-      </div>
-      </>
-    );
+      <li className='border-b'>
+        <a className="grid grid-cols-12" href={this.props.url}>
+          <div className="col-span-2 flex border-r">
+            <h1 className='text-md text-center m-auto'>{this.props.artist}</h1>
+          </div>
+          <div className="col-span-4 flex">
+            <h1 className='text-sm text-center m-auto'>{this.props.caption}</h1>
+          </div>
+          <div className="col-span-5 flex">
+            <img className="h-48 object-fill m-auto" src={this.props.image} alt={`img by ${this.props.artist}`}></img>
+          </div>
+          <div className="col-span-1 flex">
+            <p className='text-xxs text-center m-auto'>{`${this.props.date} ${this.props.time}`}</p>
+          </div>
+        </a>
+      </li>
+    )
   }
 }
 

@@ -10,19 +10,19 @@ class TopEvent extends React.Component {
   }
   render() {
     return(
-      <>
-        <div className="row">
-          <div className="text-center">
-            <h1>{this.props.place}.</h1>
-          </div>
-          <div className="text-center">
-            <img src={this.props.profile} alt={this.props.name} height="75px" width="auto"/>
-          </div>
-          <div className="text-center">
-            <h3>{this.props.name}</h3>
-          </div>
-        </div>
-      </>
+      <li className="p-3 hover:bg-secondary hover:text-primary">
+          <a className="grid grid-cols-6" href={`/artists/${this.props.id}`}>
+            <div className="col-span-1">
+              <h1>{this.props.place}.</h1>
+            </div>
+            <div className="col-span-3">
+              <h3 className='truncate'>{this.props.name}</h3>
+            </div>
+            <div className="col-span-2">
+              <h1 className="text-center">{this.props.favorites}</h1>
+            </div>
+          </a>
+        </li>
     );
   }
 }

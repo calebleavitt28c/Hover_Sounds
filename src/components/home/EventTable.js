@@ -83,12 +83,96 @@ class EventTable extends React.Component {
         date: 'April 11, 2022',
         time: '9:00 PM'
       },
+      {
+        id: 7,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 8,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 9,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 7,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 8,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 9,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 7,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 8,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 9,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 7,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
+      {
+        id: 8,
+        artist: 'Coldplay',
+        venue: 'Vivint Arena',
+        date: 'April 10, 2022',
+        time: '7:00 PM'
+      },
+      {
+        id: 9,
+        artist: 'Post Malone',
+        venue: 'Tuacahn',
+        date: 'April 11, 2022',
+        time: '9:00 PM'
+      },
     ]
     const eventItems = []
 
-    for (let event of events) {
+    for (let [i, v] of events.entries()) {
       eventItems.push(
-        <EventRow key={event.id} id={event.id} artist={event.artist} venue={event.venue} date={event.date} time={event.time}></EventRow>
+        <EventRow key={`event${i}`} id={v.id} artist={v.artist} venue={v.venue} date={v.date} time={v.time}></EventRow>
       )
     }
 
@@ -100,7 +184,7 @@ class EventTable extends React.Component {
           <div className="col-span-3 py-3 text-gray text-center">Date</div>
           <div className="col-span-2 py-3 text-gray text-center">Time</div>
         </div>
-        <ul className="striped">
+        <ul className="striped scrollbar-thin max-h-[33.1rem] scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
             {eventItems}
         </ul>
       </div>

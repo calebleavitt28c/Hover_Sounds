@@ -75,7 +75,7 @@ class TopList extends React.Component {
       //current = artists
       for (let [i, v] of temp.entries()) {
         current.push(
-          <TopArtist key={v.id} id={v.id} place={i + 1} name={v.name} favorites={v.favorites} />
+          <TopArtist key={`artist${i}`} id={v.id} place={i + 1} name={v.name} favorites={v.favorites} />
           )
       }
     }
@@ -97,7 +97,7 @@ class TopList extends React.Component {
     }
     return(
       <>
-        <div className="grid grid-cols-6 p-3 border-b-2">
+        <div className="grid grid-cols-6 p-2 border-b-2">
           <div className="col-span-1"></div>
             <div className="col-span-3 text-gray">
               <h3>Name</h3>

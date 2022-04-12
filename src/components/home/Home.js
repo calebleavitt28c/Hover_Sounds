@@ -1,6 +1,6 @@
 import React from 'react'
-import Post from './Post'
 import TopContainer from './TopContainer'
+import PostContainer from './PostContainer'
 import EventTable from './EventTable'
 
 class Home extends React.Component {
@@ -14,18 +14,16 @@ class Home extends React.Component {
   render() {
 
     return(
-      <div className="grid grid-cols-12 gap-4 p-4">
+      <div className="grid grid-cols-12 gap-4 p-4 h-full">
         <div id="topContainer" className="col-span-3 border-2 border-black">
           {/* top artists, events, venues */}
           <TopContainer />
         </div>
         <div className="col-span-6 border-2 border-black">
           {/* POSTS */}
-          <ul>
-            
-          </ul>
+          <PostContainer />
         </div>
-        <div id="eventTable" className=" max-h-800px col-span-3 border-2 border-black">
+        <div id="eventTable" className="col-span-3 border-2 border-black">
           {/* EVENTS */}
           <EventTable />
         </div>

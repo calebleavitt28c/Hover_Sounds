@@ -6,6 +6,10 @@
   .striped li:nth-child(even) {
     @apply bg-lightgray hover:bg-secondary
   }
+
+  .posts-striped li:nth-child(even) {
+    @apply bg-lightgray
+  }
 }
 /* body {
   margin: 0;

@@ -12,9 +12,11 @@ class Header extends React.Component {
   }
   render() {
     return(
-      <nav className="flex items-center justify-between flex-wrap bg-primary p-6">
+      <nav className="flex items-center justify-between flex-wrap bg-primary p-4">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
-          <span className="font-semibold text-xl tracking-tight">Hover Sounds</span>
+          <a href="#" className="text-secondary hover:text-white ease-in duration-300">
+            <span className="font-semibold text-xl tracking-tight">Hover Sounds</span>
+          </a>
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded text-secondary border-secondary hover:text-white hover:border-white ease-in duration-300">
@@ -25,12 +27,6 @@ class Header extends React.Component {
           <div className="text-sm lg:flex-grow">
             <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-secondary hover:text-white mr-4 ease-in duration-300">
               Docs
-            </a>
-            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-secondary hover:text-white mr-4 ease-in duration-300">
-              Examples
-            </a>
-            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-secondary hover:text-white ease-in duration-300">
-              Blog
             </a>
           </div>
           <div>

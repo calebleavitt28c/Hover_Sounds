@@ -10,7 +10,7 @@ class Footer extends React.Component {
   render() {
     return(
       <footer className="text-center bg-primary text-secondary">
-        <div className="container px-6 pt-6">
+        <div className="container px-6 pt-2">
           <div className="flex justify-center">
             <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
               <svg aria-hidden="true"
@@ -116,7 +116,7 @@ class Footer extends React.Component {
           </div>
         </div>
 
-        <div className="text-center p-2">
+        <div className="text-center pb-1">
           © 2022 Copyright
         </div>
       </footer>

@@ -21,15 +21,12 @@ function App() {
   return (
     <div className="App flex flex-col h-screen justify-between">
       <Header />
-      <header className="App-header bg-white">
-        {/* <EventForm />
-        <MerchForm /> */}
-        {/* <ArtistProfileForm /> */}
+      {/* <header className="App-header bg-white">
         <Account>
           <AuthPage />
           <UserInfo />
         </Account>
-      </header>
+      </header> */}
       <Home />
       <Footer />
     </div>
