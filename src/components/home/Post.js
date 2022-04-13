@@ -22,7 +22,7 @@ class Post extends React.Component {
             <img className="h-48 object-fill m-auto" src={this.props.image} alt={`img by ${this.props.artist}`}></img>
           </div>
           <div className="col-span-1 flex">
-            <p className='text-xxs text-left m-auto'>{`${this.props.date} ${this.props.time}`}</p>
+            <p className='text-xxs text-left my-auto'>{`${this.props.date} ${this.props.time}`}</p>
           </div>
         </a>
       </li>

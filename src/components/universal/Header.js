@@ -14,9 +14,7 @@ class Header extends React.Component {
     return(
       <nav className="flex items-center justify-between flex-wrap bg-primary p-4">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
-          <a href="#" className="text-secondary hover:text-white ease-in duration-300">
-            <span className="font-semibold text-xl tracking-tight">Hover Sounds</span>
-          </a>
+        <button className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">Hover Sounds</button>
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded text-secondary border-secondary hover:text-white hover:border-white ease-in duration-300">
@@ -25,12 +23,11 @@ class Header extends React.Component {
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow">
-            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-secondary hover:text-white mr-4 ease-in duration-300">
-              Docs
-            </a>
           </div>
           <div>
-            <button className="inline-block text-sm px-4 py-2 leading-none border rounded text-primary bg-secondary border-transparent hover:border-white hover:text-secondary hover:bg-primary mt-4 lg:mt-0 ease-in duration-300">Logout</button>
+            <button className="inline-block text-sm px-4 py-2 leading-none border rounded text-primary bg-white border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">
+              User
+            </button>
           </div>
         </div>
       </nav>
