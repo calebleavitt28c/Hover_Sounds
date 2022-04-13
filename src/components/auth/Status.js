@@ -20,7 +20,7 @@ const Status = () => {
         <div className="col-span-1"></div>
         {status ? (
             <button onClick={logout} className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Logout</button>
-            ) : "Login"} 
+            ) : <p className="block uppercase col-span-4 text-center tracking-wide text-gray text-xs font-bold">Login</p>} 
         <div className="col-span-1"></div>
     </div> )
 }
