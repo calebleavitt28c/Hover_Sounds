@@ -55,22 +55,35 @@ export default () => {
     return (
         <div>
             {stage === 1 && (
-                <form onSubmit={sendCode}>
+                <form onSubmit={sendCode} class="grid grid-cols-4 gap-2">
+                    <label className="block col-span-4 text-center uppercase tracking-wide text-gray text-xs font-bold">Email</label>
                     <input 
+                        className="appearance-none block w-full col-span-4 bg-white text-gray border border-gray rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         value={email} 
                         onChange={event => setEmail(event.target.value)} 
                         placeholder="email"
                     />
-                    <button type='submit'>Send Verification Code</button>
+                    <div className="col-span-1"></div>
+                    <button type='submit' className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">
+                        Send Verification Code
+                    </button>
+                    <div className="col-span-1"></div>
                 </form>
             )}
 
             {stage === 2 && (
-                <form onSubmit={resetPassword}>
-                    <input value={code} onChange={event => setCode(event.target.value)} />
-                    <input value={password} onChange={event => setPassword(event.target.value)} />
-                    <input value={confirmPassword} onChange={event => setConfirmPassword(event.target.value)} />
-                    <button type='submit'>Change Password</button>
+                <form onSubmit={resetPassword} class="grid grid-cols-4 gap-2">
+                    <label className="block col-span-4 text-center uppercase tracking-wide text-gray text-xs font-bold">Verification Code</label>
+                    <input value={code} onChange={event => setCode(event.target.value)} className="appearance-none block w-full col-span-4 bg-white text-gray border border-gray rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+                    <label className="block col-span-4 text-center uppercase tracking-wide text-gray text-xs font-bold">New Password</label>
+                    <input value={password} onChange={event => setPassword(event.target.value)} className="appearance-none block w-full col-span-4 bg-white text-gray border border-gray rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+                    <label className="block col-span-4 text-center uppercase tracking-wide text-gray text-xs font-bold">Confirm Password</label>
+                    <input value={confirmPassword} onChange={event => setConfirmPassword(event.target.value)} className="appearance-none block w-full col-span-4 bg-white text-gray border border-gray rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+                    <div className="col-span-1"></div>
+                    <button type='submit'  className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">
+                        Change Password
+                    </button>
+                    <div className="col-span-1"></div>
                 </form>
             )}
         </div>
