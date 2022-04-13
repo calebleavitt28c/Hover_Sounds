@@ -22,13 +22,19 @@ const DeleteAccount = (props) => {
 
     return (
         <div>
-            <p>Are you sure you want to delete your account?</p><br></br>
-            <button
-                onClick={(event) => KeepAccount("showDeleteAccount")}
-            >No</button><br></br>
-            <button
-                onClick={(event) => Delete()}
-            >Yes</button>
+            <p className="block text-center uppercase tracking-wide text-red text-xs font-bold">Are you sure you want to delete your account?</p>
+            <div className='grid grid-cols-6 gap-2'>
+                <div className='col-span-2'></div>
+                <button
+                    className="bg-primary col-span-1 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                    onClick={(event) => KeepAccount("showDeleteAccount")}
+                >No</button>
+                <button
+                    className="bg-red col-span-1 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                    onClick={(event) => Delete()}
+                >Yes</button>
+                <div className='col-span-2'></div>
+            </div>
         </div>
     )
 }

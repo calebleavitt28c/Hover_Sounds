@@ -15,7 +15,14 @@ const Status = () => {
             })
     }, [])
 
-    return <div> {status ? (<button onClick={logout}>Logout</button>) : "Login"} </div>
+    return (
+    <div className="grid grid-cols-4 mb-2">
+        <div className="col-span-1"></div>
+        {status ? (
+            <button onClick={logout} className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Logout</button>
+            ) : "Login"} 
+        <div className="col-span-1"></div>
+    </div> )
 }
 
 export default Status

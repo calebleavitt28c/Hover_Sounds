@@ -7,7 +7,7 @@ import ChangePassword from "../auth/ChangePassword"
 import DeleteAccount from "../auth/DeleteAccount"
 
 const UserInfo = () => {
-    const [showAttributes, setShowAttributes] = useState(true)
+    const[showAttributes, setShowAttributes] = useState(true)
     const[showEditAttributes, setShowEditAttributes] = useState(false)
     const[showChangeEmail, setShowChangeEmail] = useState(false)
     const[showChangePassword, setShowChangePassword] = useState(false)
@@ -61,36 +61,43 @@ const UserInfo = () => {
     return (
         <div>
             {showAttributes && (
-                <div id="attributes">
-                    <Status />
-                    <p>User attributes are:</p>
-                    <ul>
-                        <p>{name}</p>
-                        {!name && (
-                            <div>
-                                <p>{firstName}</p>
-                                <p>{lastName}</p>
-                            </div>
-                        )}
-                        <p>{email}</p>
-                        <p>{phone}</p>
-                        <p>{birthdate}</p>
-                    </ul>
-                    <button
-                        onClick={(event) => hideComponent('showAttributes')}
-                    >Edit</button><br></br>
+                <div id="attributes" className="grid grid-cols-3">
+                    <div className="col-span-1"></div>
+                    <div className="col-span-1">
+                        <Status />
+                        <p className="block text-center uppercase tracking-wide text-gray text-xs font-bold">User attributes:</p>
+                        <div className="grid grid-cols-4 gap-2">
+                            <p>{name}</p>
+                            {!name && (
+                                <div className="col-span-4 grid grid-cols-2 gap-2">
+                                    <p className="appearance-none block w-full col-span-1 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{firstName}</p>
+                                    <p className="appearance-none block w-full col-span-1 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{lastName}</p>
+                                </div>
+                            )}
+                            <p className="appearance-none col-span-4 block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{email}</p>
+                            <p className="appearance-none col-span-2 block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{phone}</p>
+                            <p className="appearance-none col-span-2 block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{birthdate}</p>
+                        </div>
+                        <div className="grid grid-cols-4 gap-2 mt-2">
+                            <button className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                                onClick={(event) => hideComponent('showAttributes')}
+                            >Edit</button>
+                            <button className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                                onClick={(event) => hideComponent('showChangeEmail')}
+                            >Change Email</button>
 
-                    <button 
-                        onClick={(event) => hideComponent('showChangeEmail')}
-                    >Change Email</button><br></br>
 
-                    <button 
-                        onClick={(event) => hideComponent('showChangePassword')}
-                    >Change Password</button><br></br>
-                    
-                    <button 
-                        onClick={(event) => hideComponent('showDeleteAccount')}
-                    >Delete Account</button>
+                            <button className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                                onClick={(event) => hideComponent('showChangePassword')}
+                            >Change Password</button>
+
+                            <button className="bg-red col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                                onClick={(event) => hideComponent('showDeleteAccount')}
+                            >Delete Account</button>
+
+                        </div>
+                    </div>
+                    <div className="col-span-1"></div>
                 </div>
             )}
             <div>
