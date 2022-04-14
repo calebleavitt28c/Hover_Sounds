@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App flex flex-col h-screen justify-between">
       <Header />
-      <header className="App-header bg-white">
+      <header className="App-header bg-white dark:bg-darkgray ease-in duration-300">
         {/* <Account>
           <AuthPage />
           <UserInfo />

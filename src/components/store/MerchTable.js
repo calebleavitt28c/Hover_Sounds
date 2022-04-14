@@ -65,7 +65,7 @@ const MerchTable = (props) => {
 
     return (
         <div className="">
-            <ul className="max-h-[35.85rem] overflow-y-scroll">
+            <ul className="posts-striped scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray max-h-[35rem] overflow-y-scroll">
                 {merchItems}
             </ul>
         </div>
