@@ -9,7 +9,7 @@ class Footer extends React.Component {
   }
   render() {
     return(
-      <footer className="text-center bg-primary text-secondary">
+      <footer className="text-center bg-primary text-secondary border-t-2 border-secondary">
         <div className="container px-6 pt-2">
           <div className="flex justify-center">
             <a href="https://www.facebook.com/hoversounds/" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">

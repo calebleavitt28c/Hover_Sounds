@@ -12,7 +12,7 @@ class Header extends React.Component {
   }
   render() {
     return(
-      <nav className="flex items-center justify-between flex-wrap bg-primary p-4">
+      <nav className="flex items-center justify-between flex-wrap bg-primary border-b-2 border-secondary p-4">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
         <button className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">Hover Sounds</button>
         </div>

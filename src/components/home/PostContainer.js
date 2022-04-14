@@ -23,7 +23,7 @@ class PostContainer extends React.Component {
         url: 'https://twitter.com/coldplay/status/1508822711874863108'
       },
       {
-        id: 0,
+        id: 1,
         artist: 'Coldplay',
         date: '03/29/2022',
         time: '9:05 AM',
@@ -32,7 +32,7 @@ class PostContainer extends React.Component {
         url: 'https://twitter.com/coldplay/status/1508822711874863108'
       },
       {
-        id: 0,
+        id: 2,
         artist: 'Coldplay',
         date: '03/29/2022',
         time: '9:05 AM',
@@ -41,7 +41,7 @@ class PostContainer extends React.Component {
         url: 'https://twitter.com/coldplay/status/1508822711874863108'
       },
       {
-        id: 0,
+        id: 3,
         artist: 'Coldplay',
         date: '03/29/2022',
         time: '9:05 AM',

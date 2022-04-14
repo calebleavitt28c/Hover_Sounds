@@ -3,21 +3,44 @@ import TopContainer from './TopContainer'
 import PostContainer from './PostContainer'
 import EventTable from './EventTable'
 
+import axios from 'axios'
+
 class Home extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      
+      topArtists: [],
+      topVenues: [],
+
+      events: []
     }
   }
-  render() {
 
+  componentDidMount() {
+      axios.get('https://api.hoveringrecords.com/hover/artists')
+        .then(response => {
+          let data = response.data.Items
+          this.setState({ topArtists: data })
+        })
+      axios.get('https://api.hoveringrecords.com/hover/venues')
+        .then(response => {
+          let data = response.data.Items
+          this.setState({ topVenues: data })
+        })
+      axios.get('https://api.hoveringrecords.com/hover/events')
+        .then(response => {
+          let data = response.data.Items
+          this.setState({ events: data })
+        })
+  }
+
+  render() {
     return(
       <div className="grid grid-cols-12 gap-4 p-4 h-full">
         <div id="topContainer" className="col-span-3 border-2 border-black">
           {/* top artists, events, venues */}
-          <TopContainer />
+          <TopContainer topArtists={this.state.topArtists} topVenues={this.state.topVenues} />
         </div>
         <div className="col-span-6 border-2 border-black">
           {/* POSTS */}
@@ -25,7 +48,7 @@ class Home extends React.Component {
         </div>
         <div id="eventTable" className="col-span-3 border-2 border-black">
           {/* EVENTS */}
-          <EventTable />
+          <EventTable events={this.state.events} />
         </div>
       </div>
     );
