@@ -10,11 +10,25 @@ class Header extends React.Component {
       address: '',
     }
   }
+
+  toggleTheme = () => {
+    let themeBtn = document.getElementById('themeBtn')
+    if (document.documentElement.classList.contains('dark')) {
+      themeBtn.textContent = 'Dark'
+      document.documentElement.classList = ''
+      localStorage.theme = 'light'
+    }
+    else {
+      themeBtn.textContent = 'Light'
+      document.documentElement.classList = 'dark'
+      localStorage.theme = 'dark'
+    }
+  }
   render() {
     return(
-      <nav className="flex items-center justify-between flex-wrap bg-primary border-b-2 border-secondary p-4">
+      <nav className="flex items-center justify-between flex-wrap bg-primary dark:bg-secondary border-b-2 border-secondary p-4">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
-        <button className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">Hover Sounds</button>
+        <button className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-primary dark:text-secondary border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">Hover Sounds</button>
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded text-secondary border-secondary hover:text-white hover:border-white ease-in duration-300">
@@ -25,8 +39,13 @@ class Header extends React.Component {
           <div className="text-sm lg:flex-grow">
           </div>
           <div>
-            <button className="inline-block text-sm px-4 py-2 leading-none border rounded text-primary bg-white border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">
+            <button className="inline-block text-sm px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-primary dark:text-secondary border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">
               User
+            </button>
+            <button id="themeBtn" 
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-primary dark:text-secondary  border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
+              onClick={this.toggleTheme}>
+              Dark
             </button>
           </div>
         </div>

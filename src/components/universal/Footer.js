@@ -9,10 +9,10 @@ class Footer extends React.Component {
   }
   render() {
     return(
-      <footer className="text-center bg-primary text-secondary border-t-2 border-secondary">
+      <footer className="text-center bg-primary text-secondary dark:bg-secondary dark:text-primary border-t-2 border-secondary">
         <div className="container px-6 pt-2">
           <div className="flex justify-center">
-            <a href="https://www.facebook.com/hoversounds/" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+            <a href="https://www.facebook.com/hoversounds/" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary dark:hover:bg-primary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
               <svg aria-hidden="true"
               focusable="false"
               data-prefix="fab"
@@ -29,7 +29,7 @@ class Footer extends React.Component {
               </svg>
             </a>
 
-            <a href="https://twitter.com/HoverSounds" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+            <a href="https://twitter.com/HoverSounds" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary dark:hover:bg-primary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
               <svg aria-hidden="true"
               focusable="false"
               data-prefix="fab"
@@ -46,7 +46,7 @@ class Footer extends React.Component {
               </svg>
             </a>
 
-            <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+            <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary dark:hover:bg-primary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
               <svg aria-hidden="true"
               focusable="false"
               data-prefix="fab"
@@ -63,7 +63,7 @@ class Footer extends React.Component {
               </svg>
             </a>
 
-            <a href="https://www.instagram.com/hover.sounds/" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+            <a href="https://www.instagram.com/hover.sounds/" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary dark:hover:bg-primary focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
               <svg aria-hidden="true"
               focusable="false"
               data-prefix="fab"
