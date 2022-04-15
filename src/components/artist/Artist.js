@@ -35,7 +35,7 @@ class Artist extends React.Component {
       <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray">
         <div id="" className="col-span-3 border-2 border-black dark:border-primary">
           {/* merchandise + heart */}
-          <ArtistHome favorite={true} />
+          <ArtistHome name={'Coldplay'}favorite={true} />
         </div>
         <div className="col-span-6 border-2 border-black dark:border-primary">
           {/* POSTS */}
