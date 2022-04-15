@@ -32,7 +32,7 @@ const Store = () => {
     }
 
     return (
-        <div className="grid grid-cols-12 gap-4 p-4 h-full dark:text-lightgray">
+        <div className="grid grid-cols-12 gap-4 p-4 h-full dark:text-lightgray dark:border-primary ">
             <div className="col-span-3 border-2 border-black">
                 <MerchTable 
                     items={items}
