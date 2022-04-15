@@ -20,13 +20,13 @@ class EventTable extends React.Component {
 
     return(
       <div>
-        <div className="grid grid-cols-12 text-xs border-b-2 uppercase bg-white">
+        <div className="grid grid-cols-12 text-xs border-b-2 uppercase bg-white dark:bg-darkgray">
           <div className="col-span-4 py-3 text-gray text-center">Artist</div>
           <div className="col-span-3 py-3 text-gray text-center">Venue</div>
           <div className="col-span-3 py-3 text-gray text-center">Date</div>
           <div className="col-span-2 py-3 text-gray text-center">Time</div>
         </div>
-        <ul className="striped scrollbar-thin max-h-[33.1rem] scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
+        <ul className="striped scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
             {eventItems}
         </ul>
       </div>

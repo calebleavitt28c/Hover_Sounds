@@ -31,20 +31,20 @@ class Header extends React.Component {
   componentDidMount() {
     let themeBtn = document.getElementById('themeBtn')
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      themeBtn.innerHTML = this.sunLow
-      document.documentElement.classList = ''
-      localStorage.theme = 'light'
-    }
-    else {
       themeBtn.innerHTML = this.sunHigh
       document.documentElement.classList = 'dark'
       localStorage.theme = 'dark'
+    }
+    else {
+      themeBtn.innerHTML = this.sunLow
+      document.documentElement.classList = ''
+      localStorage.theme = 'light'
     }
   }
 
   render() {
     return(
-      <nav className="flex items-center justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary p-4 ease-in duration-300">
+      <nav className="flex items-center justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary p-4 ease-in duration-300">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
         <button className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">Hover Sounds</button>
         </div>

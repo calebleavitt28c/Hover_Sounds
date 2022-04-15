@@ -4,11 +4,11 @@
 
 @layer utilities {
   .striped li:nth-child(even) {
-    @apply bg-lightgray hover:bg-secondary
+    @apply bg-lightgray hover:bg-secondary dark:bg-gray dark:hover:bg-lightgray dark:text-black
   }
 
   .posts-striped li:nth-child(even) {
-    @apply bg-lightgray
+    @apply bg-lightgray dark:bg-gray dark:text-black
   }
 }
 /* body {

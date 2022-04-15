@@ -15,7 +15,7 @@ const StorePage = () => {
     }
 
     return (
-        <div className="grid grid-cols-12 gap-4 p-4 h-full">
+        <div className="grid grid-cols-12 gap-4 p-4 h-full dark:text-lightgray">
             <div className="col-span-3 border-2 border-black">
                 <MerchTable 
                     addToCart={addToCart}

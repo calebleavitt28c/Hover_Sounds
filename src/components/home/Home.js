@@ -37,7 +37,7 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div className="grid grid-cols-12 gap-4 p-4 h-full">
+      <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray">
         <div id="topContainer" className="col-span-3 border-2 border-black">
           {/* top artists, events, venues */}
           <TopContainer topArtists={this.state.topArtists} topVenues={this.state.topVenues} />
@@ -48,7 +48,7 @@ class Home extends React.Component {
         </div>
         <div id="eventTable" className="col-span-3 border-2 border-black">
           {/* EVENTS */}
-          <EventTable events={this.state.events} />
+          <EventTable events={this.state.events} className="max-h-[33.1rem]" />
         </div>
       </div>
     );

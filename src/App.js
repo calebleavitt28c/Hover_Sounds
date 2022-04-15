@@ -14,7 +14,7 @@ import Header from './components/universal/Header'
 import Footer from './components/universal/Footer'
 
 import Home from './components/home/Home'
-import { render } from '@testing-library/react';
+import Artist from './components/artist/Artist'
 
 function App() {
   return (
@@ -27,7 +27,8 @@ function App() {
         </Account> */}
         <StorePage />
       </header>
-      
+      <Home />
+      <Artist />
       {/* <Home /> */}
       <Footer />
     </div>
