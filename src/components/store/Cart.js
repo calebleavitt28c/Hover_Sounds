@@ -9,7 +9,7 @@ const Cart = (props) => {
     const total = subotal + taxPrice
 
     return (
-        <div>
+        <div className="">
             <h2>Cart</h2>
             <div>{cartItems.length === 0 && <div>Cart Is Empty</div>}</div>
             {cartItems.map((item) => (

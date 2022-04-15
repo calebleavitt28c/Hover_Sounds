@@ -1,6 +1,7 @@
 import React from 'react'
 import PostContainer from '../home/PostContainer'
 import EventTable from '../home/EventTable'
+import ArtistHome from './ArtistHome'
 
 import axios from 'axios'
 
@@ -14,7 +15,6 @@ class Artist extends React.Component {
       events: []
     }
   }
-
 
   componentDidMount() {
     // axios.get('https://api.hoveringrecords.com/hover/artists/{id}')
@@ -33,14 +33,15 @@ class Artist extends React.Component {
   render() {
     return(
       <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray">
-        <div id="" className="col-span-3 border-2 border-black">
+        <div id="" className="col-span-3 border-2 border-black dark:border-primary">
           {/* merchandise + heart */}
+          <ArtistHome favorite={true} />
         </div>
-        <div className="col-span-6 border-2 border-black">
+        <div className="col-span-6 border-2 border-black dark:border-primary">
           {/* POSTS */}
           <PostContainer />
         </div>
-        <div id="eventTable" className="col-span-3 border-2 border-black">
+        <div id="eventTable" className="col-span-3 border-2 border-black dark:border-primary">
           {/* EVENTS */}
           <EventTable events={this.state.events} className=" max-h-[16rem]"/>
         </div>

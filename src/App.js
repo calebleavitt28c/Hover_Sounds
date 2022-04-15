@@ -14,7 +14,7 @@ import Header from './components/universal/Header'
 import Footer from './components/universal/Footer'
 
 import Home from './components/home/Home'
-// import Artist from './components/artist/Artist'
+import Artist from './components/artist/Artist'
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         </Account> */}
         <Store />
       </header>
-      
+      <Artist />
       {/* <Home /> */}
       <Footer />
     </div>
