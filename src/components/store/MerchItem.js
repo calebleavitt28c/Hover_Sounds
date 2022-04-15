@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
 const MerchItem = (props) => {
-  const [itemID, setItemID] = useState(props.itemID)
-
-  const addToCart = () => {
-    props.addToCart(itemID)
-  }
+  const { item, onAdd } = props
 
   return(
-    <li onClick={addToCart}>
+    <li>
       <div>
-        <h1>{props.itemName}</h1>
+        <h3>{item.name}</h3>
+        <p>${item.price}</p>
+        <p>{item.quantity} in stock</p>
       </div>
       <div>
-        <p>From {props.artist}</p>
+        <img src={item.image} alt={item.name} height="400px" width="auto"/>
       </div>
-      <div>
-        <p>${props.price}</p>
-      </div>
-      <div>
-        <p>{props.quantity} of these items remaining</p>
-      </div>
-      <div>
-        <img src={props.image} alt={props.itemName} height="400px" width="auto"/>
-      </div>
+      <button onClick={() => onAdd(item)}>Add To Cart</button>
     </li>
   );
 }

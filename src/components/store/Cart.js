@@ -2,43 +2,45 @@ import React, { useEffect, useState } from 'react'
 import MerchItem from './MerchItem'
 
 const Cart = (props) => {
-    const [total, setTotal] = useState('')
-    const [merchItems, setMerchItems] = useState(props.merchItems)
+    const { cartItems, onAdd, onRemove } = props
 
-    const checkout = () => {
-        props.checkout()
-    }
-
-    useEffect(() => {
-        let sub = 0.00
-        for(let item of merchItems) {
-            sub+=item.price
-        }
-        setTotal(sub)
-    })
-
-    const cartItems = []
-    
-    for (let item of merchItems) {
-        cartItems.push(
-            <MerchItem
-                itemID={item.itemID} 
-                itemName={item.itemName} 
-                artist={item.artist} 
-                price={item.price} 
-                quantity={item.qty} 
-                image={item.image} 
-            />
-        )
-    }
+    const subotal = cartItems.reduce((a, c) => a + c.price * c.qty, 0)
+    const taxPrice = subotal * 0.14
+    const total = subotal + taxPrice
 
     return (
         <div>
-            <p>Total: ${total}</p>
-            <ul>
-                {merchItems}
-            </ul>
-            <button onClick={checkout}>Checkout</button>
+            <h2>Cart</h2>
+            <div>{cartItems.length === 0 && <div>Cart Is Empty</div>}</div>
+            {cartItems.map((item) => (
+                <div key={item.itemID} className='row'>
+                    <div>{item.name}</div>
+                    <div>
+                        <button onClick={() => onAdd(item)} class='add'>+</button>
+                        <button onClick={() => onRemove(item)} class='remove'>-</button>
+                    </div>
+                    <div>
+                        {item.qty} * ${item.price.toFixed(2)}
+                    </div>
+                </div>
+            ))}
+            {cartItems.length !== 0 && (
+                <>
+                    <hr></hr>
+                    <div>
+                        <div>Subtotal</div>
+                        <div>${subotal.toFixed(2)}</div>
+                    </div>
+                    <div>
+                        <div>Tax</div>
+                        <div>${taxPrice.toFixed(2)}</div>
+                    </div>
+                    <div>
+                        <div><strong>Total</strong>Total</div>
+                        <div><strong>${total.toFixed(2)}</strong></div>
+                    </div>
+                </>
+            )}
         </div>
     )
 }

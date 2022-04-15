@@ -8,13 +8,13 @@ import UserInfo from './components/profile/UserInfo';
 // import SpotifyWebPlayer from 'react-spotify-web-playback/lib';
 // import ArtistProfileForm from './components/artist/ArtistProfileForm';
 
-import StorePage from './components/store/StorePage';
+import Store from './components/store/Store';
 
 import Header from './components/universal/Header'
 import Footer from './components/universal/Footer'
 
 import Home from './components/home/Home'
-import Artist from './components/artist/Artist'
+// import Artist from './components/artist/Artist'
 
 function App() {
   return (
@@ -25,10 +25,9 @@ function App() {
           <AuthPage />
           <UserInfo />
         </Account> */}
-        <StorePage />
+        <Store />
       </header>
-      <Home />
-      <Artist />
+      
       {/* <Home /> */}
       <Footer />
     </div>
