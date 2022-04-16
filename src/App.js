@@ -19,15 +19,21 @@ import Artist from './components/artist/Artist'
 
 function App() {
   return (
-    <div className="App flex flex-col h-screen justify-between">
+    <div className="App flex flex-col h-screen justify-between ease-in duration-300">
       <Header />
       <header className="App-header bg-white dark:bg-darkgray ease-in duration-300">
         {/* <Account>
           <AuthPage />
           <UserInfo />
         </Account> */}
+<<<<<<< .mine
+        {/* <Store /> */}
+||||||| .r71
+        <Store />
+=======
         {/* <Store /> */}
         <Checkout />
+>>>>>>> .r73
       </header>
       <Artist />
       {/* <Home /> */}
