@@ -32,16 +32,16 @@ class Artist extends React.Component {
 
   render() {
     return(
-      <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray">
-        <div id="" className="col-span-3 border-2 border-black dark:border-primary">
+      <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray ease-in duration-300">
+        <div id="" className="col-span-3 border-2 border-black dark:border-primary ease-in duration-300">
           {/* merchandise + heart */}
           <ArtistHome name={'Coldplay'}favorite={true} />
         </div>
-        <div className="col-span-6 border-2 border-black dark:border-primary">
+        <div className="col-span-6 border-2 border-black dark:border-primary ease-in duration-300">
           {/* POSTS */}
           <PostContainer />
         </div>
-        <div id="eventTable" className="col-span-3 border-2 border-black dark:border-primary">
+        <div id="eventTable" className="col-span-3 border-2 border-black dark:border-primary ease-in duration-300">
           {/* EVENTS */}
           <EventTable events={this.state.events} className=" max-h-[16rem]"/>
         </div>

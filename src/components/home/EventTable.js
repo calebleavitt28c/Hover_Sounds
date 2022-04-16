@@ -20,7 +20,7 @@ class EventTable extends React.Component {
 
     return(
       <div>
-        <div className="grid grid-cols-12 text-xs border-b-2 uppercase bg-white dark:bg-darkgray">
+        <div className="grid grid-cols-12 text-xs border-b-2 uppercase bg-white dark:bg-darkgray ease-in duration-300">
           <div className="col-span-4 py-3 text-gray text-center">Artist</div>
           <div className="col-span-3 py-3 text-gray text-center">Venue</div>
           <div className="col-span-3 py-3 text-gray text-center">Date</div>
