@@ -9,6 +9,7 @@ import UserInfo from './components/profile/UserInfo';
 // import ArtistProfileForm from './components/artist/ArtistProfileForm';
 
 import Store from './components/store/Store';
+import Checkout from './components/store/Checkout';
 
 import Header from './components/universal/Header'
 import Footer from './components/universal/Footer'
@@ -25,7 +26,8 @@ function App() {
           <AuthPage />
           <UserInfo />
         </Account> */}
-        <Store />
+        {/* <Store /> */}
+        <Checkout />
       </header>
       <Artist />
       {/* <Home /> */}

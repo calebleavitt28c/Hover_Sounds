@@ -46,6 +46,9 @@ const Store = () => {
                     onRemove={onRemove}
                 />
             </div>
+            <div>
+                <button>Checkout</button>
+            </div>
         </div>
     )
 }
