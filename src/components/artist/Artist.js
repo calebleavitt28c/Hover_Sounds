@@ -33,7 +33,7 @@ class Artist extends React.Component {
   }
 
   render() {
-    let text = 'lorem ipsum a;djsfklllllllllllllllllllllllllllllllllalsjdfl;kasjdf;lkajsdl;kfjal;ksdjflk;asdjfl;kaksjdfl;kajsflkjas;fdja;sdfja;sldfjlkasdjfl;kasjdfklasjdflkjasdlkfjalskdjflas'
+    let text = 'lorem ipsum a;djsfklllllllll lllllllllllllll lllllllllalsjdfl;k sjdf;lkajsdl;kf jal;ksdjflk;as djfl;k'
     return(
       <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray ease-in duration-300">
         <div id="" className="col-span-3 ease-in duration-300">
