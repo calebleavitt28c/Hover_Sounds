@@ -46,9 +46,9 @@ class Home extends React.Component {
           {/* POSTS */}
           <PostContainer />
         </div>
-        <div id="eventTable" className="col-span-3 border-2 border-black dark:border-primary">
+        <div id="eventTable" className="col-span-3 ease-in duration-300">
           {/* EVENTS */}
-          <EventTable events={this.state.events} className="max-h-[33.1rem]" />
+          <EventTable events={this.state.events} h={'h-[33.1rem]'} page={'Home'} />
         </div>
       </div>
     );

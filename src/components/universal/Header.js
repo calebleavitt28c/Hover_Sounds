@@ -59,13 +59,13 @@ class Header extends React.Component {
           <div className="text-sm lg:flex-grow">
           </div>
           <div className="grid grid-cols-2">
-            <button id="profile" className="inline-block text-sm ml-2 leading-none text-white  dark:text-lightgray border-transparent hover:text-secondary dark:hover:text-primary ease-in duration-300">
-
+            <button id="profile"
+              className="inline-block text-sm ml-2 leading-none text-white  dark:text-lightgray border-transparent hover:text-secondary dark:hover:text-primary ease-in duration-300">
             </button>
-              <button id="themeBtn" 
-                className="inline-block text-sm ml-2 leading-none text-secondary  dark:text-lightgray border-transparent hover:text-white dark:hover:text-primary ease-in duration-300"
-                onClick={this.toggleTheme}>
-              </button>
+            <button id="themeBtn" 
+              className="inline-block text-sm ml-2 leading-none text-secondary dark:text-lightgray border-transparent hover:text-white dark:hover:text-primary ease-in duration-300"
+              onClick={this.toggleTheme}>
+            </button>
           </div>
         </div>
       </nav>

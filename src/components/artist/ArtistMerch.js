@@ -5,23 +5,21 @@ class ArtistMerch extends React.Component {
     super(props)
 
     this.state = {
-      id: '',
-      item: '',
-      price: '',
-      image: '',
+
     }
   }
+
   render() {
     return(
-      <div class="row">
-        <div class="column">
-          <h1>{this.props.item}</h1>
-          <h1>{this.props.price}</h1>
+      <li className="border-b">
+        <a className="grid grid-cols-6" href={`/store/${this.props.id}`}>
+        <h1 className="col-span-2">{this.props.name}</h1>
+        <h1 className="col-span-1">{this.props.price}</h1>
+        <div className="col-span-3 flex">
+          <img className="h-24 object-fit m-auto" src={this.props.image} alt={this.props.item} height="400px" width="auto"/>
         </div>
-        <div class="column">
-          <img src={this.props.image} alt={this.props.item} height="400px" width="auto"/>
-        </div>
-      </div>
+        </a>
+      </li>
     );
   }
 }

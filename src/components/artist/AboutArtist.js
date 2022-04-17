@@ -5,16 +5,14 @@ class AboutArtist extends React.Component {
     super(props)
 
     this.state = {
-      name: '',
-      bio: '',
-      image: '',
+
     }
   }
   render() {
     return(
-      <div>
-        <div class="row">
-          <img src={this.props.image} alt={this.props.name} height="400px" width="auto"/>
+      <div className="mt-2 border-2 dark:border-primary h-[18.65rem]">
+        <div>
+          <img className="object-fill" src={this.props.image} alt={this.props.name} />
           <h1>{this.props.name}</h1>
           <p>{this.props.bio}</p>
         </div>

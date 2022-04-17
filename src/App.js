@@ -28,7 +28,6 @@ function App() {
       <Store />
       </header>
       <Artist />
-      {/* <Home /> */}
       <Footer />
     </div>
   );
