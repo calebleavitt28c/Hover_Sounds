@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PayPal from './PayPal'
 
 const Checkout = (props) => {
-
+    const { cart } = props
+    const [order, setOrder] = useState({})
     const [checkout, setCheckout] = useState(false)
+
+    const createOrder = () => {
+        setOrder(
+            {
+                description: cart.description,
+                item_total: cart.item_total,
+                tax_total: cart.tax_total,
+            }
+        )
+    }
+
 
     return (
         <div>
-            {checkout ? (<PayPal />) : ( <button onClick={() => {setCheckout(true)}}>Place your Order</button> )}
+            {checkout ? (<PayPal order={order}/>) : ( <button onClick={() => {setCheckout(true); createOrder()}}>Checkout</button> )}
         </div>
     )   
 }

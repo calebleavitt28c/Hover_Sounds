@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MerchItem from './MerchItem'
+import Checkout from './Checkout'
 
 const Cart = (props) => {
     const { cartItems, onAdd, onRemove } = props
@@ -7,6 +8,13 @@ const Cart = (props) => {
     const subotal = cartItems.reduce((a, c) => a + c.price * c.qty, 0)
     const taxPrice = subotal * 0.14
     const total = subotal + taxPrice
+
+    const cart = {
+        description: 'Online order from Hover Sounds',
+        item_total: subotal,
+        tax_total: taxPrice,
+        items: cartItems
+    }
 
     return (
         <div className="">
@@ -16,8 +24,8 @@ const Cart = (props) => {
                 <div key={item.itemID} className='row'>
                     <div>{item.name}</div>
                     <div>
-                        <button onClick={() => onAdd(item)} class='add'>+</button>
-                        <button onClick={() => onRemove(item)} class='remove'>-</button>
+                        <button onClick={() => onAdd(item)} id='add'>+</button>
+                        <button onClick={() => onRemove(item)} id='remove'>-</button>
                     </div>
                     <div>
                         {item.qty} * ${item.price.toFixed(2)}
@@ -36,11 +44,14 @@ const Cart = (props) => {
                         <div>${taxPrice.toFixed(2)}</div>
                     </div>
                     <div>
-                        <div><strong>Total</strong>Total</div>
+                        <div><strong>Total</strong></div>
                         <div><strong>${total.toFixed(2)}</strong></div>
                     </div>
                 </>
             )}
+            <div>
+                <Checkout cart={cart}/>
+            </div>
         </div>
     )
 }

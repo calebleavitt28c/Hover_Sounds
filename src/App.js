@@ -9,7 +9,6 @@ import UserInfo from './components/profile/UserInfo';
 // import ArtistProfileForm from './components/artist/ArtistProfileForm';
 
 import Store from './components/store/Store';
-import Checkout from './components/store/Checkout';
 
 import Header from './components/universal/Header'
 import Footer from './components/universal/Footer'
@@ -26,14 +25,7 @@ function App() {
           <AuthPage />
           <UserInfo />
         </Account> */}
-<<<<<<< .mine
-        {/* <Store /> */}
-||||||| .r71
-        <Store />
-=======
-        {/* <Store /> */}
-        <Checkout />
->>>>>>> .r73
+      <Store />
       </header>
       <Artist />
       {/* <Home /> */}

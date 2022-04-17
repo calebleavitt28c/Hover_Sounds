@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
 const PayPal = (props) => {
-    const { cartItems } = props
+    const { order } = props
     const paypal = useRef()
 
     useEffect(() => {
@@ -11,10 +11,10 @@ const PayPal = (props) => {
                     intent: "CAPTURE",
                     purchase_units: [
                         {
-                            description: cartItems.item.name,
+                            description: order.description,
                             amount: {
                                 currency_code: "USD",
-                                value: cartItems.item.price
+                                value: (order.item_total + order.tax_total).toFixed(2)
                             },
                         },
                     ],
@@ -25,6 +25,7 @@ const PayPal = (props) => {
                 console.log(order)
             },
             onError: (err) => {
+                console.log("Error in bringing up PayPal")
                 console.log(err)
             }
         }).render(paypal.current)
