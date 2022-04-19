@@ -13,7 +13,6 @@ const Cart = (props) => {
         description: 'Online order from Hover Sounds',
         item_total: subotal,
         tax_total: taxPrice,
-        items: cartItems
     }
 
     return (

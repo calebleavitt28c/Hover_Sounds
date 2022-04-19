@@ -3,7 +3,7 @@ import React, { useState } from "react"
 const MerchForm = () => {
    const [itemName, setItemName] = useState('') 
    const [price, setPrice] = useState('') 
-   const [details, setDetails] = useState('') 
+   const [artistId, setArtistId] = useState('') 
    const [imageFile, setImageFile] = useState('') 
    const [quantity, setQuantity] = useState('') 
 
@@ -15,6 +15,13 @@ const MerchForm = () => {
        <div>
            <label>Event Details</label>
            <form onSubmit={createMerch}>
+                {/* <input
+                    name="artistId"
+                    placeholder=""
+                    value={artistId}
+                    onChange={(event) => setArtistId(event.target.value)}
+                ></input><br></br> */}
+
                 <input
                     name="itemName"
                     placeholder="Item Name"
@@ -23,27 +30,18 @@ const MerchForm = () => {
                 ></input><br></br>
 
                 <input
-                    name="price"
-                    placeholder="First Opening Artist"
-                    value={price}
-                    onChange={(event) => setPrice(event.target.value)}
-                ></input><br></br>
-
-                <input
-                    name="details"
-                    placeholder="Second Opening Artist"
-                    value={details}
-                    onChange={(event) => setDetails(event.target.value)}
-                ></input><br></br>
-
-                <input
                     name="merch-images" 
                     id="img" 
-                    placeholder="Images"
+                    placeholder="Enter Image Web Address"
                     value={imageFile}
-                    type="file" 
-                    accept="image/*"
-                    onChange={(event) => setImageFile(event.target.files[0])}
+                    onChange={(event) => setImageFile(event.target.value)}
+                ></input><br></br>
+
+                <input
+                    name="price"
+                    placeholder="Item Price"
+                    value={price}
+                    onChange={(event) => setPrice(event.target.value)}
                 ></input><br></br>
 
                 <input

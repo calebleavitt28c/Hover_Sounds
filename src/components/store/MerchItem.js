@@ -8,7 +8,7 @@ const MerchItem = (props) => {
       <div>
         <h3>{item.name}</h3>
         <p>${item.price}</p>
-        <p>{item.quantity} in stock</p>
+        <p>{item.stock} in stock</p>
       </div>
       <div>
         <img src={item.image} alt={item.name} height="400px" width="auto"/>
