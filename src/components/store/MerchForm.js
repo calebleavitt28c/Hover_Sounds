@@ -1,27 +1,35 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import axios from "axios"
+import { v4 as uuidv4 } from 'uuid';
 
-const MerchForm = () => {
+const MerchForm = (props) => {
    const [itemName, setItemName] = useState('') 
    const [price, setPrice] = useState('') 
-   const [artistId, setArtistId] = useState('') 
+   const [artistId, setArtistId] = useState(props.artistId) 
    const [imageFile, setImageFile] = useState('') 
    const [quantity, setQuantity] = useState('') 
 
     const createMerch = (event) => {
-        //TODO: call Lambda Function that will PUT this new merch item into the right table
+        event.preventDefault()
+            const body = {
+                artistId: artistId,
+                id: uuidv4(),
+                image: imageFile,
+                name: itemName,
+                price: price,
+                stock: quantity
+            }
+            axios.put(`https://api.hoveringrecords.com/hover/store/${artistId}`, body)
+                .then(response => {
+                    console.log(response)
+                    window.location = "" //this line will redirect you once the submission succeeds
+                })
     }
 
    return (
        <div>
            <label>Event Details</label>
            <form onSubmit={createMerch}>
-                {/* <input
-                    name="artistId"
-                    placeholder=""
-                    value={artistId}
-                    onChange={(event) => setArtistId(event.target.value)}
-                ></input><br></br> */}
-
                 <input
                     name="itemName"
                     placeholder="Item Name"

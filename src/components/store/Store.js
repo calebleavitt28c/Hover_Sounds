@@ -5,7 +5,8 @@ import MerchForm from './MerchForm'
 import axios from 'axios'
 
 const Store = (props) => {
-    const { userType } = props
+    const {userType, artistId} = props
+
     
     const [showStore, setShowStore] = useState(true)
     const [showMerchForm, setShowMerchForm] = useState(false)
@@ -17,7 +18,7 @@ const Store = (props) => {
             .then(response => {
                 setItems(response.data.Items)
             })
-    })
+    }, [])
 
     // const { items } = data //TODO: change this to API call
     const [cartItems, setCartItems] = useState([])
@@ -75,7 +76,7 @@ const Store = (props) => {
                         />
                     </div>
                     <div>
-                        {(userType == 'artists' || userType == 'venues') && (
+                        {userType == 'artists' && (
                             <button
                                 onClick={(event) => hideComponent('showMerchForm')}
                             >Add Merch to Store</button>
@@ -85,7 +86,7 @@ const Store = (props) => {
             )}
             <div>
                 {showMerchForm && (
-                    <MerchForm />
+                    <MerchForm artistId={artistId}/>
                 )}
             </div>
         </div>
