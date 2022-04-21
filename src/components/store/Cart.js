@@ -20,7 +20,7 @@ const Cart = (props) => {
             <h2>Cart</h2>
             <div>{cartItems.length === 0 && <div>Cart Is Empty</div>}</div>
             {cartItems.map((item) => (
-                <div key={item.itemID} className='row'>
+                <div key={item.id} className='row'>
                     <div>{item.name}</div>
                     <div>
                         <button onClick={() => onAdd(item)} id='add'>+</button>

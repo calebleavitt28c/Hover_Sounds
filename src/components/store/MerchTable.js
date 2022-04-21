@@ -8,7 +8,7 @@ const MerchTable = (props) => {
         <div className="">
             <ul className="posts-striped scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray max-h-[35rem] overflow-y-scroll">
                 {items.map((item) => (
-                    <MerchItem key={item.itemID} item={item} onAdd={onAdd}/>
+                    <MerchItem key={item.id} item={item} onAdd={onAdd}/>
                 ))}
             </ul>
         </div>
