@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
   constructor(props) {
@@ -52,7 +53,9 @@ class Header extends React.Component {
     return(
       <nav className="flex items-center justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary p-4 ease-in duration-300">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
-        <button className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300">Hover Sounds</button>
+          <Link 
+          className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
+          to="/" >Hover Sounds</Link>
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded text-secondary border-secondary hover:text-white hover:border-white ease-in duration-300">
@@ -63,14 +66,16 @@ class Header extends React.Component {
           <div className="text-sm lg:flex-grow">
           </div>
           <div className="grid grid-cols-2">
-            <button id="profile"
+            <Link id="store"
+              to="/store"
+            >Store</Link>
+            <Link id="profile"
+              to="/profile"
               className="inline-block text-sm ml-2 leading-none text-white  dark:text-lightgray border-transparent hover:text-secondary dark:hover:text-primary ease-in duration-300">
-              onClick={(event) => this.choosePage('profile')}
-            </button>
+            </Link>
             <button id="themeBtn" 
               className="inline-block text-sm ml-2 leading-none text-secondary dark:text-lightgray border-transparent hover:text-white dark:hover:text-primary ease-in duration-300"
-              onClick={this.toggleTheme}
-            >
+              onClick={this.toggleTheme}>
             </button>
           </div>
         </div>

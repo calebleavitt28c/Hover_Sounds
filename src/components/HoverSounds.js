@@ -1,71 +1,50 @@
 import React, { useState, useEffect, useContext} from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import { AccountContext } from './auth/Account'
 import Header from './universal/Header'
 import Footer from './universal/Footer'
+import AuthPage from './auth/AuthPage'
 import Home from './home/Home'
 import Profile from './profile/Profile'
 import Artist from './artist/Artist'
-import AuthPage from './auth/AuthPage'
 import Store from './store/Store'
 
 function HoverSounds() {
     const [status, setStatus] = useState(false)
-    const [page, setPage] = useState('')
     const [userType, setUserType] = useState('')
     const [artistId, setArtistId] = useState('')
 
-    const { getSession, logout } = useContext(AccountContext)
+    const { getSession } = useContext(AccountContext)
 
     useEffect(() => {
         getSession()
             .then(session => {
                 console.log("Session: ", session)
                 setStatus(true)
-                setPage('artist')
                 setUserType(session.accessToken.payload['cognito:groups'][0])
                 setArtistId(session.sub)
             })
     }, [])
 
-    const choosePage = (name) => {
-        setPage(name)
-    }
-
     return (
-        <div>
-            {status ? (
-                <div className="App flex flex-col h-screen justify-between ease-in duration-300">
-                    <Header 
-                        choosePage={choosePage}
-                    />
-                    <Store 
-                                userType={userType}
-                                artistId={artistId}
-                            />
-                    <header className="App-header bg-white dark:bg-darkgray ease-in duration-300">
-                        {page == 'home' && (
-                            <Home />
-                        )}
-                        
-                        {page == 'profile' && (
-                            <Profile />
-                        )}
-
-                        {page == 'artist' && (
-                            <Artist />
-                        )}
-
-                        {page == 'store' && (
-                            <Store 
-                                userType={userType}
-                                artistId={artistId}
-                            />
-                        )}
-                    </header>
-                    <Footer/>
-                </div>
-            ) : <AuthPage />}
-        </div>
+        <Router>
+            <div className="App flex flex-col h-screen justify-between ease-in duration-300">
+                <Header />
+                <header className="App-header bg-white dark:bg-darkgray ease-in duration-300">
+                </header>
+                
+                <Routes>
+                    <Route path="/" element={<Home />}></Route>
+                    <Route exact path="/auth" element={<AuthPage />}></Route>
+                    <Route exact path="/profile" element={<Profile />}></Route>
+                    <Route exact path="/artist" element={<Artist />}></Route>
+                    {/* <Route exact path="/venue" element={<Venue />}></Route>
+                    <Route exact path="/events" element={<Events />}></Route> */}
+                    <Route exact path="/store" element={<Store userType={userType} artistId={artistId}/>}></Route>
+                </Routes>
+                <Footer/>
+            </div>
+        </Router>
     )
 }
 
