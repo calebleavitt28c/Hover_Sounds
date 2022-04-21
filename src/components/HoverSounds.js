@@ -21,7 +21,7 @@ function HoverSounds() {
             .then(session => {
                 console.log("Session: ", session)
                 setStatus(true)
-                setPage('home')
+                setPage('artist')
                 setUserType(session.accessToken.payload['cognito:groups'][0])
                 setArtistId(session.sub)
             })
@@ -38,6 +38,10 @@ function HoverSounds() {
                     <Header 
                         choosePage={choosePage}
                     />
+                    <Store 
+                                userType={userType}
+                                artistId={artistId}
+                            />
                     <header className="App-header bg-white dark:bg-darkgray ease-in duration-300">
                         {page == 'home' && (
                             <Home />

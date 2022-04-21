@@ -13,6 +13,7 @@ const Store = (props) => {
 
     const [items, setItems] = useState([])
 
+    
     useEffect(() => {
         axios.get('https://api.hoveringrecords.com/hover/store')
             .then(response => {

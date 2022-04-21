@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 
 class ArtistHome extends React.Component {
@@ -5,7 +6,7 @@ class ArtistHome extends React.Component {
     super(props)
 
     this.state = {
-
+      favorited: false
     }
   }
 
@@ -15,15 +16,36 @@ class ArtistHome extends React.Component {
 
   heartClick = () => {
     let favoriteBtn = document.getElementById('favoriteBtn')
-    if (favoriteBtn.classList.contains('filled')) {
-      favoriteBtn.innerHTML = this.openHeart
-      favoriteBtn.classList.remove('filled')
-      console.log('unfavorited')
+
+    if (this.state.favorited) {
+      axios.post('https://api.hoveringrecords.com/hover/favorite', {
+        table: 'artists',
+        id: this.props.artistId,
+        fanId: this.props.fanId,
+        dir: '-'
+      })
+      .then(response => {
+        console.log(response)
+        favoriteBtn.innerHTML = this.openHeart
+        favoriteBtn.classList.remove('filled')
+        console.log('unfavorited')
+        this.setState({ favorited: false })
+      })
     }
     else {
-      favoriteBtn.innerHTML = this.closedHeart
-      favoriteBtn.classList.add('filled')
-      console.log('favorited')
+      axios.post('https://api.hoveringrecords.com/hover/favorite', {
+        table: 'artists',
+        id: this.props.artistId,
+        fanId: this.props.fanId,
+        dir: '+'
+      })
+      .then(response => {
+        console.log(response)
+        favoriteBtn.innerHTML = this.closedHeart
+        favoriteBtn.classList.add('filled')
+        console.log('favorited')
+        this.setState({ favorited: true })
+      })
     }
   }
 
@@ -35,6 +57,7 @@ class ArtistHome extends React.Component {
 
     if (this.props.favorite) {
       favoriteBtn.innerHTML = this.closedHeart
+      this.setState({ favorited: true })
     }
     else {
       favoriteBtn.innerHTML = this.openHeart
