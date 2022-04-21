@@ -3,11 +3,12 @@ import axios from "axios"
 import { v4 as uuidv4 } from 'uuid';
 
 const MerchForm = (props) => {
-   const [itemName, setItemName] = useState('') 
-   const [price, setPrice] = useState('') 
-   const [artistId, setArtistId] = useState(props.artistId) 
-   const [imageFile, setImageFile] = useState('') 
-   const [quantity, setQuantity] = useState('') 
+
+    const [itemName, setItemName] = useState('') 
+    const [price, setPrice] = useState('') 
+    const [artistId, setArtistId] = useState(props.artistId) 
+    const [imageFile, setImageFile] = useState('') 
+    const [quantity, setQuantity] = useState('') 
 
     const createMerch = (event) => {
         event.preventDefault()
@@ -22,12 +23,17 @@ const MerchForm = (props) => {
             axios.put(`https://api.hoveringrecords.com/hover/store/${artistId}`, body)
                 .then(response => {
                     console.log(response)
-                    window.location = "" //this line will redirect you once the submission succeeds
+                    props.hideComponent('showMerchForm') //takes you back to the store
                 })
+    }
+
+    const BackToStore = (name) => {
+        props.hideComponent(name)
     }
 
    return (
        <div>
+           <button onClick={(event) => BackToStore('showMerchForm')}>Back Arrow</button><br></br>
            <label>Event Details</label>
            <form onSubmit={createMerch}>
                 <input

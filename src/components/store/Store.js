@@ -85,7 +85,7 @@ const Store = (props) => {
             )}
             <div>
                 {showMerchForm && (
-                    <MerchForm artistId={artistId}/>
+                    <MerchForm artistId={artistId} hideComponent={hideComponent}/>
                 )}
             </div>
         </div>
