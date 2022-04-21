@@ -7,7 +7,6 @@ import axios from 'axios'
 const Store = (props) => {
     const {userType, artistId} = props
 
-    
     const [showStore, setShowStore] = useState(true)
     const [showMerchForm, setShowMerchForm] = useState(false)
 
@@ -21,14 +20,13 @@ const Store = (props) => {
             })
     }, [])
 
-    // const { items } = data //TODO: change this to API call
     const [cartItems, setCartItems] = useState([])
     const onAdd = (item) => {
-        const exist = cartItems.find(x => x.itemID === item.itemID)
+        const exist = cartItems.find(x => x.id === item.id)
         if (exist) {
             setCartItems(
                 cartItems.map(x => 
-                    x.itemID === item.itemID ? {...exist, qty: exist.qty + 1} : x
+                    x.id === item.id ? {...exist, qty: exist.qty + 1} : x
                 )
             )
         } else {
@@ -36,13 +34,13 @@ const Store = (props) => {
         }
     }
     const onRemove = (item) => {
-        const exist = cartItems.find((x) => x.itemID === item.itemID)
+        const exist = cartItems.find((x) => x.id === item.id)
         if (exist.qty === 1) {
-            setCartItems(cartItems.filter((x) => x.itemID !== item.itemID))
+            setCartItems(cartItems.filter((x) => x.id !== item.id))
         } else {
             setCartItems(
                 cartItems.map((x) => 
-                    x.itemID === item.itemID ? { ...exist, qty: exist.qty - 1}: x
+                    x.id === item.id ? { ...exist, qty: exist.qty - 1}: x
                 )
             )
         }
