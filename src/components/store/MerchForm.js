@@ -12,19 +12,18 @@ const MerchForm = (props) => {
 
     const createMerch = (event) => {
         event.preventDefault()
-            const body = {
-                artistId: artistId,
-                id: uuidv4(),
-                image: imageFile,
-                name: itemName,
-                price: price,
-                stock: quantity
-            }
-            axios.put(`https://api.hoveringrecords.com/hover/store/${artistId}`, body)
-                .then(response => {
-                    console.log(response)
-                    props.hideComponent('showMerchForm') //takes you back to the store
-                })
+        axios.post('https://api.hoveringrecords.com/hover/store', {
+            artistId: artistId,
+            id: uuidv4(),
+            image: imageFile,
+            name: itemName,
+            price: price,
+            stock: quantity
+        })
+        .then(response => {
+            console.log(response)
+            props.hideComponent('showMerchForm') //takes you back to the store
+        })
     }
 
     const BackToStore = (name) => {
