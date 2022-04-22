@@ -43,7 +43,7 @@ const AuthPage = () => {
                     )}
                     {stage == 2 && (
                         <div>
-                            <Login/>
+                            <Login />
                             <div className="grid grid-cols-3 pt-2">
                                 <div className="col-span-1"></div>
                                 <button className="text-gray col-span-1 hover:text-primary ease-in duration-200" onClick={(event => setStage(3))}>Forgot Password</button>

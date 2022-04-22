@@ -12,7 +12,7 @@ import Store from './store/Store'
 function HoverSounds() {
     const [status, setStatus] = useState(false)
     const [userType, setUserType] = useState('')
-    const [artistId, setArtistId] = useState('')
+    const [userId, setUserId] = useState('')
 
     const { getSession } = useContext(AccountContext)
 
@@ -22,7 +22,7 @@ function HoverSounds() {
                 console.log("Session: ", session)
                 setStatus(true)
                 setUserType(session.accessToken.payload['cognito:groups'][0])
-                setArtistId(session.sub)
+                setUserId(session.sub)
             })
     }, [])
 
@@ -37,10 +37,10 @@ function HoverSounds() {
                     <Route path="/" element={<Home />}></Route>
                     <Route exact path="/auth" element={<AuthPage />}></Route>
                     <Route exact path="/profile" element={<Profile />}></Route>
-                    <Route exact path="/artist" element={<Artist />}></Route>
+                    <Route exact path="/artist/:artistId" element={<Artist userId={userId} userType={userType}/>}></Route>
                     {/* <Route exact path="/venue" element={<Venue />}></Route>
                     <Route exact path="/events" element={<Events />}></Route> */}
-                    <Route exact path="/store" element={<Store userType={userType} artistId={artistId}/>}></Route>
+                    <Route exact path="/store" element={<Store userType={userType} artistId={userId}/>}></Route>
                 </Routes>
                 <Footer/>
             </div>

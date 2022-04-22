@@ -25,7 +25,6 @@ class ArtistHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-        console.log(response)
         favoriteBtn.innerHTML = this.openHeart
         favoriteBtn.classList.remove('filled')
         console.log('unfavorited')
@@ -50,6 +49,7 @@ class ArtistHome extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.favorite)
     let favoriteBtn = document.getElementById('favoriteBtn')
     let playBtn = document.getElementById('playBtn')
 
