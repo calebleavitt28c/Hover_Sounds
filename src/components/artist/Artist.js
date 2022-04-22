@@ -20,16 +20,6 @@ const Artist = (props) => {
   let { artistId } = useParams()
 
   useEffect(() => {
-      axios.get(`https://api.hoveringrecords.com/hover/fans/${userId}`)
-        .then(response => {
-          let data = response.data.Item
-          if (data.hasOwnProperty('favArtists')) {
-            if (data.favArtists.indexOf(artistId) > -1) {
-              setFavorited(true)
-            }
-          }
-      })
-
       axios.get(`https://api.hoveringrecords.com/hover/artists/${artistId}`)
         .then(response => {
           let data = response.data.Item

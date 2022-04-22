@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React from 'react'
 
+import Pool from '../auth/UserPool'
+
 class ArtistHome extends React.Component {
   constructor(props) {
     super(props)
@@ -18,6 +20,8 @@ class ArtistHome extends React.Component {
     let favoriteBtn = document.getElementById('favoriteBtn')
 
     if (this.state.favorited) {
+      favoriteBtn.innerHTML = this.openHeart
+      favoriteBtn.classList.remove('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: this.props.artistId,
@@ -25,13 +29,14 @@ class ArtistHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-        favoriteBtn.innerHTML = this.openHeart
-        favoriteBtn.classList.remove('filled')
+
         console.log('unfavorited')
         this.setState({ favorited: false })
       })
     }
     else {
+      favoriteBtn.innerHTML = this.closedHeart
+      favoriteBtn.classList.add('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: this.props.artistId,
@@ -39,9 +44,7 @@ class ArtistHome extends React.Component {
         dir: '+'
       })
       .then(response => {
-        console.log(response)
-        favoriteBtn.innerHTML = this.closedHeart
-        favoriteBtn.classList.add('filled')
+
         console.log('favorited')
         this.setState({ favorited: true })
       })
@@ -49,19 +52,26 @@ class ArtistHome extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.favorite)
     let favoriteBtn = document.getElementById('favoriteBtn')
     let playBtn = document.getElementById('playBtn')
 
     playBtn.innerHTML = this.play
 
-    if (this.props.favorite) {
-      favoriteBtn.innerHTML = this.closedHeart
-      this.setState({ favorited: true })
-    }
-    else {
-      favoriteBtn.innerHTML = this.openHeart
-    }
+    favoriteBtn.innerHTML = this.openHeart
+
+    getSession()
+      .then(session => {
+        axios.get(`https://api.hoveringrecords.com/hover/fans/${session.sub}`)
+        .then(response => {
+          let data = response.data.Item
+          if (data.hasOwnProperty('favArtists')) {
+            if (data.favArtists.indexOf(this.props.artistId) > -1) {
+              this.setState({ favorited: true })
+              favoriteBtn.innerHTML = this.closedHeart
+            }
+          }
+        })
+      })
   }
 
   render() {
@@ -81,6 +91,38 @@ class ArtistHome extends React.Component {
       </div>
     );
   }
+}
+
+const getSession = async () => {
+  return await new Promise((resolve, reject) => {
+      const user = Pool.getCurrentUser()
+      if (user) {
+          user.getSession(async (err, session) => {
+              if (err) {
+                  reject()
+              } else {
+                  const attributes = await new Promise((resolve, reject) => {
+                      user.getUserAttributes((err, attributes) => {
+                          if (err) {
+                              reject(err) 
+                          } else {
+                              const results = {}
+
+                              for (let attribute of attributes) {
+                                  const { Name, Value } = attribute
+                                  results[Name] = Value
+                              }
+                              resolve(results)
+                          }
+                      })
+                  })
+                  resolve({ user, ...session, ...attributes })
+              }
+          })
+      } else {
+          reject()
+      }
+  })
 }
 
 export default ArtistHome
