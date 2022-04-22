@@ -1,17 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import PostContainer from '../home/PostContainer'
 import EventTable from '../home/EventTable'
 import ArtistHome from './ArtistHome'
 import ArtistMerchContainer from './ArtistMerchContainer'
 import AboutArtist from './AboutArtist'
-import { AccountContext } from "../auth/Account"
 
-import { useParams } from 'react-router'
-
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const Artist = props => {
+const Artist = (props) => {
   const { userId, userType } = props
+
   const [artist, setArtist] = useState({})
   const [merch, setMerch] = useState([])
   const [posts, setPosts] = useState([])
@@ -20,23 +19,14 @@ const Artist = props => {
 
   let { artistId } = useParams()
 
-  const { getSession } = useContext(AccountContext)
-
   useEffect(() => {
-    console.log(userId)
       axios.get(`https://api.hoveringrecords.com/hover/fans/${userId}`)
         .then(response => {
           let data = response.data.Item
           if (data.hasOwnProperty('favArtists')) {
-            if (data.favArtists.indexOf(artist) > -1) {
+            if (data.favArtists.indexOf(artistId) > -1) {
               setFavorited(true)
             }
-            else {
-              setFavorited(false)
-            }
-          }
-          else {
-            setFavorited(false)
           }
       })
 
@@ -64,7 +54,7 @@ const Artist = props => {
     <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray ease-in duration-300">
       <div id="" className="col-span-3 ease-in duration-300">
         {/* merchandise + heart */}
-        <ArtistHome name={artist.name} favorite={favorited} artistId={artistId} fanId={props.userId}/>
+        <ArtistHome name={artist.name} favorite={favorited} artistId={artistId} fanId={userId}/>
         <ArtistMerchContainer />
       </div>
       <div className="col-span-6 border-2 border-black dark:border-primary ease-in duration-300">
