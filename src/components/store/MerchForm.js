@@ -12,7 +12,7 @@ const MerchForm = (props) => {
 
     const createMerch = (event) => {
         event.preventDefault()
-        axios.post('https://api.hoveringrecords.com/hover/store', {
+        axios.put('https://api.hoveringrecords.com/hover/store', {
             artistId: artistId,
             id: uuidv4(),
             image: imageFile,
