@@ -9,7 +9,7 @@ import Profile from './profile/Profile'
 import Artist from './artist/Artist'
 import Store from './store/Store'
 
-import Spotify from './spotify/Spotify'
+import SpotifyContainer from './spotify/SpotifyContainer'
 
 function HoverSounds() {
     const [status, setStatus] = useState(false)
@@ -45,7 +45,7 @@ function HoverSounds() {
                     <Route exact path="/store" element={<Store userType={userType} artistId={userId}/>}></Route>
                 </Routes>
                 <Footer />
-                <Spotify />
+                <SpotifyContainer />
             </div>
         </Router>
     )

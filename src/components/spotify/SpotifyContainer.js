@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 
-class Spotify extends React.Component {
+class SpotifyContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -154,4 +154,4 @@ class Spotify extends React.Component {
   }
 }
 
-export default Spotify
+export default SpotifyContainer
