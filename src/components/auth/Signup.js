@@ -2,7 +2,9 @@
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
 import React, { useContext, useEffect, useState } from "react"
 import Pool from "./UserPool"
+import { useNavigate } from "react-router-dom"
 import { AccountContext } from "./Account"
+import { Navigate } from "react-router"
 
 //TODO: look up what a useState hook is 
 const Signup = (props) => {
@@ -276,6 +278,8 @@ const Signup = (props) => {
 }
 
 const VerifyEmail = (props) => {
+    let navigate = useNavigate()
+
     const [showHideConfirm, setShowHideConfirm] = useState(true)
 
     const [verificationCode, setVerificationCode] = useState('')
@@ -301,6 +305,7 @@ const VerifyEmail = (props) => {
         })
 
         hideVerifyEmail()
+        navigate('/')
     }
 
 

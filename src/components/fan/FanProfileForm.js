@@ -1,16 +1,27 @@
 import React, { useState } from "react"
+import axios from 'axios'
 
 const FanProfileForm = (props) => {
-    const [firstName, setFirstName] = useState(props.firstName)
-    const [lastName, setLastName] = useState(props.lastName)
-    const [phone, setPhone] = useState(props.phone)
-    const [birthdate, setBirthdate] = useState(props.birthdate)
+    const { fanAttributes } = props
 
-    // const [curAtts, setCurAtts] = useState(props.attributes)
+    const [firstName, setFirstName] = useState(fanAttributes.firstName)
+    const [lastName, setLastName] = useState(fanAttributes.lastName)
+    const [phone, setPhone] = useState(fanAttributes.phone)
+    const [birthdate, setBirthdate] = useState(fanAttributes.birthdate)
 
     const updateFan = (event) => {
         event.preventDefault()
-        //TODO: call Lambda Function that will UPDATE this fan in the fan table
+        axios.put('https://api.hoveringrecords.com/hover/fans', {
+            id: "stuff",
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+            birthdate: birthdate
+        })
+        .then(response => {
+            console.log(response)
+            //redirect to Profile page
+        })
     }
 
    return (

@@ -1,10 +1,13 @@
 import React, { useState, useContext, useEffect } from "react"
 import { AccountContext } from "./Account"
+import { useNavigate } from "react-router-dom"
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
 import Pool from "./UserPool"
 
 //TODO: look up what a useState hook is 
 const Login = () => {
+    let navigate = useNavigate()
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -16,10 +19,12 @@ const Login = () => {
         authenticate(email, password)
             .then(data => {
                 console.log("Logged in!", data)
+                navigate('/')
             })
             .catch(err => {
                 console.error("Failed to login", err)
             })
+
     }
 
     return (

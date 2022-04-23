@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext} from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { AccountContext } from './auth/Account'
 import Header from './universal/Header'
 import Footer from './universal/Footer'
@@ -12,6 +12,7 @@ import Store from './store/Store'
 import SpotifyContainer from './spotify/SpotifyContainer'
 
 function HoverSounds() {
+
     const [status, setStatus] = useState(false)
     const [userType, setUserType] = useState('')
     const [userId, setUserId] = useState('')
@@ -25,6 +26,8 @@ function HoverSounds() {
                 setStatus(true)
                 setUserType(session.accessToken.payload['cognito:groups'][0])
                 setUserId(session.sub)
+            }, reason => {
+                console.log(reason)
             })
     }, [])
 
@@ -38,7 +41,7 @@ function HoverSounds() {
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route exact path="/auth" element={<AuthPage />}></Route>
-                    <Route exact path="/profile" element={<Profile />}></Route>
+                    <Route exact path="/profile" element={<Profile userType={userType} userId={userId}/>}></Route>
                     <Route path="/artist/:artistId" element={<Artist userType={userType} userId={userId} />}></Route>
                     {/* <Route exact path="/venue" element={<Venue />}></Route>
                     <Route exact path="/events" element={<Events />}></Route> */}

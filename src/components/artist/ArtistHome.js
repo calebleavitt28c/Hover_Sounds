@@ -1,5 +1,4 @@
 import axios from 'axios'
-import request from 'request'
 import React from 'react'
 
 import Pool from '../auth/UserPool'
@@ -36,10 +35,6 @@ class ArtistHome extends React.Component {
       headers: headers,
       body: body
     }
-
-    request(options, (error) => {
-      if (error) console.error(error)
-    })
   }
 
   heartClick = () => {

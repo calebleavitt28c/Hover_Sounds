@@ -1,18 +1,34 @@
 import React, { useState } from "react"
+import axios from "axios"
+
 
 const VenueProfileForm = () => {
    const [name, setName] = useState('') 
    const [bio, setBio] = useState('') 
    const [profilePic, setProfilePic] = useState('') 
-//    const [venuePics, setVenuePics] = useState('')
    const [address, setAddress] = useState('') 
    const [city, setCity] = useState('') 
    const [state, setState] = useState('') 
    const [zipcode, setZipcode] = useState('') 
-   const [instagramUsername, setInstagramUsername] = useState('') 
+   const [twitterHandle, setTwitterHandle] = useState('') 
 
     const updateVenue = (event) => {
-        //TODO: call Lambda Function that will UPDATE this venue in the venue table
+        event.preventDefault()
+        axios.put('https://api.hoveringrecords.com/hover/venues', {
+            id: "stuff",
+            name: name,
+            bio: bio,
+            profilePic: profilePic,
+            address: address,
+            city: city,
+            state: state,
+            zipcode: zipcode,
+            twitterHandle: twitterHandle
+        })
+        .then(response => {
+            console.log(response)
+            //redirect to Profile page
+        })
     }
 
    return (
@@ -30,8 +46,9 @@ const VenueProfileForm = () => {
                     name="bio"
                     placeholder="Artist Bio"
                     value={bio}
-                    rows="8"
+                    rows="5"
                     cols="60"
+                    maxLength="255"
                     onChange={(event) => setBio(event.target.value)}
                 ></textarea><br></br>
 
@@ -39,19 +56,8 @@ const VenueProfileForm = () => {
                     name="artist-profile-pic"
                     placeholder="Add Profile Picture"
                     value={profilePic}
-                    type="file"
-                    accept="image/*"
                     onChange={(event) => setProfilePic(event.target.value)}
                 ></input><br></br>
-
-                {/* <input
-                    name="pics-of-venue"
-                    placeholder="Pictures of Venue"
-                    value={venuePics}
-                    type="file"
-                    accept="image/*"
-                    onChange={(event) => setVenuePics(event.target.value)}
-                ></input><br></br> */}
 
                 <input
                     name="address"
@@ -81,11 +87,11 @@ const VenueProfileForm = () => {
                     onChange={(event) => setZipcode(event.target.value)}
                 ></input><br></br>
 
-                <input
-                    name="instagramUsername"
-                    placeholder="Venues Instagram Username"
-                    value={instagramUsername}
-                    onChange={(event) => setInstagramUsername(event.target.value)}
+<input
+                    name="twitterHandle"
+                    placeholder="Venues Twitter Handle"
+                    value={twitterHandle}
+                    onChange={(event) => setTwitterHandle(event.target.value)}
                 ></input><br></br>
 
                 <button type="submit">Update Profile</button>
