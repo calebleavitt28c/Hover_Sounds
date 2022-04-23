@@ -19,6 +19,7 @@
     "react-spotify-web-playback": "^0.9.1",
     "request": "^2.88.2",
     "tailwind-scrollbar": "^1.3.1",
+    "util": "^0.12.4",
     "uuid": "^8.3.2",
     "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"

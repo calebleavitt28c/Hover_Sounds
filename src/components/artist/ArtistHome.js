@@ -1,5 +1,5 @@
 import axios from 'axios'
-import request from 'request'
+//import request from 'request'
 import React from 'react'
 
 import Pool from '../auth/UserPool'
@@ -19,6 +19,26 @@ class ArtistHome extends React.Component {
   play = '<svg class="bi bi-play-circle-fill text-black hover:text-primary dark:text-white dark:hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/></svg>'
 
   playClick = () => {
+    let deviceHeaders = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.props.spotifyToken}`
+    }
+
+    axios.get('https://api.spotify.com/v1/me/player/devices', { deviceHeaders })
+      .then(response => {
+        let check = 0
+        for (let device of response.data.devices) {
+          if (device.name === 'Hover Sounds') {
+            this.setState({ deviceId: device.id })
+            check = 1
+          }
+        }
+        if (check == 0) {
+          //disable play button or show message saying to log in
+        }
+        console.log(this.state.deviceId)
+      })
     const { deviceId } = this.state
     const { spotifyToken, spotifyId } = this.props
 
@@ -37,9 +57,9 @@ class ArtistHome extends React.Component {
       body: body
     }
 
-    request(options, (error) => {
-      if (error) console.error(error)
-    })
+    // request(options, (error) => {
+    //   if (error) console.error(error)
+    // })
   }
 
   heartClick = () => {
@@ -98,27 +118,6 @@ class ArtistHome extends React.Component {
           }
         })
       })
-
-      let headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.props.spotifyToken}`
-      }
-
-      axios.get('https://api.spotify.com/v1/me/player/devices', { headers })
-        .then(response => {
-          let check = 0
-          for (let device of response.data.devices) {
-            if (device.name === 'Hover Sounds') {
-              this.setState({ deviceId: device.id })
-              check = 1
-            }
-          }
-          if (check == 0) {
-            //disable play button or show message saying to log in
-          }
-          console.log(this.state.deviceId)
-        })
   }
 
   render() {
