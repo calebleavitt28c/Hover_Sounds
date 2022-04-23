@@ -27,14 +27,15 @@ function HoverSounds() {
                 setUserType(session.accessToken.payload['cognito:groups'][0])
                 setUserId(session.sub)
             }, reason => {
-                console.log(reason)
+                setStatus(false)
+                console.log("User not logged in. " + reason)
             })
     }, [])
 
     return (
         <Router>
             <div className="App flex flex-col h-screen justify-between ease-in duration-300">
-                <Header />
+                <Header status={status}/>
                 <header className="App-header bg-white dark:bg-darkgray ease-in duration-300">
                 </header>
                 
