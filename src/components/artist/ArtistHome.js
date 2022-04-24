@@ -99,20 +99,7 @@ class ArtistHome extends React.Component {
     playBtn.innerHTML = this.play
 
     favoriteBtn.innerHTML = this.openHeart
-
-    getSession()
-      .then(session => {
-        axios.get(`https://api.hoveringrecords.com/hover/fans/${session.sub}`)
-        .then(response => {
-          let data = response.data.Item
-          if (data.hasOwnProperty('favArtists')) {
-            if (data.favArtists.indexOf(this.props.artistId) > -1) {
-              this.setState({ favorited: true })
-              favoriteBtn.innerHTML = this.closedHeart
-            }
-          }
-        })
-      })
+    
   }
 
   render() {
