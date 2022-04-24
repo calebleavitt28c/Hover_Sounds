@@ -6,19 +6,19 @@ const MerchForm = (props) => {
 
     const [itemName, setItemName] = useState('') 
     const [price, setPrice] = useState('') 
-    const [artistId, setArtistId] = useState(props.artistId) 
+    const [userId, setUserId] = useState(props.userId) 
     const [imageFile, setImageFile] = useState('') 
     const [quantity, setQuantity] = useState('') 
 
     const createMerch = (event) => {
         event.preventDefault()
         axios.put('https://api.hoveringrecords.com/hover/store', {
-            artistId: artistId,
+            artistId: userId,
             id: uuidv4(),
             image: imageFile,
             name: itemName,
-            price: price,
-            stock: quantity
+            price: parseFloat(price),
+            stock: parseInt(quantity)
         })
         .then(response => {
             console.log(response)
@@ -53,6 +53,7 @@ const MerchForm = (props) => {
                 <input
                     name="price"
                     placeholder="Item Price"
+                    type="number"
                     value={price}
                     onChange={(event) => setPrice(event.target.value)}
                 ></input><br></br>
@@ -60,6 +61,7 @@ const MerchForm = (props) => {
                 <input
                     name="quantity"
                     placeholder="Quantity"
+                    type="number"
                     value={quantity}
                     onChange={(event) => setQuantity(event.target.value)}
                 ></input><br></br>

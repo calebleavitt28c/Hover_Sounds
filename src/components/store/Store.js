@@ -5,7 +5,7 @@ import MerchForm from './MerchForm'
 import axios from 'axios'
 
 const Store = (props) => {
-    const {userType, artistId} = props
+    const {userType, userId} = props
 
     const [showStore, setShowStore] = useState(true)
     const [showMerchForm, setShowMerchForm] = useState(false)
@@ -85,7 +85,7 @@ const Store = (props) => {
             )}
             <div>
                 {showMerchForm && (
-                    <MerchForm artistId={artistId} hideComponent={hideComponent}/>
+                    <MerchForm userId={userId} hideComponent={hideComponent}/>
                 )}
             </div>
         </div>
