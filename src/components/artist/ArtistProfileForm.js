@@ -14,10 +14,12 @@ const ArtistProfileForm = (props) => {
     const updateArtist = (event) => {
         event.preventDefault()
         axios.put('https://api.hoveringrecords.com/hover/artists', {
-            id: "stuff",
+            id: artistAttributes.id,
             name: name,
+            email: artistAttributes.email,
             bio: bio,
             profilePic: profilePic,
+            favorites: artistAttributes.favorites,
             spotifyId: spotifyId,
             twitterHandle: twitterHandle
         })
@@ -27,8 +29,13 @@ const ArtistProfileForm = (props) => {
         })
     }
 
+    const BackToProfile = () => {
+        props.hideComponent('showAttributes')
+    }
+
    return (
        <div>
+           <button onClick={(event) => BackToProfile()}>Back button</button><br></br>
            <label>Artist Profile</label>
            <form onSubmit={updateArtist}>
                 <input

@@ -12,22 +12,28 @@ const FanProfileForm = (props) => {
     const updateFan = (event) => {
         event.preventDefault()
         axios.put('https://api.hoveringrecords.com/hover/fans', {
-            id: "stuff",
+            id: props.userId,
             firstName: firstName,
             lastName: lastName,
+            email: fanAttributes.email,
             phone: phone,
-            birthdate: birthdate
+            birthdate: birthdate,
+            favArtists: fanAttributes.favArtists
         })
         .then(response => {
             console.log(response)
-            //redirect to Profile page
         })
+    }
+
+    const BackToProfile = () => {
+        props.hideComponent('showAttributes')
     }
 
    return (
        <div className="grid grid-cols-3">
             <div className="col-span-1"></div>
             <div className="col-span-1">
+            <button onClick={(event) => BackToProfile()}>Back button</button>
                 <label className="block text-center uppercase tracking-wide text-gray text-xs font-bold mb-2">Fan Profile</label>
                 <form onSubmit={updateFan} className="grid grid-cols-4 gap-2">
                     <input

@@ -106,7 +106,7 @@ const UserInfo = (props) => {
                         <div className="grid grid-cols-4 gap-2 mt-2">
                             <button className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
                                 onClick={(event) => hideComponent('showAttributes')}
-                            >Edit</button>
+                            >Edit Profile</button>
                             <button className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
                                 onClick={(event) => hideComponent('showChangeEmail')}
                             >Change Email</button>
@@ -130,17 +130,21 @@ const UserInfo = (props) => {
                     <div>
                         {userType == 'fans' && (
                             <FanProfileForm
+                                userId={userId}
                                 fanAttributes={fanAttributes}
+                                hideComponent={hideComponent}
                             />
                         )}
                         {userType == 'artists' && (
                             <ArtistProfileForm
                                 artistAttributes={artistAttributes}
-                            />
-                        )}
+                                hideComponent={hideComponent}
+                                />
+                                )}
                         {userType == 'venues' && (
                             <VenueProfileForm
                                 venueAttributes={venueAttributes}
+                                hideComponent={hideComponent}
                             />
                         )}
                     </div>
@@ -148,17 +152,23 @@ const UserInfo = (props) => {
             </div>
             <div>
                 {showChangeEmail && (
-                    <ChangeEmail />
+                    <ChangeEmail 
+                        hideComponent={hideComponent}
+                    />
                 )}
             </div>
             <div>
                 {showChangePassword && (
-                    <ChangePassword />
+                    <ChangePassword 
+                        hideComponent={hideComponent}
+                    />
                 )}
             </div>
             <div>
                 {showDeleteAccount && (
-                    <DeleteAccount hideComponent={hideComponent}/>
+                    <DeleteAccount 
+                        hideComponent={hideComponent}
+                    />
                 )}
             </div>
         </div>

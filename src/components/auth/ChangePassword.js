@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { AccountContext } from './Account'
 
-export default () => {
+export default (props) => {
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
 
@@ -21,9 +21,14 @@ export default () => {
         })
     }
 
+    const BackToProfile = () => {
+        props.hideComponent('showChangePassword')
+    }
+
     return (
         <div className="grid grid-cols-3">
             <div className="col-span-1"></div>
+            <button onClick={(event) => BackToProfile()}>Back button</button>
             <form onSubmit={onSubmit}>
                 <label className="block text-center uppercase tracking-wide text-gray text-xs font-bold">Current Password</label>
                 <input
