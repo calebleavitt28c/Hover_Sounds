@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useContext} from 'react'
-<<<<<<< .mine
 import axios from 'axios'
-
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
-||||||| .r92
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
-=======
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
->>>>>>> .r101
 import { AccountContext } from './auth/Account'
 import Header from './universal/Header'
 import Footer from './universal/Footer'
