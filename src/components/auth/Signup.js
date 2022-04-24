@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useState } from "react"
 import Pool from "./UserPool"
 import { useNavigate } from "react-router-dom"
 import { AccountContext } from "./Account"
-import { Navigate } from "react-router"
 
 //TODO: look up what a useState hook is 
 const Signup = (props) => {
@@ -284,6 +283,7 @@ const VerifyEmail = (props) => {
 
     const [verificationCode, setVerificationCode] = useState('')
 
+
     const hideVerifyEmail = () => {
         setShowHideConfirm(!showHideConfirm)
     }
@@ -303,9 +303,9 @@ const VerifyEmail = (props) => {
                 console.log(result)
             }
         })
-
+        
         hideVerifyEmail()
-        navigate('/')
+        navigate('/', {})
     }
 
 

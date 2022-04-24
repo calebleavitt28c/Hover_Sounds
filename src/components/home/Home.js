@@ -1,9 +1,9 @@
 import React from 'react'
+import axios from 'axios'
+
 import TopContainer from './TopContainer'
 import PostContainer from './PostContainer'
 import EventTable from './EventTable'
-
-import axios from 'axios'
 
 class Home extends React.Component {
   constructor(props) {

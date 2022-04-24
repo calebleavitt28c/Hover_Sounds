@@ -1,3 +1,5 @@
+import { toHaveErrorMessage } from '@testing-library/jest-dom/dist/matchers'
+import axios from 'axios'
 import React from 'react'
 import ArtistMerch from './ArtistMerch'
 
@@ -6,59 +8,23 @@ class ArtistMerchContainer extends React.Component {
     super(props)
 
     this.state = {
-
+      items: []
     }
   }
+
+  componentDidMount() {
+    axios.get(`https://api.hoveringrecords.com/hover/store/${this.props.artistId}`)
+      .then(response => {
+        this.state.items = response.data.Items
+      })
+  }
+
   render() {
-    const items = [
-          {
-              id: '1',
-              name: 'HiM Shirt 1',
-              price: 20.00,
-              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFsCM_xq9BSv4bKJFiFBEVdyK7N2dSmIvt14KTehsrlakWTDPNH_ZOO9rXDDd_KSEavs&usqp=CAU'
-          },
-          {
-              id: '2',
-              name: 'HiM Shirt 2',
-              price: 25.00,
-              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFsCM_xq9BSv4bKJFiFBEVdyK7N2dSmIvt14KTehsrlakWTDPNH_ZOO9rXDDd_KSEavs&usqp=CAU'
-          },
-          {
-              id: '3',
-              name: 'HiM Shirt 3',
-              price: 15.00,
-              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFsCM_xq9BSv4bKJFiFBEVdyK7N2dSmIvt14KTehsrlakWTDPNH_ZOO9rXDDd_KSEavs&usqp=CAU'
-          },
-          {
-            id: '12',
-            name: 'HiM Shirt 1',
-            price: 20.00,
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFsCM_xq9BSv4bKJFiFBEVdyK7N2dSmIvt14KTehsrlakWTDPNH_ZOO9rXDDd_KSEavs&usqp=CAU'
-          },
-          {
-              id: '24',
-              name: 'HiM Shirt 2',
-              price: 25.00,
-              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFsCM_xq9BSv4bKJFiFBEVdyK7N2dSmIvt14KTehsrlakWTDPNH_ZOO9rXDDd_KSEavs&usqp=CAU'
-          },
-          {
-            id: '11',
-            name: 'HiM Shirt 1',
-            price: 20.00,
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFsCM_xq9BSv4bKJFiFBEVdyK7N2dSmIvt14KTehsrlakWTDPNH_ZOO9rXDDd_KSEavs&usqp=CAU'
-          },
-          {
-              id: '21',
-              name: 'HiM Shirt 2',
-              price: 25.00,
-              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhFsCM_xq9BSv4bKJFiFBEVdyK7N2dSmIvt14KTehsrlakWTDPNH_ZOO9rXDDd_KSEavs&usqp=CAU'
-          },
-      ]
     const allItems = []
   
-    for (let item of items) {
+    for (let item of this.state.items) {
       allItems.push(
-        <ArtistMerch key={`merch${item.id}`} id={item.id} name={item.name} price={item.price} image={item.image} />
+        <ArtistMerch key={`merch${item.id}`} id={item.id} name={item.name} price={item.price} image={item.image} artistId={this.props.artistId}/>
       )
     }
     

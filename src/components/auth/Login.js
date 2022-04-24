@@ -24,7 +24,6 @@ const Login = () => {
             .catch(err => {
                 console.error("Failed to login", err)
             })
-
     }
 
     return (

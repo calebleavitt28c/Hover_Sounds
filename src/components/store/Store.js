@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+
 import MerchTable from './MerchTable'
 import Cart from './Cart'
 import MerchForm from './MerchForm'
-import axios from 'axios'
 
 const Store = (props) => {
     const {userType, userId} = props
@@ -12,12 +14,20 @@ const Store = (props) => {
 
     const [items, setItems] = useState([])
 
+    let { artistId } = useParams()
     
     useEffect(() => {
+        if(artistId) {
+            axios.get(`https://api.hoveringrecords.com/hover/store/${artistId}`)
+                .then(response => {
+                    setItems(response.data.Items)
+                })
+        } else {
         axios.get('https://api.hoveringrecords.com/hover/store')
             .then(response => {
                 setItems(response.data.Items)
             })
+        }
     }, [])
 
     const [cartItems, setCartItems] = useState([])
