@@ -35,19 +35,6 @@ function HoverSounds() {
                 setStatus(false)
                 console.log("User not logged in. " + reason)
             })
-
-        if (userType == 'fans') {
-            axios.get(`https://api.hoveringrecords.com/hover/fans/${userId}`)
-                .then(response => {
-                    let data = response.data.Item
-                    if (data.hasOwnProperty('favArtists')) {
-                        setFavArtists(data.favArtists)
-                    }
-                    if (data.hasOwnProperty('favVenues')) {
-                        setFavArtists(data.favVenues)
-                    }
-                })
-        }
     }, [])
 
     return (
@@ -61,15 +48,15 @@ function HoverSounds() {
                     <Route path="/" element={<Home />}></Route>
                     <Route exact path="/auth" element={<AuthPage />}></Route>
                     <Route exact path="/profile" element={<Profile userType={userType} userId={userId}/>}></Route>
-                    <Route path="/artist/:artistId" element={<Artist userType={userType} userId={userId} favArtists={favArtists} />}></Route>
-                    <Route path="/venue/:venueId" element={<Venue userType={userType} userId={userId} favVenues={favVenues} />}></Route>
+                    <Route path="/artist/:artistId" element={<Artist userType={userType} userId={userId} />}></Route>
+                    <Route path="/venue/:venueId" element={<Venue userType={userType} userId={userId} />}></Route>
                     {/* <Route exact path="/venue" element={<Venue />}></Route>
                     <Route exact path="/events" element={<Events />}></Route> */}
                     <Route exact path="/store/" element={<Store userType={userType} userId={userId}/>}></Route>
                     <Route exact path="/store/:artistId" element={<Store userType={userType} userId={userId}/>}></Route>
                 </Routes>
                 <Footer />
-                <SpotifyContainer />
+                {/* <SpotifyContainer /> */}
             </div>
         </Router>
     )

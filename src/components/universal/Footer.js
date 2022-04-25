@@ -10,7 +10,7 @@ class Footer extends React.Component {
   render() {
     return(
       <footer className="text-center bg-primary text-secondary dark:bg-darkgray dark:text-primary border-t-2 border-secondary dark:border-primary ease-in duration-300">
-        <div className="flex-justify-center container px-6 pt-2">
+        <div className="container px-6 pt-2 m-auto">
           <div className="flex justify-center">
             <a href="https://www.facebook.com/hoversounds/" target="_blank" rel="noreferrer" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-secondary dark:hover:bg-gray dark:hover:text-black  focus:outline-none focus:ring-0 transition  ease-in duration-300 w-9 h-9 m-1">
               <svg aria-hidden="true"
@@ -83,7 +83,7 @@ class Footer extends React.Component {
           </div>
         </div>
 
-        <div className="text-center pb-1 dark:text-lightgray ease-in duration-300">
+        <div className="text-center pb-1 dark:text-lightgray font-semibold uppercase tracking-widest text-xs ease-in duration-300">
           © 2022 Copyright
         </div>
       </footer>

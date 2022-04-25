@@ -9,6 +9,7 @@ class Header extends React.Component {
       name: '',
       bio: '',
       address: '',
+      status: '/auth'
     }
   }
 
@@ -33,6 +34,7 @@ class Header extends React.Component {
   componentDidMount() {
     if (this.props.status) {
       document.getElementById('profile').innerHTML = this.profile
+      this.setState({ status: '/profile' })
     }
     let themeBtn = document.getElementById('themeBtn')
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -48,38 +50,30 @@ class Header extends React.Component {
   }
 
   render() {
+    const { status } = this.state
     return(
       <nav className="flex items-center justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary p-4 ease-in duration-300">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
           <Link 
-          className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
+          className="button button--aylen px-5 py-3 bg-secondary hover:bg-darkgray hover:text-white text-primary relative block focus:outline-none border-2 border-solid rounded-lg text-sm text-center font-semibold uppercase tracking-widest overflow-hidden"
+          // className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
           to="/" >Hover Sounds</Link>
-        </div>
-        <div className="block lg:hidden">
-          <button className="flex items-center px-3 py-2 border rounded text-secondary border-secondary hover:text-white hover:border-white ease-in duration-300">
-            <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-          </button>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow">
-          </div>
-          <div className="grid grid-cols-2">
             <Link id="store"
               to="/store"
+              className="block mt-4 lg:inline-block lg:mt-0 text-secondary dark:text-primary hover:text-white dark:hover:text-white font-semibold uppercase tracking-widest mr-4 ease-in duration-300"
             >Store</Link>
-            {this.props.status ? (
-              <Link id="profile"
-                to="/profile"
-                className="inline-block text-sm ml-2 leading-none text-white  dark:text-lightgray border-transparent hover:text-secondary dark:hover:text-primary ease-in duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
-              </Link>
-            ) 
-            : 
+          </div>
+          <div className="grid grid-cols-2">
+            
+            
             <Link id="profile" 
-              to="/auth" 
-              className="inline-block text-sm ml-2 leading-none text-white  dark:text-lightgray border-transparent hover:text-secondary dark:hover:text-primary ease-in duration-300">
+              to={status} 
+              className="inline-block text-sm ml-2 leading-none text-secondary  dark:text-lightgray border-transparent hover:text-white dark:hover:text-primary ease-in duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
-            </Link>}
+            </Link>
             
             <button id="themeBtn" 
               className="inline-block text-sm ml-2 leading-none text-secondary dark:text-lightgray border-transparent hover:text-white dark:hover:text-primary ease-in duration-300"
