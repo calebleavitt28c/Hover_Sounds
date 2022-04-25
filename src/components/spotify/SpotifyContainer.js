@@ -154,10 +154,10 @@ class SpotifyContainer extends React.Component {
      } = this.state
 
     return (
-      <div className="absolute bottom-2 right-12">
+      <div className="absolute bottom-2 right-12 uppercase font-semibold text-xs mb-1">
         {loggedIn ?
           (<div>
-            <p>{artistName} - {trackName}</p>
+            <p>{artistName} {trackName}</p>
             <button onClick={() => this.onPrevClick()} className="mr-2">
               {this.back}
             </button>
@@ -173,6 +173,7 @@ class SpotifyContainer extends React.Component {
           <a href="https://beta.developer.spotify.com/documentation/web-playback-sdk/quick-start/#authenticating-with-spotify" target="_blank" rel="noreferrer">
             Get your Spotify Token
           </a>
+          <br />
           <input type="text" value={token} onChange={e => this.setState({ token: e.target.value })} />
           <button onClick={() => this.handleLogin()}>Go</button>
         </div>)
