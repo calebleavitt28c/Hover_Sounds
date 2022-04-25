@@ -37,14 +37,13 @@ const Artist = (props) => {
           let data = response.data.Items
           setEvents(data)
         })
-
   }, [])
 
   return(
     <div className="grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray ease-in duration-300">
       <div id="" className="col-span-3 ease-in duration-300">
         {/* merchandise + heart */}
-        <ArtistHome name={artist.name} favorite={favorited} artistId={artistId} fanId={userId} spotifyId={artist.spotifyId} spotifyToken={'BQAFF5J6t7IZK6QibshYSg1wKJZ-eV4pWQ3s2GTJkUeVz24gw9mr0F57VuUufBCUfu8mN09q-NaydDIsJi6rSfgmIULt5MkSQzwRjYI40upQV7_QqUE_JCfRm-kuqewHdkwdl7RL1gVn1vtSbt68sFNPeVFO3yIBQ1p-ubslHgE'} />
+        <ArtistHome name={artist.name} favorite={favorited} artistId={artistId} fanId={userId} favArtists={props.favArtists} spotifyId={artist.spotifyId} spotifyToken={'BQAFF5J6t7IZK6QibshYSg1wKJZ-eV4pWQ3s2GTJkUeVz24gw9mr0F57VuUufBCUfu8mN09q-NaydDIsJi6rSfgmIULt5MkSQzwRjYI40upQV7_QqUE_JCfRm-kuqewHdkwdl7RL1gVn1vtSbt68sFNPeVFO3yIBQ1p-ubslHgE'} />
         <ArtistMerchContainer artistId={artistId}/>
       </div>
       <div className="col-span-6 border-2 border-black dark:border-primary ease-in duration-300">

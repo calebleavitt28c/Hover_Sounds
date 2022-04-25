@@ -35,8 +35,8 @@ function HoverSounds() {
                 setStatus(false)
                 console.log("User not logged in. " + reason)
             })
-        
-        if (userType == 'fan') {
+
+        if (userType == 'fans') {
             axios.get(`https://api.hoveringrecords.com/hover/fans/${userId}`)
                 .then(response => {
                     let data = response.data.Item

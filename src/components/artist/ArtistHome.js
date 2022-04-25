@@ -8,6 +8,7 @@ class ArtistHome extends React.Component {
     super(props)
 
     this.state = {
+      favArtists: this.props.favArtists,
       favorited: false,
       deviceId: ''
     }
@@ -58,15 +59,19 @@ class ArtistHome extends React.Component {
   }
 
   heartClick = () => {
+    const { artistId, fanId } = this.props
     let favoriteBtn = document.getElementById('favoriteBtn')
 
+
+    //unfavorite
     if (this.state.favorited) {
+      this.setState({ favArtists: this.state.favArtists.filter(word => word !== artistId)})
       favoriteBtn.innerHTML = this.openHeart
       favoriteBtn.classList.remove('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
-        id: this.props.artistId,
-        fanId: this.props.fanId,
+        id: artistId,
+        fanId: fanId,
         dir: '-'
       })
       .then(response => {
@@ -75,13 +80,15 @@ class ArtistHome extends React.Component {
         this.setState({ favorited: false })
       })
     }
+    //favorite
     else {
+      this.setState({ favArtists: [...this.state.favArtists, artistId]})
       favoriteBtn.innerHTML = this.closedHeart
       favoriteBtn.classList.add('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
-        id: this.props.artistId,
-        fanId: this.props.fanId,
+        id: artistId,
+        fanId: fanId,
         dir: '+'
       })
       .then(response => {
@@ -100,6 +107,11 @@ class ArtistHome extends React.Component {
 
     favoriteBtn.innerHTML = this.openHeart
     
+    const { favArtists, artistId } = this.props
+
+    if (favArtists.indexOf(artistId) > -1) {
+      favoriteBtn.innerHTML = this.closedHeart
+    }
   }
 
   render() {
@@ -120,38 +132,6 @@ class ArtistHome extends React.Component {
       </div>
     );
   }
-}
-
-const getSession = async () => {
-  return await new Promise((resolve, reject) => {
-      const user = Pool.getCurrentUser()
-      if (user) {
-          user.getSession(async (err, session) => {
-              if (err) {
-                  reject()
-              } else {
-                  const attributes = await new Promise((resolve, reject) => {
-                      user.getUserAttributes((err, attributes) => {
-                          if (err) {
-                              reject(err) 
-                          } else {
-                              const results = {}
-
-                              for (let attribute of attributes) {
-                                  const { Name, Value } = attribute
-                                  results[Name] = Value
-                              }
-                              resolve(results)
-                          }
-                      })
-                  })
-                  resolve({ user, ...session, ...attributes })
-              }
-          })
-      } else {
-          reject()
-      }
-  })
 }
 
 export default ArtistHome

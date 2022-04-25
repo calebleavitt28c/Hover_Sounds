@@ -1,6 +1,11 @@
 import React, { useState } from "react"
 import axios from "axios"
 
+import geocoder from 'google-geocoder'
+
+let geo = geocoder({
+    key: 'AIzaSyBAx1Dk5NOMiAPeYbK0GtJlx4RA3uem40U'
+})
 
 const VenueProfileForm = (props ) => {
     const { venueAttributes } = props
@@ -11,28 +16,36 @@ const VenueProfileForm = (props ) => {
     const [address, setAddress] = useState(venueAttributes.address) 
     const [city, setCity] = useState(venueAttributes.city) 
     const [state, setState] = useState(venueAttributes.state) 
-    const [zipcode, setZipcode] = useState(venueAttributes.zipcode) 
+    const [zipCode, setzipCode] = useState(venueAttributes.zipCode) 
     const [twitterHandle, setTwitterHandle] = useState(venueAttributes.twitterHandle) 
 
     const updateVenue = (event) => {
         event.preventDefault()
-        axios.put('https://api.hoveringrecords.com/hover/venues', {
-            id: venueAttributes.id,
-            name: name,
-            email: venueAttributes.email,
-            bio: bio,
-            profilePic: profilePic,
-            address: address,
-            city: city,
-            state: state,
-            zipcode: zipcode,
-            coordinates: venueAttributes.coordinates,
-            favorites: venueAttributes.favorites,
-            twitterHandle: twitterHandle
-        })
-        .then(response => {
-            console.log(response)
-            //redirect to Profile page
+        let incoming = `${address} ${city} ${state} ${zipCode}`
+
+        geo.find(incoming, (err, res) => {
+            let lat = res[0].location.lat
+            let lng = res[0].location.lng
+            console.log(lng)
+            axios.put('https://api.hoveringrecords.com/hover/venues', {
+                id: venueAttributes.id,
+                name: name,
+                email: venueAttributes.email,
+                bio: bio,
+                profilePic: profilePic,
+                address: address,
+                city: city,
+                state: state,
+                zipCode: zipCode,
+                lat: lat.toString(),
+                lng: lng.toString(),
+                favorites: venueAttributes.favorites,
+                twitterHandle: twitterHandle
+            })
+            .then(response => {
+                console.log(response)
+                //redirect to Profile page
+            })
         })
     }
 
@@ -91,10 +104,10 @@ const VenueProfileForm = (props ) => {
                 ></input><br></br>
 
                 <input
-                    name="zipcode"
-                    placeholder="Zipcode"
-                    value={zipcode}
-                    onChange={(event) => setZipcode(event.target.value)}
+                    name="zipCode"
+                    placeholder="zipCode"
+                    value={zipCode}
+                    onChange={(event) => setzipCode(event.target.value)}
                 ></input><br></br>
 
 <input
