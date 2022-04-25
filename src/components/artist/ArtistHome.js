@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import Cookies from 'js-cookie'
 
 import Pool from '../auth/UserPool'
 
@@ -8,6 +9,7 @@ class ArtistHome extends React.Component {
     super(props)
 
     this.state = {
+      token: Cookies.get('spotifyAuthToken'),
       favorited: false,
       deviceId: ''
     }
@@ -18,43 +20,29 @@ class ArtistHome extends React.Component {
   play = '<svg class="bi bi-play-circle-fill text-black hover:text-primary dark:text-white dark:hover:text-primary" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/></svg>'
 
   playClick = () => {
-    let deviceHeaders = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.props.spotifyToken}`
-    }
-
-    axios.get('https://api.spotify.com/v1/me/player/devices', { deviceHeaders })
-      .then(response => {
-        let check = 0
-        for (let device of response.data.devices) {
-          if (device.name === 'Hover Sounds') {
-            this.setState({ deviceId: device.id })
-            check = 1
-          }
-        }
-        if (check == 0) {
-          //disable play button or show message saying to log in
-        }
-        console.log(this.state.deviceId)
-      })
-    const { deviceId } = this.state
-    const { spotifyToken, spotifyId } = this.props
+    const { token } = this.state
 
     let headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${spotifyToken}`
+      'Authorization': `Bearer ${token}`
     }
 
-    let body = `{"context_uri":"spotify:artist:${spotifyId}","position_ms":0}`
+    let body = `{"context_uri":"spotify:artist:${this.props.spotifyId}","position_ms":0}`
 
-    let options = {
-      url: `https://api.spotify.com/v1/me/player/pause?device_id=${deviceId}`,
-      method: 'PUT',
-      headers: headers,
-      body: body
-    }
+    axios.get('https://api.spotify.com/v1/me/player/devices', { headers })
+      .then(response => {
+        for (let device of response.data.devices) {
+          if (device.name === 'Hover Sounds') {
+            this.setState({ deviceId: device.id })
+            console.log(device.id)
+            axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${device.id}`, headers, body)
+              .then(response => {
+                console.log(response.data)
+              })
+          }
+        }
+      })
   }
 
   heartClick = () => {
@@ -123,6 +111,7 @@ class ArtistHome extends React.Component {
           <div className="inline-block mt-2">
             <button id="playBtn" 
               className="mr-2 ease-in duration-300"
+              onClick={this.playClick}
               >
             </button>
             <button id="favoriteBtn" 

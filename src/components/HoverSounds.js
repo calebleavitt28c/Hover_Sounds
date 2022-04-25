@@ -10,8 +10,8 @@ import Profile from './profile/Profile'
 import Artist from './artist/Artist'
 import Venue from './venue/Venue'
 import Store from './store/Store'
-
-import SpotifyContainer from './spotify/SpotifyContainer'
+import Spotify from './spotify/Spotify'
+import Callback from './spotify/Callback'
 
 function HoverSounds() {
 
@@ -54,6 +54,8 @@ function HoverSounds() {
                     <Route exact path="/events" element={<Events />}></Route> */}
                     <Route exact path="/store/" element={<Store userType={userType} userId={userId}/>}></Route>
                     <Route exact path="/store/:artistId" element={<Store userType={userType} userId={userId}/>}></Route>
+                    <Route exact path="/spotify" element={<Spotify />}></Route>
+                    <Route path="/callback" element={<Callback />}></Route>
                 </Routes>
                 <Footer />
                 {/* <SpotifyContainer /> */}
