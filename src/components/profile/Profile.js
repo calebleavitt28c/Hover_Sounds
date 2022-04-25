@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import { Link } from 'react-router-dom'
 
 import Status from "../auth/Status"
 import FanInfo from "./FanInfo"
@@ -120,6 +121,16 @@ const UserInfo = (props) => {
                                 onClick={(event) => hideComponent('showDeleteAccount')}
                             >Delete Account</button>
 
+                        </div>
+                        <div>
+                            {userType == 'artists' && (
+                                <div>
+                                    <Link to={`/store/${artistAttributes.id}`}>Edit Your Store</Link><br></br>
+                                </div>
+                            )}
+                            {(userType == 'artists' || userType == 'venues') && (
+                                <Link to={`/events/${userId}`}>Edit Your Events</Link>
+                            )}
                         </div>
                     </div>
                     <div className="col-span-1"></div>
