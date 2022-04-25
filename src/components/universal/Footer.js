@@ -1,4 +1,5 @@
 import React from 'react'
+import SpotifyContainer from '../spotify/SpotifyContainer'
 
 class Footer extends React.Component {
   constructor(props) {
@@ -82,10 +83,11 @@ class Footer extends React.Component {
 
           </div>
         </div>
-
+        <SpotifyContainer />
         <div className="text-center pb-1 dark:text-lightgray font-semibold uppercase tracking-widest text-xs ease-in duration-300">
           © 2022 Copyright
         </div>
+
       </footer>
     );
   }
