@@ -35,11 +35,19 @@ class ArtistHome extends React.Component {
         for (let device of response.data.devices) {
           if (device.name === 'Hover Sounds') {
             this.setState({ deviceId: device.id })
-            console.log(device.id)
-            axios.put(`https://api.spotify.com/v1/me/player/play?device_id=${device.id}`, headers, body)
-              .then(response => {
-                console.log(response.data)
-              })
+            
+            let options = {
+              url: `https://api.spotify.com/v1/me/player/play?device_id=${device.id}`,
+              method: 'PUT',
+              headers: headers,
+              body: body
+            }
+            
+            fetch(options.url, {
+              method: 'PUT',
+              headers,
+              body
+            })
           }
         }
       })
