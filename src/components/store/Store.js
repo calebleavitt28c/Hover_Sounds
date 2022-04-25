@@ -5,12 +5,14 @@ import { useParams } from 'react-router-dom'
 import MerchTable from './MerchTable'
 import Cart from './Cart'
 import MerchForm from './MerchForm'
+import EditMerch from './EditMerch'
 
 const Store = (props) => {
     const {userType, userId} = props
 
     const [showStore, setShowStore] = useState(true)
     const [showMerchForm, setShowMerchForm] = useState(false)
+    const [showEditMerch, setShowEditMerch] = useState(false)
 
     const [items, setItems] = useState([])
 
@@ -62,6 +64,10 @@ const Store = (props) => {
                 setShowStore(!showStore)
                 setShowMerchForm(!showMerchForm)
                 break
+            case 'showEditMerch':
+                setShowStore(!showStore)
+                setShowEditMerch(!showEditMerch)
+                break
             default:
                 break
         }
@@ -85,10 +91,16 @@ const Store = (props) => {
                         />
                     </div>
                     <div>
-                        {userType == 'artists' && (
-                            <button
-                                onClick={(event) => hideComponent('showMerchForm')}
-                            >Add Merch to Store</button>
+                        {artistId && (
+                            <div>
+                                <button
+                                    onClick={(event) => hideComponent('showMerchForm')}
+                                >Add Merch</button>
+                                <br></br><br></br>
+                                <button
+                                    onClick={(event) => hideComponent('showEditMerch')}
+                                >Edit Merch</button>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -96,6 +108,13 @@ const Store = (props) => {
             <div>
                 {showMerchForm && (
                     <MerchForm userId={userId} hideComponent={hideComponent}/>
+                )}
+                {showEditMerch && (
+                    <EditMerch 
+                        artistId={artistId}
+                        items={items}
+                        hideComponent={hideComponent}
+                    />
                 )}
             </div>
         </div>

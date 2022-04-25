@@ -7,6 +7,10 @@ const Checkout = (props) => {
     const [checkout, setCheckout] = useState(false)
 
     const createOrder = () => {
+        if (cart.item_total === 0) {
+            alert("Your cart is empty")
+            return
+        }
         setOrder(
             {
                 description: cart.description,
@@ -14,12 +18,13 @@ const Checkout = (props) => {
                 tax_total: cart.tax_total,
             }
         )
+        setCheckout(true)
     }
 
 
     return (
         <div>
-            {checkout ? (<PayPal order={order}/>) : ( <button onClick={() => {setCheckout(true); createOrder()}}>Checkout</button> )}
+            {checkout ? (<PayPal order={order}/>) : ( <button onClick={() => {createOrder()}}>Checkout</button> )}
         </div>
     )   
 }

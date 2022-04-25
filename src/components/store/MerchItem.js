@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 const MerchItem = (props) => {
-  const { item, onAdd } = props
+  const { item, onAdd, deleteItem } = props
 
   return(
     <li>
@@ -13,7 +13,15 @@ const MerchItem = (props) => {
       <div>
         <img src={item.image} alt={item.name} height="400px" width="auto"/>
       </div>
-      <button onClick={() => onAdd(item)}>Add To Cart</button>
+      {onAdd && (
+        <button onClick={() => onAdd(item)}>Add To Cart</button>  
+      )}
+      {deleteItem && (
+        <div>
+          <br></br>
+          <button onClick={() => deleteItem(item)}>Delete</button>
+        </div>
+      )}
     </li>
   );
 }
