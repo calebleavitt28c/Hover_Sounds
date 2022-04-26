@@ -23,13 +23,13 @@ class SpotifyContainer extends React.Component {
   }
 
   handleLogin() {
-    if (this.state.token !== '') {
+    if (Cookies.get('spotifyAuthToken') === undefined) {
+      window.location.href = '/spotify'
+    }
+    else {
       this.setState({ loggedIn: true })
 
       this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
-    }
-    else {
-      window.location.href = '/spotify'
     }
   }
 

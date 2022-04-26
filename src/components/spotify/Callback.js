@@ -13,7 +13,11 @@ const Callback = () => {
     console.log('initial hash', hash);
   console.log(hash.access_token);
     if (hash.access_token) {
-      Cookies.set('spotifyAuthToken', hash.access_token)
+      let now = new Date()
+      let time = now.getTime()
+      time += 3600 * 1000
+      now.setTime(time)
+      document.cookie = 'spotifyAuthToken=' + hash.access_token + '; expires=' + now.toUTCString() + '; path=/'
       window.location.href = "/spotify"
       }
   })();

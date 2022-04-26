@@ -12,7 +12,7 @@ const Spotify = () => {
   }
 
   return (
-    <div className='spotify'>
+    <div className='m-auto'>
       {token ? (
         <div>
           <SpotifyApiContext.Provider value={token}>
