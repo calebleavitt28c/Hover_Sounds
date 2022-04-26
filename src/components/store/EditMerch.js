@@ -13,6 +13,7 @@ const EditMerch = (props) => {
     const DeleteItem = (item) => {
         axios.delete(`https://api.hoveringrecords.com/hover/store/${artistId}/${item.id}`)
         .then(response => {
+            console.log(response)
             alert("Item has been deleted")
         })
         .catch((error) => {

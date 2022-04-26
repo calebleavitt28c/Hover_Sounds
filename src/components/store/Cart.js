@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import MerchItem from './MerchItem'
+import React from 'react'
 import Checkout from './Checkout'
 
 const Cart = (props) => {
