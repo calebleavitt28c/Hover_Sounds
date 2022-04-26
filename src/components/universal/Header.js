@@ -39,12 +39,12 @@ class Header extends React.Component {
     let themeBtn = document.getElementById('themeBtn')
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       themeBtn.innerHTML = this.bright
-      document.documentElement.classList = 'dark'
+      // document.documentElement.classList = 'dark'
       localStorage.theme = 'dark'
     }
     else {
       themeBtn.innerHTML = this.dim
-      document.documentElement.classList = ''
+      // document.documentElement.classList = ''
       localStorage.theme = 'light'
     }
   }

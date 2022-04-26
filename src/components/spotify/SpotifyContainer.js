@@ -151,6 +151,10 @@ class SpotifyContainer extends React.Component {
       <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.669 11.538a.498.498 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686zm.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858zm.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288z"/>
     </svg>
   )
+
+  componentDidMount() {
+    this.setState({ token: Cookies.get('spotifyAuthToken')})
+  }
   render() {
     const { 
       token,
@@ -165,22 +169,27 @@ class SpotifyContainer extends React.Component {
      } = this.state
 
     return (
-      <div className="absolute bottom-2 right-12 uppercase font-semibold text-xs mb-1">
+      <div className="">
         {loggedIn ?
-          (<div>
-            <p>{artistName} {trackName}</p>
-            <button onClick={() => this.onPrevClick()} className="mr-2">
-              {this.back}
-            </button>
-            <button onClick={() => this.onPlayClick()} className="mr-2">
-              {playing ? this.pause : this.play}
-            </button>
-            <button onClick={() => this.onNextClick()} className="mr-2">
-              {this.next}
-            </button>
+          (<div className='flex absolute right-2 bottom-2 uppercase font-semibold text-xs mb-1'>
+            <div className='inline-block mr-2 my-auto text-right'>
+              <p className="text-xs">{trackName}</p>
+              <p className="text-xxs">{artistName}</p>
+            </div>
+            <div className="inline-block">
+              <button onClick={() => this.onPrevClick()} className="mr-2">
+                {this.back}
+              </button>
+              <button onClick={() => this.onPlayClick()} className="mr-2">
+                {playing ? this.pause : this.play}
+              </button>
+              <button onClick={() => this.onNextClick()} className="mr-2">
+                {this.next}
+              </button>
+            </div>
           </div>)
         :
-        (<div>
+        (<div className='absolute right-2 bottom-1'>
           <button onClick={() => this.handleLogin()}>{this.spotify}</button>
         </div>)
       }

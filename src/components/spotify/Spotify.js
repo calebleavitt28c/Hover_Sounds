@@ -7,13 +7,21 @@ import { SpotifyAuth, Scopes } from 'react-spotify-auth'
 const Spotify = () => {
   const [token, setToken] = useState(Cookies.get('spotifyAuthToken'))
 
+  const clearCookie = () => {
+    Cookies.remove('spotifyAuthToken')
+  }
+
   return (
     <div className='spotify'>
       {token ? (
-        <SpotifyApiContext.Provider value={token}>
-          {/* Your Spotify Code here */}
-          <p>You are authorized with token: {token}</p>
-        </SpotifyApiContext.Provider>
+        <div>
+          <SpotifyApiContext.Provider value={token}>
+            {/* Your Spotify Code here */}
+            <p>You are authorized with token: {token}</p>
+          </SpotifyApiContext.Provider>
+          <label for="clearBtn">If token expired, click here</label>
+          <button id="clearBtn" onClick={clearCookie}>Clear Token</button>
+        </div>
       ) : (
         // Display the login page
         <SpotifyAuth
