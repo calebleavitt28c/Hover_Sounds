@@ -19,13 +19,13 @@ const Spotify = () => {
             {/* Your Spotify Code here */}
             <p>You are authorized with token: {token}</p>
           </SpotifyApiContext.Provider>
-          <label for="clearBtn">If token expired, click here</label>
+          <label htmlFor="clearBtn">If token expired, click here</label>
           <button id="clearBtn" onClick={clearCookie}>Clear Token</button>
         </div>
       ) : (
         // Display the login page
         <SpotifyAuth
-          redirectUri='http://localhost:3000/callback'
+          redirectUri='http://localhost:3000/spotify/callback'
           clientID='69c20f98b37e41729bdb78027dc7c2ca'
           scopes={[Scopes.all]}
           onAccessToken={(token) => setToken(token)}

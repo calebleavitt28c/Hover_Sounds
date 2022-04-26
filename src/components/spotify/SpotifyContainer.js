@@ -28,7 +28,7 @@ class SpotifyContainer extends React.Component {
     }
     else {
       this.setState({ loggedIn: true })
-
+      
       this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
     }
   }
@@ -171,7 +171,7 @@ class SpotifyContainer extends React.Component {
     return (
       <div className="">
         {loggedIn ?
-          (<div className='flex absolute right-2 bottom-2 uppercase font-semibold text-xs mb-1'>
+          (<div className='flex absolute right-2 bottom-0 uppercase font-semibold text-xs mb-1'>
             <div className='inline-block mr-2 my-auto text-right'>
               <p className="text-xs">{trackName}</p>
               <p className="text-xxs">{artistName}</p>

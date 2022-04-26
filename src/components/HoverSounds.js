@@ -55,7 +55,7 @@ function HoverSounds() {
                     <Route exact path="/store/" element={<Store userType={userType} userId={userId}/>}></Route>
                     <Route exact path="/store/:artistId" element={<Store userType={userType} userId={userId}/>}></Route>
                     <Route exact path="/spotify" element={<Spotify />}></Route>
-                    <Route path="/callback" element={<Callback />}></Route>
+                    <Route path="/spotify/callback" element={<Callback />}></Route>
                 </Routes>
                 <Footer />
                 {/* <SpotifyContainer /> */}
