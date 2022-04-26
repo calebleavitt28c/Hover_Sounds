@@ -6,6 +6,9 @@ export default (props) => {
     const [newEmail, setNewEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const [errMsg, setErrMsg] = useState('')
+    const [scsMsg, setScsMsg] = useState('')
+
     const { getSession, authenticate  } = useContext(AccountContext)
 
     const onSubmit = (event) => {
@@ -19,9 +22,13 @@ export default (props) => {
 
                 user.updateAttributes(attributes, (err, results) => {
                     if (err) {
-                        console.error(err)
+                        console.log(err)
+                        setErrMsg(err.message) //TEST
+                        setScsMsg('')
                     } else {
                         console.log(results)
+                        setScsMsg(results.message) //TEST
+                        setErrMsg('')
                     }
                 })
             })
@@ -56,6 +63,12 @@ export default (props) => {
                     <div className="col-span-1"></div>
                 </div>
             </form>
+            {scsMsg && (
+                <div>{scsMsg}</div>
+            )}
+            {errMsg && (
+                <div>{errMsg}</div>
+            )}
             <div className="col-span-1"></div>
         </div>
     )

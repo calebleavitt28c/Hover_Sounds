@@ -9,7 +9,7 @@ class Header extends React.Component {
       name: '',
       bio: '',
       address: '',
-      status: '/auth'
+      status: '/profile'
     }
   }
 

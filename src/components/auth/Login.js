@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, } from "react"
 import { AccountContext } from "./Account"
 import { useNavigate } from "react-router-dom"
-import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
-import Pool from "./UserPool"
 
-//TODO: look up what a useState hook is 
 const Login = () => {
     let navigate = useNavigate()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const [errMsg, setErrMsg] = useState('')
+    const [scsMsg, setScsMsg] = useState('')
 
     const { authenticate } = useContext(AccountContext)
 
@@ -19,10 +19,14 @@ const Login = () => {
         authenticate(email, password)
             .then(data => {
                 console.log("Logged in!", data)
+                setScsMsg(data.message) //TEST
+                setErrMsg('')
                 navigate('/')
             })
             .catch(err => {
                 console.error("Failed to login", err)
+                setErrMsg(err.message) //TEST
+                setScsMsg('')
             })
     }
 
@@ -48,6 +52,12 @@ const Login = () => {
                 <button type="submit" className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Login</button>
                 <div className="col-span-1"></div>
             </form>
+            {scsMsg && (
+                <div>{scsMsg}</div>
+            )}
+            {errMsg && (
+                <div>{errMsg}</div>
+            )}
         </div>
     )
 }

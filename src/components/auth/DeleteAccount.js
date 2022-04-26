@@ -1,16 +1,22 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AccountContext } from './Account'
 
 const DeleteAccount = (props) => {
+    let navigate = useNavigate()
+
     const { getSession } = useContext(AccountContext)
 
     const Delete = () => {
         getSession().then(({user}) => {
             user.deleteUser((err, result) => {
                 if (err) {
+                    console.log(err)
                     alert(err.message || JSON.stringify(err))
                 } else {
-                    console.log('Call result: ' + result)
+                    console.log(result)
+                    alert('User Deleted ' + JSON.stringify(result))
+                    navigate('/home')
                 }
             })
         })

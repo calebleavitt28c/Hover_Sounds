@@ -1,9 +1,8 @@
 // import { render } from "@testing-library/react"
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
-import React, { useContext, useEffect, useState } from "react"
+import React, { useState } from "react"
 import Pool from "./UserPool"
 import { useNavigate } from "react-router-dom"
-import { AccountContext } from "./Account"
 
 //TODO: look up what a useState hook is 
 const Signup = (props) => {
@@ -19,6 +18,9 @@ const Signup = (props) => {
     const [phone, setPhone] = useState('')
     const [birthdate, setBirthdate] = useState('')
     const [password, setPassword] = useState('')
+
+    const [errMsg, setErrMsg] = useState('')
+    const [scsMsg, setScsMsg] = useState('')
 
     const hideComponent = (name) => {
         switch (name) {
@@ -98,8 +100,12 @@ const Signup = (props) => {
         Pool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
+                setErrMsg(err.message) //TEST
+                setScsMsg('')
             } else {
                 console.log(data)
+                setScsMsg(data.message) //TEST
+                setErrMsg('')
             }
         })
 
@@ -148,8 +154,12 @@ const Signup = (props) => {
         Pool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
+                setErrMsg(err.message) //TEST
+                setScsMsg('')
             } else {
                 console.log(data)
+                setScsMsg(data.message) //TEST
+                setErrMsg('')
             }
         })
 
@@ -272,6 +282,12 @@ const Signup = (props) => {
                 {showHideConfirm && (
                     <VerifyEmail username={email} />
                 )}
+                {scsMsg && (
+                    <div>{scsMsg}</div>
+                )}
+                {errMsg && (
+                    <div>{errMsg}</div>
+                )}
         </div>
     )
 }
@@ -283,6 +299,8 @@ const VerifyEmail = (props) => {
 
     const [verificationCode, setVerificationCode] = useState('')
 
+    const [errMsg, setErrMsg] = useState('')
+    const [scsMsg, setScsMsg] = useState('')
 
     const hideVerifyEmail = () => {
         setShowHideConfirm(!showHideConfirm)
@@ -299,13 +317,17 @@ const VerifyEmail = (props) => {
         cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
             if (err) {
                 console.error(err)
+                setErrMsg(err.message) //TEST
+                setScsMsg('')
             } else {
                 console.log(result)
+                setScsMsg(result.message) //TEST
+                setErrMsg('')
             }
         })
         
         hideVerifyEmail()
-        navigate('/', {})
+        navigate('/')
     }
 
 
@@ -325,6 +347,12 @@ const VerifyEmail = (props) => {
 
                         <button type='submit' className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Verify Email</button>
                     </form>
+                    {scsMsg && (
+                        <div>{scsMsg}</div>
+                    )}
+                    {errMsg && (
+                        <div>{errMsg}</div>
+                    )}
                 </div>
             )}
         </div>

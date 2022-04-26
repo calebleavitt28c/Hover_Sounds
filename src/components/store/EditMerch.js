@@ -12,10 +12,22 @@ const EditMerch = (props) => {
 
     const DeleteItem = (item) => {
         axios.delete(`https://api.hoveringrecords.com/hover/store/${artistId}/${item.id}`)
-            .then(response => {
-                alert(item.name + " has been deleted")
-
-            })
+        .then(response => {
+            alert("Item has been deleted")
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
+            alert("An error occurred while deleting your store item: " + error.message)
+        })
     }
 
     return (

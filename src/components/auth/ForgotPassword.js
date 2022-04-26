@@ -9,6 +9,10 @@ export default () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const [errMsg, setErrMsg] = useState('')
+    const [scsMsg, setScsMsg] = useState('')
+    const [infoMsg, setInfoMsg] = useState('')
+
     const getUser = () => {
         return new CognitoUser({
             Username: email.toLowerCase(),
@@ -21,14 +25,24 @@ export default () => {
 
         getUser().forgotPassword({
             onSuccess: data => {
-                console.log('onSuccess: ', data)
+                console.log('Success: ', data)
+                setScsMsg(data.message)
+                setErrMsg('')
+                setInfoMsg('')
             },
             onFailure: err => {
-                console.error('onFailure: ', err)
+                console.error('Failure: ', err)
+                setErrMsg(err.message)
+                setScsMsg('')
+                setInfoMsg('')
+
             },
             inputVerificationCode: data => {
                 console.log('Input code: ', data)
                 setStage(2)
+                setInfoMsg(data.message)
+                setScsMsg('')
+                setErrMsg('')
             }
         })
     }
@@ -37,17 +51,25 @@ export default () => {
         event.preventDefault()
 
         if (password !== confirmPassword) {
-            //TODO: change this to throw an actual error
-            console.error('Passwords are not the same')
+            console.error('Passwords do not match')
+            setErrMsg('Passwords do not match')
+            setScsMsg('')
+            setInfoMsg('')
             return
         }
 
         getUser().confirmPassword(code, password, {
             onSuccess: data => {
                 console.log('onSuccess: ', data)
+                setScsMsg(data.message)
+                setErrMsg('')
+                setInfoMsg('')
             },
             onFailure: err => {
                 console.error('onFailure: ', err)
+                setErrMsg(err.message)
+                setScsMsg('')
+                setInfoMsg('')
             }
         })
     }
@@ -85,6 +107,15 @@ export default () => {
                     </button>
                     <div className="col-span-1"></div>
                 </form>
+            )}
+            {scsMsg && (
+                <div>{scsMsg}</div>
+            )}
+            {errMsg && (
+                <div>{errMsg}</div>
+            )}
+            {infoMsg && (
+                <div>{infoMsg}</div>
             )}
         </div>
     )

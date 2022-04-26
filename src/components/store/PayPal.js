@@ -22,11 +22,12 @@ const PayPal = (props) => {
             },
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture()
-                console.log(order)
+                console.log(data)
             },
             onError: (err) => {
                 console.log("Error in bringing up PayPal")
                 console.log(err)
+                alert("Hover Sounds is ready but PayPal had an error: " + err.message)
             }
         }).render(paypal.current)
     }, [])

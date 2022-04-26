@@ -5,6 +5,9 @@ export default (props) => {
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
 
+    const [errMsg, setErrMsg] = useState('')
+    const [scsMsg, setScsMsg] = useState('')
+
     const { getSession } = useContext(AccountContext)
 
     const onSubmit = (event) => {
@@ -13,9 +16,13 @@ export default (props) => {
         getSession().then(({user}) => {
             user.changePassword(password, newPassword, (err, result) => {
                 if (err) {
-                    console.error(err)
+                    console.log(err)
+                    setErrMsg(err.message) //TEST
+                    setScsMsg('')
                 } else {
                     console.log(result)
+                    setScsMsg(result.message) //TEST
+                    setErrMsg('')
                 }
             })
         })
@@ -49,6 +56,12 @@ export default (props) => {
                     <div className="col-span-1"></div>
                 </div>
             </form>
+            {scsMsg && (
+                <div>{scsMsg}</div>
+            )}
+            {errMsg && (
+                <div>{errMsg}</div>
+            )}
             <div className="col-span-1"></div>
         </div>
     )

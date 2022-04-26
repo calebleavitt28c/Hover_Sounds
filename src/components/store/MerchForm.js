@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import axios from "axios"
 import { v4 as uuidv4 } from 'uuid';
 
@@ -6,7 +6,7 @@ const MerchForm = (props) => {
 
     const [itemName, setItemName] = useState('') 
     const [price, setPrice] = useState('') 
-    const [userId, setUserId] = useState(props.userId) 
+    const [userId] = useState(props.userId) 
     const [imageFile, setImageFile] = useState('') 
     const [quantity, setQuantity] = useState('') 
 
@@ -23,6 +23,19 @@ const MerchForm = (props) => {
         .then(response => {
             console.log(response)
             props.hideComponent('showMerchForm') //takes you back to the store
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
+            alert("An error occurred adding your merch: " + error.message)
         })
     }
 
