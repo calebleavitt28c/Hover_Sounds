@@ -15,16 +15,17 @@ const Artist = (props) => {
   const [merch, setMerch] = useState([])
   const [posts, setPosts] = useState([])
   const [events, setEvents] = useState([])
+  const [color, setColor] = useState('')
 
   let { artistId } = useParams()
 
   useEffect(() => {
       axios.get(`https://api.hoveringrecords.com/hover/artists/${artistId}`)
-        .then(response => {
+        .then(async response => {
           let data = response.data.Item
           setArtist(data)
         })
-    
+
       axios.get(`https://api.hoveringrecords.com/hover/store/${artistId}`)
         .then(response => {
           let data = response.data.Items
@@ -54,7 +55,7 @@ const Artist = (props) => {
       <div id="eventTable" className="flex flex-col border-l w-4/12 ease-in duration-300">
         {/* EVENTS */}
         <ArtistEventTable events={events} page={'Artist'} />
-        <AboutArtist name={artist.name} bio={artist.bio} image={artist.profilePic} />
+        <AboutArtist name={artist.name} bio={artist.bio} image={'https://i.scdn.co/image/ab6761610000e5eb865a3301762a8fce048cb469'} />
       </div>
     </div>
   )

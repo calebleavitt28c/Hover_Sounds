@@ -21,7 +21,8 @@ class AboutVenue extends React.Component {
   }
 
   render() {
-    const { lat, lng } = this.props.venue
+    const { lat, lng, bio } = this.props.venue
+    console.log(bio)
     return(
       <div className="mt-2">
         { lat !== undefined && (
@@ -35,6 +36,9 @@ class AboutVenue extends React.Component {
             />
           </Map>
         )}
+        <div className='bg-lightgray rounded-xl p-2 my-4 mx-2 h-full shadow-lg'>
+          <p className='block mt-2 px-2 overflow-auto scrollbar-none text-xs uppercase tracking-widest'>{bio}</p>
+        </div>
       </div>
       )
   }

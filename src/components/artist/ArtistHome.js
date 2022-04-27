@@ -119,7 +119,6 @@ class ArtistHome extends React.Component {
   componentDidMount() {
     let playBtn = document.getElementById('playBtn')
     playBtn.innerHTML = this.play
-    console.log(this.props.userType)
     if (this.props.userType === 'fans') {
       let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
   

@@ -52,16 +52,16 @@ class Header extends React.Component {
   render() {
     const { status } = this.state
     return(
-      <nav className="flex items-center h-[10%] justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary p-4 ease-in duration-300">
+      <nav className="flex items-center h-[10vh] justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary px-4 py-2 ease-in duration-300">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
           <Link 
           className="button button--aylen px-5 py-3 bg-secondary hover:bg-darkgray hover:text-white text-primary relative block focus:outline-none border-2 border-solid rounded-lg text-sm text-center font-semibold uppercase tracking-widest overflow-hidden"
           // className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
           to="/" >Hover Sounds</Link>
         </div>
-        <div class="block lg:hidden">
-          <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+        <div className="block lg:hidden">
+          <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+            <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
           </button>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">

@@ -10,12 +10,15 @@
     "aws-cognito-redux-saga": "^1.5.10",
     "axios": "^0.26.1",
     "fetch": "^1.1.0",
+    "get-image-colors": "^4.0.1",
     "google-geocoder": "^0.2.1",
     "google-map-react": "^2.1.10",
     "google-maps-react": "^2.0.6",
     "js-cookie": "^3.0.1",
+    "node-vibrant": "^3.1.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-palette": "^1.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.0",
@@ -57,6 +60,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "worker-loader": "^3.0.8"
   }
 }

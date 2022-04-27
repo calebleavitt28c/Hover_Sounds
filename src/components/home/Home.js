@@ -40,7 +40,7 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div className="flex gap-4 p-4 h-[80%] dark:bg-darkgray dark:text-lightgray ease-in duration-300">
+      <div className="flex gap-4 p-4 h-[80vh] dark:bg-darkgray dark:text-lightgray ease-in duration-300">
         <div id="topContainer" className="border-r w-3/12 border-black dark:border-primary">
           {/* top artists, events, venues */}
           <TopContainer topArtists={this.state.topArtists} topVenues={this.state.topVenues} />
