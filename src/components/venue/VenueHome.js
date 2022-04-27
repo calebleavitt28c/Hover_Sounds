@@ -79,11 +79,11 @@ class VenueHome extends React.Component {
       <div className="flex items-center justify-between dark:border-primary">
         { this.props.event ? (
           <Link to={`/venue/${this.props.venueId}`}>
-            <h1 className="ml-2 text-xl text-center">{this.props.name}</h1>
+            <h1 className="ml-2 text-xl text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
           </Link>
         )
         :
-        <h1 className="ml-2 text-xl text-center">{this.props.name}</h1>
+        <h1 className="ml-2 text-xl text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
         }
         <div className="inline-block mt-2">
         { this.props.userType === 'fans' ? (

@@ -106,13 +106,13 @@ class TopContainer extends React.Component {
               }}>Top Venues</button>
           </li>
         </ul>
-        <div className="grid grid-cols-6 p-2 border-b">
+        <div className="grid grid-cols-12 p-2 border-b">
           <div className="col-span-1"></div>
-            <div className="col-span-3 text-darkgray">
-              <h3 className='text-xs'>Name</h3>
-            </div>
-            <div className="col-span-2 text-darkgray">
-              <h1 className="text-center text-xs">Favorites</h1>
+          <div className="col-span-8 text-darkgray">
+            <h3 className='text-xs'>Name</h3>
+          </div>
+          <div className="col-span-3 text-darkgray">
+            <h1 className="text-center text-xs">Favorites</h1>
           </div>
         </div>
         <ul className="scrollbar-none divide-y divide-gray max-h-full overflow-y-scroll">

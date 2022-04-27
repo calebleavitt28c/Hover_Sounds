@@ -10,12 +10,12 @@ class AboutArtist extends React.Component {
   }
   render() {
     return(
-      <div className="dark:border-primary h-[18.65rem]">
-        <div>
-          <img className="object-fill" src={this.props.image} alt={this.props.name} />
-          <h1>{this.props.name}</h1>
-          <p>{this.props.bio}</p>
+      <div className="flex flex-col h-1/2">
+        <div className='flex'>
+          <img className="w-1/3 rounded-3xl mt-2 mx-2" src={this.props.image} alt={this.props.name} />
+          <h1 className="w-2/3 text-center m-auto text-2xl font-semibold uppercase tracking-widest">{this.props.name}</h1>
         </div>
+        <p className='block mt-2 px-2 overflow-auto text-sm uppercase tracking-widest'>{this.props.bio}</p>
       </div>
     );
   }

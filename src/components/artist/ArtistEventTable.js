@@ -31,7 +31,7 @@ class ArtistEventTable extends React.Component {
           <div className="col-span-3 py-3 text-gray text-center">Date</div>
           <div className="col-span-2 py-3 text-gray text-center">Time</div>
         </div>
-        <ul id={`eventList${this.props.page}`} className="max-h-full striped scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
+        <ul id={`eventList${this.props.page}`} className="max-h-full scrollbar-none scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
             {eventItems}
         </ul>
       </div>

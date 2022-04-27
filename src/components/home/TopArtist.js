@@ -12,14 +12,14 @@ class TopArtist extends React.Component {
   render() {
     return(
         <li className="hover:bg-lightgray dark:hover:bg-black hover:text-darkgray ease-in duration-100">
-          <Link className="p-3 grid grid-cols-6" to={`/artist/${this.props.id}`}>
+          <Link className="p-3 grid grid-cols-12" to={`/artist/${this.props.id}`}>
             <div className="col-span-1">
               <h1>{this.props.place}.</h1>
             </div>
-            <div className="col-span-3">
+            <div className="col-span-8">
               <h3 className='truncate'>{this.props.name}</h3>
             </div>
-            <div className="col-span-2">
+            <div className="col-span-3">
               <h1 className="text-center">{this.props.favorites}</h1>
             </div>
           </Link>

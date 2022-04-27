@@ -119,6 +119,7 @@ class ArtistHome extends React.Component {
   componentDidMount() {
     let playBtn = document.getElementById('playBtn')
     playBtn.innerHTML = this.play
+    console.log(this.props.userType)
     if (this.props.userType === 'fans') {
       let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
   
@@ -146,11 +147,11 @@ class ArtistHome extends React.Component {
         <div className="flex items-center justify-between border-b">
           { this.props.event ? (
             <Link to={`/artist/${this.props.artistId}`}>
-              <h1 className="ml-2 text-xl text-center">{this.props.name}</h1>
+              <h1 className="ml-2 text-xl text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
             </Link>
           )
           :
-          <h1 className="ml-2 text-xl text-center">{this.props.name}</h1>
+          <h1 className="ml-2 text-xl text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
           }
           <div className="inline-block mt-2">
             <button id="playBtn" 

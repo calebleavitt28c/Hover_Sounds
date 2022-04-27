@@ -63,8 +63,8 @@ const Event = (props) => {
       return(
         <div className='flex gap-4 p-4 h-[80%] dark:bg-darkgray dark:text-lightgray ease-in duration-300'>
           <div className="border-r w-3/12 ease-in duration-300">
-            <ArtistHome name={artist.name} artistId={artistId} spotifyId={artist.spotifyId} fanId={userId} event={true} />
-            <VenueHome name={venue.name} venueId={venueId} fanId={userId} event={true} />
+            <ArtistHome name={artist.name} artistId={artistId} spotifyId={artist.spotifyId} fanId={userId} userType={userType} event={true} />
+            <VenueHome name={venue.name} venueId={venueId} fanId={userId} userType={userType} event={true} />
             <AboutVenue venue={venue} />
           </div>
           <div className="w-[5%]"></div>

@@ -51,9 +51,9 @@ const Artist = (props) => {
         <PostContainer />
       </div>
       <div className="w-[5%]"></div>
-      <div id="eventTable" className="border-l w-4/12 ease-in duration-300">
+      <div id="eventTable" className="flex flex-col border-l w-4/12 ease-in duration-300">
         {/* EVENTS */}
-        <ArtistEventTable events={events} h={"h-[14rem]"} page={'Artist'} />
+        <ArtistEventTable events={events} page={'Artist'} />
         <AboutArtist name={artist.name} bio={artist.bio} image={artist.profilePic} />
       </div>
     </div>
