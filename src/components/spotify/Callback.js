@@ -18,7 +18,7 @@ const Callback = () => {
       time += 3600 * 1000
       now.setTime(time)
       document.cookie = 'spotifyAuthToken=' + hash.access_token + '; expires=' + now.toUTCString() + '; path=/'
-      window.location.href = "/spotify"
+      window.location.href = '/spotify'
       }
   })();
 }

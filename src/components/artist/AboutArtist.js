@@ -10,7 +10,7 @@ class AboutArtist extends React.Component {
   }
   render() {
     return(
-      <div className="mt-2 border-2 dark:border-primary h-[18.65rem]">
+      <div className="dark:border-primary h-[18.65rem]">
         <div>
           <img className="object-fill" src={this.props.image} alt={this.props.name} />
           <h1>{this.props.name}</h1>

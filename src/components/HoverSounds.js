@@ -12,6 +12,7 @@ import Venue from './venue/Venue'
 import Store from './store/Store'
 import Spotify from './spotify/Spotify'
 import Callback from './spotify/Callback'
+import { ToastContainer } from 'react-toastify'
 
 function HoverSounds() {
 
@@ -39,11 +40,8 @@ function HoverSounds() {
 
     return (
         <Router>
-            <div className="App flex flex-col h-screen justify-between ease-in duration-300">
-                <Header status={status}/>
-                <header className="App-header bg-white dark:bg-darkgray ease-in duration-300">
-                </header>
-                
+            <div className="App flex flex-col h-screen max-h-screen justify-between ease-in duration-300">
+                <Header status={status}/>          
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route exact path="/auth" element={<AuthPage />}></Route>
@@ -58,7 +56,6 @@ function HoverSounds() {
                     <Route path="/spotify/callback" element={<Callback />}></Route>
                 </Routes>
                 <Footer />
-                {/* <SpotifyContainer /> */}
             </div>
         </Router>
     )

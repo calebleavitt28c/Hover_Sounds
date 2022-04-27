@@ -29,7 +29,7 @@ class ArtistMerchContainer extends React.Component {
     }
     
     return(
-        <ul className="mt-2 border-2 dark:border-primary h-[32.3rem] max-h-[35.85rem] items-striped scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
+        <ul className="mt-2 items-striped scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
           {allItems}
         </ul>
     )

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 class SpotifyContainer extends React.Component {
   constructor(props) {
@@ -65,6 +66,7 @@ class SpotifyContainer extends React.Component {
       let { device_id } = data
       console.log('Play')
       await this.setState({ deviceId: device_id })
+      Cookies.set('deviceId', device_id)
       this.transferPlaybackHere()
     })
   }
@@ -98,7 +100,18 @@ class SpotifyContainer extends React.Component {
   }
 
   onPlayClick() {
-    this.player.togglePlay()
+    const { trackName } = this.state
+    if (trackName === '') {
+      toast.error(`Select a song on an Artist's page`, {
+        position: 'bottom-right',
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true
+      })
+    }
+    else {
+      this.player.togglePlay()
+    }
   }
 
   onNextClick() {
@@ -152,9 +165,6 @@ class SpotifyContainer extends React.Component {
     </svg>
   )
 
-  componentDidMount() {
-    this.setState({ token: Cookies.get('spotifyAuthToken')})
-  }
   render() {
     const { 
       token,
@@ -169,9 +179,9 @@ class SpotifyContainer extends React.Component {
      } = this.state
 
     return (
-      <div className="">
+      <div className="absolute right-2 bottom-2 transition ease-in duration-300">
         {loggedIn ?
-          (<div className='flex absolute right-2 bottom-0 uppercase font-semibold text-xs mb-1'>
+          (<div className='flex uppercase font-semibold text-xs mb-1'>
             <div className='inline-block mr-2 my-auto text-right'>
               <p className="text-xs">{trackName}</p>
               <p className="text-xxs">{artistName}</p>
@@ -189,10 +199,11 @@ class SpotifyContainer extends React.Component {
             </div>
           </div>)
         :
-        (<div className='absolute right-2 bottom-1'>
+        (<div>
           <button onClick={() => this.handleLogin()}>{this.spotify}</button>
         </div>)
       }
+      <ToastContainer />
       </div>
     )
   }
