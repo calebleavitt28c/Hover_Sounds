@@ -12,7 +12,7 @@ class EventRow extends React.Component {
   render() {
     return(
       // make full event clickable
-      <li className="bg-white border-b dark:bg-darkgray hover:bg-secondary hover:text-primary ease-in duration-300" data-href={`/events/${this.props.id}`}>
+      <li className="bg-white border-b dark:bg-darkgray hover:bg-lightgray dark:hover:bg-black hover:text-darkgray ease-in duration-300" data-href={`/events/${this.props.id}`}>
         <Link to={`/events/${this.props.id}`} className="grid grid-cols-12">
           <div className="col-span-4 py-2 text-center text-xxs">{this.props.artist}</div>
           <div className="col-span-3 py-2 text-center text-xxs">{this.props.venue}</div>

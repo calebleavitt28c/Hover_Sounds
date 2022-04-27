@@ -52,7 +52,7 @@ class Header extends React.Component {
   render() {
     const { status } = this.state
     return(
-      <nav className="flex items-center justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary p-4 ease-in duration-300">
+      <nav className="flex items-center h-[10%] justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary p-4 ease-in duration-300">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
           <Link 
           className="button button--aylen px-5 py-3 bg-secondary hover:bg-darkgray hover:text-white text-primary relative block focus:outline-none border-2 border-solid rounded-lg text-sm text-center font-semibold uppercase tracking-widest overflow-hidden"
