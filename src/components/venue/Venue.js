@@ -13,7 +13,6 @@ const Venue = (props) => {
   const [venue, setVenue] = useState({})
   const [posts, setPosts] = useState([])
   const [events, setEvents] = useState([])
-  const [favorited, setFavorited] = useState(false)
   const [dataLoaded, setLoaded] = useState(false)
 
   let { venueId } = useParams()
@@ -41,16 +40,18 @@ const Venue = (props) => {
   const content = (dataLoaded) => {
     if (dataLoaded) {
       return(
-        <div className='grid grid-cols-12 gap-4 p-4 h-full dark:bg-darkgray dark:text-lightgray ease-in duration-300'>
-          <div id="" className="col-span-3 ease-in duration-300">
-            <VenueHome name={venue.name} favorite={favorited} venueId={venueId} fanId={userId} />
+        <div className='flex gap-4 p-4 h-[80%] dark:bg-darkgray dark:text-lightgray ease-in duration-300'>
+          <div id="" className="border-r w-3/12 ease-in duration-300">
+            <VenueHome name={venue.name} venueId={venueId} fanId={userId} userType={userType} />
             <AboutVenue venue={venue} />
           </div>
-          <div className="col-span-6 border-2 border-black dark:border-primary ease-in duration-300">
+          <div className="w-[5%]"></div>
+          <div className="border-black w-[40%] dark:border-primary ease-in duration-300">
             <PostContainer />
           </div>
-          <div id="eventTable" className="col-span-3 ease-in duration-300">
-            <EventTable events={events} h={"h-[33.1rem]"} page={'Venue'} />
+          <div className="w-[5%]"></div>
+          <div id="eventTable" className="border-l w-3/12 ease-in duration-300">
+            <EventTable events={events} page={'Venue'} />
           </div>
         </div>
       )

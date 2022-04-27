@@ -9,9 +9,8 @@ class AboutVenue extends React.Component {
     this.state = {
       venue: this.props.venue,
       showingInfoWindow: false,
-      dataLoaded: false, 
-      lat: null,
-      lng: null
+      lat: this.props.venue.lat,
+      lng: this.props.venue.lng
     }
   }
 
@@ -21,20 +20,12 @@ class AboutVenue extends React.Component {
     height: '300px'
   }
 
-  componentDidMount() {
-    const { lat, lng, id } = this.props.venue
-    this.setState({ lat, lng, dataLoaded: true})
-
-    
-  }
-
   render() {
-    const { dataLoaded, lat, lng } = this.state
-                    
-    if (dataLoaded) {
-      return(
-        <div className="mt-2 border-2 dark:border-primary h-[32.3rem] max-h-[35.85rem] items-striped scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">
-          <Map google={this.props.google} 
+    const { lat, lng } = this.props.venue
+    return(
+      <div className="mt-2">
+        { lat !== undefined && (
+            <Map google={this.props.google} 
             initialCenter={ { lat, lng } } 
             zoom={10} 
             containerStyle={this.containerStyle} >
@@ -43,14 +34,9 @@ class AboutVenue extends React.Component {
             position={ { lat, lng } }
             />
           </Map>
-        </div>
+        )}
+      </div>
       )
-    }
-    else {
-      return(
-        <div></div>
-      )
-    }
   }
 }
 

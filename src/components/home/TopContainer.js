@@ -43,12 +43,9 @@ class TopContainer extends React.Component {
 
     if (this.state.selected === 'artists') {
       for (let [i, v] of this.props.topArtists.entries()) {
-        for (let z = 0; z < 50; z++) {
           currentArtists.push(
-            <TopArtist key={`artist${z}`} id={v.id} place={i + 1} name={v.name} favorites={v.favorites} />
+            <TopArtist key={`artist${i}`} id={v.id} place={i + 1} name={v.name} favorites={v.favorites} />
             )
-        }
-        break
       }
     }
     else if (this.state.selected === 'venues') {
@@ -62,7 +59,7 @@ class TopContainer extends React.Component {
     
     return(
       <div className='flex flex-col h-full'>
-        <ul className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0" id="tabs-tabFill"
+        <ul className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b pl-0" id="tabs-tabFill"
           role="tablist">
           <li className="nav-item flex-auto text-center" role="presentation">
             <button href="#tabs-homeFill" className="
@@ -75,7 +72,6 @@ class TopContainer extends React.Component {
               text-xs
               leading-tight
               uppercase
-              border-x-0 border-t-0 border-b-2 border-transparent
               px-6
               py-3
               transition ease-in duration-300
@@ -97,7 +93,6 @@ class TopContainer extends React.Component {
               text-xs
               leading-tight
               uppercase
-              border-x-0 border-t-0 border-b-2 border-transparent
               px-6
               py-3
               transition ease-in duration-300
@@ -111,7 +106,7 @@ class TopContainer extends React.Component {
               }}>Top Venues</button>
           </li>
         </ul>
-        <div className="grid grid-cols-6 p-2 border-b-2">
+        <div className="grid grid-cols-6 p-2 border-b">
           <div className="col-span-1"></div>
             <div className="col-span-3 text-darkgray">
               <h3 className='text-xs'>Name</h3>

@@ -28,7 +28,6 @@ class PostContainer extends React.Component {
         user: 'Coldplay',
         date: '03/29/2022',
         time: '9:05 AM',
-        image: 'https://pbs.twimg.com/media/FPBqQAAX0AYO1oJ?format=jpg&name=4096x4096',
         caption: 'Thank you @Spotify ❤️🖤🤍',
         url: 'https://twitter.com/coldplay/status/1508822711874863108',
         profile: 'https://pbs.twimg.com/profile_images/1417506973877211138/YIm7dOQH_400x400.jpg'
@@ -56,11 +55,13 @@ class PostContainer extends React.Component {
     ]
   
     const postItems = []
-  
+    
+    let modal = 1000
     for (let post of posts) {
       postItems.push(
-        <Post key={`image${post.id}`} id={post.id} user={post.user} profile={post.profile} artist={post.artist} date={post.date} time={post.time} image={post.image} caption={post.caption} url={post.url} />
+        <Post key={`image${post.id}`} modal={modal} id={post.id} user={post.user} profile={post.profile} artist={post.artist} date={post.date} time={post.time} image={post.image} caption={post.caption} url={post.url} />
       )
+      modal++
     }
     
     return(

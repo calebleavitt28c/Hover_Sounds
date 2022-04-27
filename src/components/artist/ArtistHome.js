@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import Cookies from 'js-cookie'
+import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -81,11 +82,11 @@ class ArtistHome extends React.Component {
 
   heartClick = () => {
     const { artistId, fanId } = this.props
-    let favoriteBtn = document.getElementById('favoriteBtn')
+    let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
 
     if (this.state.favorited) {
-      favoriteBtn.innerHTML = this.openHeart
-      favoriteBtn.classList.remove('filled')
+      artistFavoriteBtn.innerHTML = this.openHeart
+      artistFavoriteBtn.classList.remove('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: artistId,
@@ -99,8 +100,8 @@ class ArtistHome extends React.Component {
       })
     }
     else {
-      favoriteBtn.innerHTML = this.closedHeart
-      favoriteBtn.classList.add('filled')
+      artistFavoriteBtn.innerHTML = this.closedHeart
+      artistFavoriteBtn.classList.add('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: artistId,
@@ -116,44 +117,56 @@ class ArtistHome extends React.Component {
   }
 
   componentDidMount() {
-    let favoriteBtn = document.getElementById('favoriteBtn')
     let playBtn = document.getElementById('playBtn')
-
     playBtn.innerHTML = this.play
-
-    favoriteBtn.innerHTML = this.openHeart
-
-    getSession()
-      .then(session => {
-        axios.get(`https://api.hoveringrecords.com/hover/fans/${session.sub}`)
-        .then(response => {
-          let data = response.data.Item
-          if (data.hasOwnProperty('favArtists')) {
-            if (data.favArtists.indexOf(this.props.artistId) > -1) {
-              this.setState({ favorited: true })
-              favoriteBtn.innerHTML = this.closedHeart
+    if (this.props.userType === 'fans') {
+      let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
+  
+      artistFavoriteBtn.innerHTML = this.openHeart
+  
+      getSession()
+        .then(session => {
+          axios.get(`https://api.hoveringrecords.com/hover/fans/${session.sub}`)
+          .then(response => {
+            let data = response.data.Item
+            if (data.hasOwnProperty('favArtists')) {
+              if (data.favArtists.indexOf(this.props.artistId) > -1) {
+                this.setState({ favorited: true })
+                artistFavoriteBtn.innerHTML = this.closedHeart
+              }
             }
-          }
+          })
         })
-      })
+    }
   }
 
   render() {
     return(
       <div>
-        <div className="flex items-center justify-between border-b pb-2">
-            <h1 className="ml-2 text-xl text-center">{this.props.name}</h1>
-            <div className="inline-block mt-2">
-              <button id="playBtn" 
-                className="mr-2 ease-in duration-300"
-                onClick={this.playClick}
-                >
-              </button>
-              <button id="favoriteBtn" 
+        <div className="flex items-center justify-between border-b">
+          { this.props.event ? (
+            <Link to={`/artist/${this.props.artistId}`}>
+              <h1 className="ml-2 text-xl text-center">{this.props.name}</h1>
+            </Link>
+          )
+          :
+          <h1 className="ml-2 text-xl text-center">{this.props.name}</h1>
+          }
+          <div className="inline-block mt-2">
+            <button id="playBtn" 
+              className="mr-2 ease-in duration-300"
+              onClick={this.playClick}
+              >
+            </button>
+            { this.props.userType === 'fans' ? (
+              <button id="artistFavoriteBtn" 
                 className="mr-2 ease-in duration-300 filled"
                 onClick={this.heartClick}>
               </button>
-            </div>
+            )
+            :
+            (<div></div>)}
+          </div>
         </div>
         <ToastContainer toastStyle={{  }}/>
       </div>
