@@ -27,8 +27,8 @@ class ArtistEventTable extends React.Component {
       <div className="flex flex-col h-1/2 border-b">
         <div className="grid grid-cols-12 text-xs border-b uppercase bg-white dark:bg-darkgray ease-in duration-300">
           <div className="col-span-4 py-3 text-gray text-center">Artist</div>
-          <div className="col-span-3 py-3 text-gray text-center">Venue</div>
-          <div className="col-span-3 py-3 text-gray text-center">Date</div>
+          <div className="col-span-4 py-3 text-gray text-center">Venue</div>
+          <div className="col-span-2 py-3 text-gray text-center">Date</div>
           <div className="col-span-2 py-3 text-gray text-center">Time</div>
         </div>
         <ul id={`eventList${this.props.page}`} className="max-h-full scrollbar-none scrollbar-thumb-primary scrollbar-track-lightgray overflow-y-scroll">

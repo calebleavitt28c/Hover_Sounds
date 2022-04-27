@@ -40,17 +40,11 @@ const Event = (props) => {
             })
         )
         .then(
-          axios.get(`https://api.hoveringrecords.com/hover/events/artist/${artistId}`)
+          axios.get('https://api.hoveringrecords.com/hover/events')
             .then(response => {
               let data = response.data.Items
-              setEvents([...data])
-            })
-        )
-        .then(
-          axios.get(`https://api.hoveringrecords.com/hover/events/venue/${venueId}`)
-            .then(response => {
-              let data = response.data.Items
-              setEvents(...events, data)
+              data.sort((a, b) => (a.date < b.date) ? 1 : -1)
+              setEvents(data)
             })
         )
         .then(
