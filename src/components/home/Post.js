@@ -16,8 +16,8 @@ class Post extends React.Component {
 
   render() {
     return(
-      <li className='mb-2'>
-          <div className='px-5 py-4 bg-lightgray dark:bg-darkgray shadow-md rounded-lg transition ease-in duration-100'>
+      <li className='mb-2 px-2'>
+          <div className='px-5 py-4 bg-lightgray dark:bg-darkgray shadow-md hover:shadow-lg rounded-lg transition ease-in duration-100'>
             <a className="" href={this.props.url} target="_blank" rel="noreferrer">
               <div className="flex mb-4">
                 <img className='w-12 h-12 rounded-full' src={this.props.profile} alt={this.props.user} />
