@@ -30,7 +30,7 @@ const Spotify = () => {
       ) : (
         // Display the login page
         <SpotifyAuth
-          redirectUri='http://localhost:3000/spotify/callback'
+          redirectUri='http://hoveringrecords.com/spotify/callback'
           clientID='69c20f98b37e41729bdb78027dc7c2ca'
           scopes={[Scopes.all]}
           onAccessToken={(token) => setToken(token)}
