@@ -55,7 +55,7 @@ const Artist = (props) => {
       <div id="eventTable" className="flex flex-col border-l w-4/12 ease-in duration-300">
         {/* EVENTS */}
         <ArtistEventTable events={events} page={'Artist'} />
-        <AboutArtist name={artist.name} bio={artist.bio} image={'https://i.scdn.co/image/ab6761610000e5eb865a3301762a8fce048cb469'} />
+        <AboutArtist name={artist.name} bio={artist.bio} image={artist.profilePic} />
       </div>
     </div>
   )
