@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
+import Cookies from 'js-cookie'
+import { ToastContainer, toast } from 'react-toastify'
 
 
 const ArtistProfileForm = (props) => {
@@ -43,6 +45,39 @@ const ArtistProfileForm = (props) => {
 
     const BackToProfile = () => {
         props.hideComponent('showAttributes')
+    }
+
+    const handleSpotify = () => {
+        let token = Cookies.get('spotifyAuthToken')
+        if (token !== undefined && spotifyId !== '') {
+            let headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+
+            axios.get(`https://api.spotify.com/v1/artists/${spotifyId}`, { headers })
+                .then(response => {
+                    let images = response.data.images
+                    setProfilePic(images[0].url)
+                })
+        }
+        else if (token === undefined) {
+            toast.error('Login to Spotify First', {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+              })
+        }
+        else if (spotifyId === '') {
+            toast.error('Enter your Spotify ID first', {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+              })
+        }
     }
 
    return (
@@ -102,6 +137,14 @@ const ArtistProfileForm = (props) => {
                     Update Profile
                 </button>
            </form>
+
+           <div className="grid grid-cols-4 gap-2 w-1/3">
+                <div />
+                <button onClick={handleSpotify} className="mt-4 bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">
+                    Get Spotify Image
+                </button>
+                <ToastContainer />
+           </div>
        </div>
    )
 }
