@@ -3,11 +3,9 @@ import Cookies from 'js-cookie'
 
 import { SpotifyApiContext } from 'react-spotify-api'
 import { SpotifyAuth, Scopes } from 'react-spotify-auth'
-import { Link, useNavigate } from 'react-router-dom'
 
 const Spotify = () => {
   const [token, setToken] = useState(Cookies.get('spotifyAuthToken'))
-  const navigate = useNavigate()
 
   const goBack = () => {
     window.history.back()

@@ -12,9 +12,9 @@ const Artist = (props) => {
   const { userId, userType } = props
 
   const [artist, setArtist] = useState({})
-  const [posts, setPosts] = useState([])
+  //const [posts, setPosts] = useState([])
   const [events, setEvents] = useState([])
-  const [color, setColor] = useState('')
+  //const [color, setColor] = useState('')
 
   let { artistId } = useParams()
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react'
-import { CognitoUserAttribute } from 'amazon-cognito-identity-js'
+//import { CognitoUserAttribute } from 'amazon-cognito-identity-js'
 import { AccountContext } from './Account'
 
-export default () => {
+const Attributes = () => {
     const [plan, setPlan] = useState('')
 
     const { getSession } = useContext(AccountContext)
@@ -15,9 +15,9 @@ export default () => {
         event.preventDefault()
 
         getSession().then(({ user }) => {
-            const attributes = [
-                new CognitoUserAttribute({ Name: '', Value: ''})
-            ]
+            // const attributes = [
+            //     new CognitoUserAttribute({ Name: '', Value: ''})
+            // ]
         })
     }
 
@@ -32,3 +32,5 @@ export default () => {
         </div>
     )
 }
+
+export default Attributes

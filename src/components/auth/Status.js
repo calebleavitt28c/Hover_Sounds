@@ -16,7 +16,7 @@ const Status = () => {
                 // console.log("Session: ", session)
                 setStatus(true)
             })
-    }, [])
+    }, [status, getSession])
 
     const logUserOut = () => {
         logout()

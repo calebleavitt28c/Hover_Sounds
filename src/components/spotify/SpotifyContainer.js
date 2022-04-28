@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React from 'react'
 import Cookies from 'js-cookie'
-import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 
 class SpotifyContainer extends React.Component {
@@ -167,14 +166,9 @@ class SpotifyContainer extends React.Component {
 
   render() {
     const { 
-      token,
       loggedIn,
       artistName,
       trackName,
-      albumName,
-      error,
-      position,
-      duration,
       playing,
      } = this.state
 

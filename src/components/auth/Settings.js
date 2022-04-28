@@ -4,7 +4,7 @@ import ChangePassword from './ChangePassword'
 import ChangeEmail from './ChangeEmail'
 
 //this will contain our settings dashboard
-export default () => {
+const Settings = () => {
     const { getSession } = useContext(AccountContext)
 
     const [loggedIn, setLoggedIn] = useState(false)
@@ -13,7 +13,7 @@ export default () => {
         getSession().then(() => {
                 setLoggedIn(true)
             })
-    }, [])
+    }, [loggedIn, getSession])
 
     //if loggedIn is true the display our Settings dashboard. If loggedIn is not true don't display the Settings dashboard
     return (
@@ -28,3 +28,5 @@ export default () => {
         </div>
     )
 }
+
+export default Settings

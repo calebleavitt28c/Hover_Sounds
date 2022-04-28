@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CognitoUser } from 'amazon-cognito-identity-js'
 import Pool from "./UserPool"
 
-export default () => {
+const ForgotPassword = () => {
     const [stage, setStage] = useState(1) //1 = email stage, 2 = code stage
     const [email, setEmail] = useState('')
     const [code, setCode] = useState('')
@@ -120,3 +120,5 @@ export default () => {
         </div>
     )
 }
+
+export default ForgotPassword

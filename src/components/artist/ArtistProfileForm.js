@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
 import Cookies from 'js-cookie'
 import { ToastContainer, toast } from 'react-toastify'
@@ -11,7 +11,13 @@ const ArtistProfileForm = (props) => {
     const [bio, setBio] = useState(artistAttributes.bio) 
     const [profilePic, setProfilePic] = useState(artistAttributes.profilePic) 
     const [spotifyId, setSpotifyId] = useState(artistAttributes.spotifyId) 
-    const [twitterHandle, setTwitterHandle] = useState(artistAttributes.twitterHandle) //twitter?
+    const [twitterHandle, setTwitterHandle] = useState('') //twitter?
+
+    useEffect = () => {
+        if (artistAttributes.twitterHandle !== undefined) {
+            setTwitterHandle(artistAttributes.twitterHandle)
+        }
+    }
 
     const updateArtist = (event) => {
         event.preventDefault()
