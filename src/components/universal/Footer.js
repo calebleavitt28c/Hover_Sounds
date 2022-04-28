@@ -19,7 +19,7 @@ class Footer extends React.Component {
       loggedIn = true
     }
     return(
-      <footer className="text-center bg-primary h-[10vh] text-secondary dark:bg-darkgray dark:text-primary border-t-2 border-secondary dark:border-primary ease-in duration-300">
+      <footer className="text-center bg-primary h-[10vh] text-secondary dark:bg-darkgray dark:text-lightgray border-t-2 border-secondary dark:border-lightgray ease-in duration-300">
         <div className="inline-block">
           <div className="container px-6 pt-2 m-auto">
             <div className="flex justify-center">

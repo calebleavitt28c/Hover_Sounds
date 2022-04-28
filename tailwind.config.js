@@ -8,10 +8,10 @@ module.exports = {
       primary: "#3EB489",
       secondary: "#192338",
       white: "#FFFFFF",
-      black: "#000000",
+      black: "#1B1C1E",
       gray: "#ADADAD",
       lightgray: "#E0E0E0",
-      darkgray: "#121212",
+      darkgray: "#1F1F1F",
       red: "#841F27",
       pink: "#F96995"
     },
@@ -30,7 +30,9 @@ module.exports = {
       '6xl': '4rem',
       '7xl': '5rem',
     },
-    extend: {},
+    extend: {
+      
+    },
   },
   plugins: [
     require('tailwind-scrollbar')

@@ -41,7 +41,7 @@ function HoverSounds() {
 
     return (
         <Router>
-            <div className="App flex flex-col h-screen max-h-screen justify-between ease-in duration-300">
+            <div className="App flex flex-col h-screen max-h-screen justify-between dark:bg-darkgray ease-in duration-300">
                 <Header status={status}/>          
                 <Routes>
                     <Route path="/" element={<Home />}></Route>

@@ -50,7 +50,7 @@ const Venue = (props) => {
             <PostContainer />
           </div>
           <div className="w-[5%]"></div>
-          <div id="eventTable" className="border-l w-3/12 ease-in duration-300">
+          <div id="eventTable" className="border-l w-4/12 ease-in duration-300">
             <EventTable events={events} page={'Venue'} />
           </div>
         </div>

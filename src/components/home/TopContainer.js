@@ -6,25 +6,17 @@ import TopEvent from './TopEvent'
 function btnClick(btn) {
   if (btn === 'artists') {
     document.getElementById('topArtistsBtn').classList.add('bg-lightgray')
-    document.getElementById('topArtistsBtn').classList.add('dark:bg-gray')
-    document.getElementById('topArtistsBtn').classList.add('dark:text-black')
-    document.getElementById('topArtistsBtn').classList.add('dark:hover:text-lightgray')
+    document.getElementById('topArtistsBtn').classList.add('dark:border-t')
 
     document.getElementById('topVenuesBtn').classList.remove('bg-lightgray')
-    document.getElementById('topVenuesBtn').classList.remove('dark:bg-gray')
-    document.getElementById('topVenuesBtn').classList.remove('dark:text-black')
-    document.getElementById('topVenuesBtn').classList.remove('dark:hover:text-lightgray')
+    document.getElementById('topVenuesBtn').classList.remove('dark:border-t')
   }
   else if (btn === 'venues') {
     document.getElementById('topArtistsBtn').classList.remove('bg-lightgray')
-    document.getElementById('topArtistsBtn').classList.remove('dark:bg-gray')
-    document.getElementById('topArtistsBtn').classList.remove('dark:text-black')
-    document.getElementById('topArtistsBtn').classList.remove('dark:hover:text-lightgray')
+    document.getElementById('topArtistsBtn').classList.remove('dark:border-t')
     
     document.getElementById('topVenuesBtn').classList.add('bg-lightgray')
-    document.getElementById('topVenuesBtn').classList.add('dark:bg-gray')
-    document.getElementById('topVenuesBtn').classList.add('dark:text-black')
-    document.getElementById('topVenuesBtn').classList.add('dark:hover:text-lightgray')
+    document.getElementById('topVenuesBtn').classList.add('dark:border-t')
   }
 }
 
@@ -64,7 +56,8 @@ class TopContainer extends React.Component {
           <li className="nav-item flex-auto text-center" role="presentation">
             <button href="#tabs-homeFill" className="
               bg-lightgray
-              dark:bg-gray
+              dark:border-t
+              dark:bg-darkgray dark:hover:border-t dark:hover:border-lightgray
               nav-link
               w-full
               block
@@ -75,7 +68,7 @@ class TopContainer extends React.Component {
               px-6
               py-3
               transition ease-in duration-300
-              hover:bg-lightgray hover:text-darkgray dark:hover:bg-black
+              hover:bg-lightgray hover:text-darkgray dark:hover:text-lightgray
               focus:border-transparent
             " id="topArtistsBtn" data-bs-toggle="pill" data-bs-target="#tabs-homeFill" role="tab"
               aria-controls="tabs-homeFill" aria-selected="true" 
@@ -86,6 +79,7 @@ class TopContainer extends React.Component {
           </li>
           <li className="nav-item flex-auto text-center" role="presentation">
             <button href="#tabs-profileFill" className="
+              dark:bg-darkgray dark:hover:border-t dark:hover:border-lightgray
               nav-link
               w-full
               block
@@ -96,7 +90,7 @@ class TopContainer extends React.Component {
               px-6
               py-3
               transition ease-in duration-300
-              hover:bg-lightgray hover:text-darkgray dark:hover:bg-black
+              hover:bg-lightgray hover:text-darkgray dark:hover:bg-black dark:hover:text-lightgray
               focus:border-transparent
             " id="topVenuesBtn" data-bs-toggle="pill" data-bs-target="#tabs-profileFill" role="tab"
               aria-controls="tabs-profileFill" aria-selected="false" 
@@ -108,10 +102,10 @@ class TopContainer extends React.Component {
         </ul>
         <div className="grid grid-cols-12 p-2 border-b">
           <div className="col-span-1"></div>
-          <div className="col-span-8 text-darkgray">
+          <div className="col-span-8 text-darkgray dark:text-lightgray">
             <h3 className='text-xs'>Name</h3>
           </div>
-          <div className="col-span-3 text-darkgray">
+          <div className="col-span-3 text-darkgray dark:text-lightgray">
             <h1 className="text-center text-xs">Favorites</h1>
           </div>
         </div>

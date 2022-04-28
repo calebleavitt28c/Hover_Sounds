@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: 'Gotham';
+  src: local('Gotham'), url(./fonts/Gotham.ttf) format('ttf')
+}
+
 @layer utilities {
   .striped li:nth-child(even) {
     @apply bg-lightgray hover:bg-secondary dark:bg-gray dark:hover:bg-lightgray dark:text-black

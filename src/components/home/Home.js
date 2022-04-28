@@ -41,17 +41,17 @@ class Home extends React.Component {
   render() {
     return(
       <div className="flex gap-4 p-4 h-[80vh] dark:bg-darkgray dark:text-lightgray ease-in duration-300">
-        <div id="topContainer" className="border-r w-3/12 border-black dark:border-primary">
+        <div id="topContainer" className="border-r w-3/12 border-black dark:border-lightgray">
           {/* top artists, events, venues */}
           <TopContainer topArtists={this.state.topArtists} topVenues={this.state.topVenues} />
         </div>
         <div className="w-[5%]"></div>
-        <div className="border-black w-[40%] dark:border-primary">
+        <div className="border-black w-[40%] dark:border-lightgray">
           {/* POSTS */}
           <PostContainer />
         </div>
         <div className="w-[5%]"></div>
-        <div id="eventTable" className="border-l w-4/12 border-black dark:border-primary">
+        <div id="eventTable" className="border-l w-4/12 border-black dark:border-lightgray">
           {/* EVENTS */}
           <EventTable events={this.state.events} h={'h-[33.1rem]'} page={'Home'} />
         </div>

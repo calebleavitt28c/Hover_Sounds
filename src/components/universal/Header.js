@@ -52,10 +52,10 @@ class Header extends React.Component {
   render() {
     const { status } = this.state
     return(
-      <nav className="flex items-center h-[10vh] justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-primary px-4 py-2 ease-in duration-300">
+      <nav className="flex items-center h-[10vh] justify-between flex-wrap bg-primary dark:bg-darkgray border-b-2 border-secondary dark:border-lightgray px-4 py-2 ease-in duration-300">
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
           <Link 
-          className="button button--aylen px-5 py-3 bg-secondary hover:bg-darkgray hover:text-white text-primary relative block focus:outline-none border-2 border-solid rounded-lg text-sm text-center font-semibold uppercase tracking-widest overflow-hidden"
+          className="button button--aylen px-5 py-3 bg-secondary dark:bg-darkgray dark:hover:bg-black hover:bg-darkgray hover:text-white text-primary dark:text-lightgray relative block focus:outline-none border-2 border-solid rounded-lg text-sm text-center font-semibold uppercase tracking-widest overflow-hidden"
           // className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
           to="/" >Hover Sounds</Link>
         </div>
@@ -68,7 +68,7 @@ class Header extends React.Component {
           <div className="text-sm lg:flex-grow">
             <Link id="store"
               to="/store"
-              className="block mt-4 lg:inline-block lg:mt-0 text-secondary dark:text-primary hover:text-white dark:hover:text-white font-semibold uppercase tracking-widest mr-4 ease-in duration-300"
+              className="block mt-4 lg:inline-block lg:mt-0 text-secondary dark:text-lightgray hover:text-white dark:hover:text-white font-semibold uppercase tracking-widest mr-4 ease-in duration-300"
             >Store</Link>
           </div>
           <div className="grid grid-cols-2">
