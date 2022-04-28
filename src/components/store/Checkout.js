@@ -24,7 +24,13 @@ const Checkout = (props) => {
 
     return (
         <div>
-            {checkout ? (<PayPal order={order}/>) : ( <button onClick={() => {createOrder()}}>Checkout</button> )}
+            {checkout ? 
+            (<PayPal order={order}/>) : 
+            ( 
+                <button className="w-full r bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                    onClick={() => {createOrder()}}>Checkout
+                </button> 
+            )}
         </div>
     )   
 }
