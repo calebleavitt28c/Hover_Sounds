@@ -3,6 +3,7 @@ import PostContainer from '../home/PostContainer'
 import EventTable from '../home/EventTable'
 import VenueHome from '../venue/VenueHome'
 import ArtistHome from '../artist/ArtistHome'
+import EventHome from '../event/EventHome'
 import AboutVenue from '../venue/AboutVenue'
 
 import { useParams } from 'react-router-dom'
@@ -13,6 +14,7 @@ const Event = (props) => {
   const [artist, setArtist] = useState({})
   const [venue, setVenue] = useState({})
   const [event, setEvent] = useState({})
+  const [date, setDate] = useState('')
   const [posts, setPosts] = useState([])
   const [events, setEvents] = useState([])
   const [dataLoaded, setLoaded] = useState(false)
@@ -24,6 +26,9 @@ const Event = (props) => {
         .then(response => {
           let data = response.data.Item
           setEvent(data)
+          const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+          let nd = new Date(data.date)
+          setDate(`${month[nd.getMonth()]} ${nd.getDay()}, ${nd.getFullYear()}`)
         })
         .then(
           axios.get(`https://api.hoveringrecords.com/hover/artists/${artistId}`)
@@ -47,9 +52,10 @@ const Event = (props) => {
               setEvents(data)
             })
         )
-        .then(
+        .then(() => {
+          
           setLoaded(true)
-        )
+        })
   }, [eventId])
 
   const content = (dataLoaded) => {
@@ -57,6 +63,7 @@ const Event = (props) => {
       return(
         <div className='flex gap-4 p-4 h-[80%] dark:bg-darkgray dark:text-lightgray ease-in duration-300'>
           <div className="border-r w-3/12 ease-in duration-300">
+            <EventHome date={date} time={event.time} />
             <ArtistHome name={artist.name} artistId={artistId} spotifyId={artist.spotifyId} fanId={userId} userType={userType} event={true} />
             <VenueHome name={venue.name} venueId={venueId} fanId={userId} userType={userType} event={true} />
             <AboutVenue venue={venue} />
