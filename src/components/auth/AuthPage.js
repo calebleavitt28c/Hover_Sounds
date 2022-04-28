@@ -30,18 +30,18 @@ const AuthPage = () => {
                             type="checkbox"
                             role="switch"
                             value={stage}
-                            onChange={(event) => setStage(stage == 1 ? 2 : 1)}
+                            onChange={(event) => setStage(stage === 1 ? 2 : 1)}
                         />
                         <div className="col-span-4"></div>
                         <span id="slider" className="col-span-1 mt-2 w-8 h-5 flex items-center flex-shrink-0 p-1 bg-lightgray rounded-full after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md peer-checked:bg-secondary ease-in-out duration-300 after:duration-300 peer-checked:after:translate-x-2"></span>
                         <div className="col-span-5"></div>
                     </label>
-                    {stage == 1 && (
+                    {stage === 1 && (
                         <div>
                             <Signup />
                         </div>
                     )}
-                    {stage == 2 && (
+                    {stage === 2 && (
                         <div>
                             <Login />
                             <div className="grid grid-cols-3 pt-2">
@@ -51,7 +51,7 @@ const AuthPage = () => {
                             </div>
                         </div>
                     )}
-                    {stage == 3 && (
+                    {stage === 3 && (
                         <div>
                             <ForgotPassword />
                         </div>

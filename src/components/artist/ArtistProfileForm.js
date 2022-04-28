@@ -46,16 +46,27 @@ const ArtistProfileForm = (props) => {
     }
 
    return (
-       <div>
-           <button onClick={(event) => BackToProfile()}>Back button</button><br></br>
-           <label>Artist Profile</label>
-           <form onSubmit={updateArtist}>
+       <div className="flex flex-col place-items-center">
+           <div className="grid grid-cols-5">            
+                <button className='dark:text-lightgray mr-12' onClick={(event) => BackToProfile()}>◄ Back</button>
+                <label className="col-span-3 block text-center uppercase tracking-wide text-gray text-xs font-bold mb-2">Artist Profile</label>
+            </div>
+           <form onSubmit={updateArtist} className="grid grid-cols-4 gap-2 w-1/3">
                 <input
                     name="name"
                     placeholder="Artist Name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
+
+                <input
+                    name="artist-profile-pic"
+                    placeholder="Add Profile Picture"
+                    value={profilePic}
+                    onChange={(event) => setProfilePic(event.target.value)}
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
                 <textarea
                     name="bio"
@@ -65,30 +76,31 @@ const ArtistProfileForm = (props) => {
                     cols="60"
                     maxLength="255"
                     onChange={(event) => setBio(event.target.value)}
-                ></textarea><br></br>
+                    className="appearance-none block w-full col-span-3 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></textarea>
 
-                <input
-                    name="artist-profile-pic"
-                    placeholder="Add Profile Picture"
-                    value={profilePic}
-                    onChange={(event) => setProfilePic(event.target.value)}
-                ></input><br></br>
+                <img className="rounded" src={profilePic} alt={name} />
 
                 <input
                     name="spotifyId"
                     placeholder="Artists Spotify ID"
                     value={spotifyId}
                     onChange={(event) => setSpotifyId(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
                 <input
                     name="twitterHandle"
                     placeholder="Artists Twitter Handle"
                     value={twitterHandle}
                     onChange={(event) => setTwitterHandle(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
-                <button type="submit">Update Profile</button>
+                <div />
+                <button type="submit" className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">
+                    Update Profile
+                </button>
            </form>
        </div>
    )

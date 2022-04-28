@@ -12,7 +12,7 @@ import VenueProfileForm from "../venue/VenueProfileForm"
 import ChangeEmail from "../auth/ChangeEmail"
 import ChangePassword from "../auth/ChangePassword"
 import DeleteAccount from "../auth/DeleteAccount"
-import { createHashHistory } from "history"
+//import { createHashHistory } from "history"
 
 const UserInfo = (props) => {
     const { userType, userId } = props
@@ -60,7 +60,7 @@ const UserInfo = (props) => {
             default:
                 break
         }
-    }, [])
+    }, [userType, userId])
     
     const hideComponent = (name) => {
         switch (name) {
@@ -89,18 +89,18 @@ const UserInfo = (props) => {
         <div>
             {showAttributes && (
                 <div id="attributes" className="grid grid-cols-3">
-                    <div className="col-span-1"></div>
+                    <div />
                     <div className="col-span-1">
                         <Status />
                         <p className="block text-center uppercase tracking-wide text-gray text-xs font-bold">User attributes:</p>
                         <div>
-                            {userType == 'fans' && (
+                            {userType === 'fans' && (
                                 <FanInfo fanAttributes={fanAttributes}/>
                             )}
-                            {userType == 'artists' && (
+                            {userType === 'artists' && (
                                 <ArtistInfo artistAttributes={artistAttributes}/>
                             )}
-                            {userType == 'venues' && (
+                            {userType === 'venues' && (
                                 <VenueInfo venueAttributes={venueAttributes}/>
                             )}
                         </div>
@@ -122,37 +122,35 @@ const UserInfo = (props) => {
                             >Delete Account</button>
 
                         </div>
-                        <div>
-                            {userType == 'artists' && (
-                                <div>
-                                    <Link to={`/store/${artistAttributes.id}`}>Edit Your Store</Link><br></br>
-                                </div>
+                        <div className="grid grid-cols-4 gap-2 mt-4">
+                            {userType === 'artists' && (
+                                <Link to={`/store/${artistAttributes.id}`} className="col-span-2 py-2 px-4 bg-primary hover:bg-secondary text-center text-white font-bold rounded focus:outline-none focus:shadow-outline ease-in duration-300">Edit Your Store</Link>
                             )}
-                            {(userType == 'artists' || userType == 'venues') && (
-                                <Link to={`/events/${userId}`}>Edit Your Events</Link>
+                            {(userType === 'artists' || userType === 'venues') && (
+                                <Link to={`/events/${userType.slice(0, -1)}/${userId}`} className="bg-primary col-span-2 text-center hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Edit Your Events</Link>
                             )}
                         </div>
                     </div>
-                    <div className="col-span-1"></div>
+                    <div />
                 </div>
             )}
             <div>
                 {showEditAttributes && (
                     <div>
-                        {userType == 'fans' && (
+                        {userType === 'fans' && (
                             <FanProfileForm
                                 userId={userId}
                                 fanAttributes={fanAttributes}
                                 hideComponent={hideComponent}
                             />
                         )}
-                        {userType == 'artists' && (
+                        {userType === 'artists' && (
                             <ArtistProfileForm
                                 artistAttributes={artistAttributes}
                                 hideComponent={hideComponent}
                                 />
                                 )}
-                        {userType == 'venues' && (
+                        {userType === 'venues' && (
                             <VenueProfileForm
                                 venueAttributes={venueAttributes}
                                 hideComponent={hideComponent}
