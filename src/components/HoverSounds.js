@@ -49,7 +49,7 @@ function HoverSounds() {
                     <Route exact path="/profile" element={<Profile userType={userType} userId={userId}/>}></Route>
                     <Route path="/artist/:artistId" element={<Artist userType={userType} userId={userId} />}></Route>
                     <Route path="/venue/:venueId" element={<Venue userType={userType} userId={userId} />}></Route>
-                    <Route path="/events/:venueId/:artistId/:eventId" element={<Event userType={userType} userId={userId} />}></Route> */
+                    <Route path="/events/:venueId/:artistId/:eventId" element={<Event userType={userType} userId={userId} />}></Route>
                     <Route exact path="/store/" element={<Store userType={userType} userId={userId}/>}></Route>
                     <Route exact path="/store/:artistId" element={<Store userType={userType} userId={userId}/>}></Route>
                     <Route exact path="/spotify" element={<Spotify />}></Route>

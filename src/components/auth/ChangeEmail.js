@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js'
 import { AccountContext } from './Account'
 
-export default (props) => {
+const ChangeEmail = (props) => {
     const [newEmail, setNewEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -40,9 +40,10 @@ export default (props) => {
     }
 
     return (
-        <div className="grid grid-cols-3">
-            <div className="col-span-1"></div>
-            <button onClick={(event) => BackToProfile()}>Back button</button>
+        <div className="flex flex-col place-items-center">
+            <div className='grid grid-cols-3'>         
+                <button className='dark:text-lightgray mr-24' onClick={(event) => BackToProfile()}>◄ Back</button>
+            </div>
             <form onSubmit={onSubmit}>
             <label className="block text-center uppercase tracking-wide text-gray text-xs font-bold">New Email</label>
                 <input
@@ -69,7 +70,8 @@ export default (props) => {
             {errMsg && (
                 <div>{errMsg}</div>
             )}
-            <div className="col-span-1"></div>
         </div>
     )
 }
+
+export default ChangeEmail

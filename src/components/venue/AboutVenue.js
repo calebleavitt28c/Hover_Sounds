@@ -22,12 +22,12 @@ class AboutVenue extends React.Component {
 
   render() {
     const { lat, lng, bio } = this.props.venue
-    console.log(bio)
     return(
       <div className="mt-2 mx-2">
         { lat !== undefined && (
             <Map google={this.props.google} 
-            initialCenter={ { lat, lng } } 
+            initialCenter={ { lat, lng } }
+            center={{ lat, lng }}
             zoom={10} 
             containerStyle={this.containerStyle} >
             <Marker 

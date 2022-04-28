@@ -76,7 +76,7 @@ class VenueHome extends React.Component {
 
   render() {
     return(
-      <div className="flex items-center justify-between dark:border-primary">
+      <div className="flex items-center justify-between">
         { this.props.event ? (
           <Link to={`/venue/${this.props.venueId}`}>
             <h1 className="ml-2 text-xl text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>

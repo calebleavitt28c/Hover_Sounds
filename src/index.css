@@ -43,12 +43,15 @@
     -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
     transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
   }
+  
   .button--aylen::before {
     background: #a0aec0;
   }
+
   .button--aylen::after {
     background: #4a5568;
   }
+
   .button--aylen:hover::before,
   .button--aylen:hover::after {
     -webkit-transform: translate3d(0, 100%, 0);

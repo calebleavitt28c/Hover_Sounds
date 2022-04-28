@@ -15,7 +15,7 @@ class ArtistMerchContainer extends React.Component {
   componentDidMount() {
     axios.get(`https://api.hoveringrecords.com/hover/store/${this.props.artistId}`)
       .then(response => {
-        this.state.items = response.data.Items
+        this.setState({ items: response.data.Items})
       })
   }
 

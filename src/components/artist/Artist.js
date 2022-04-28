@@ -12,7 +12,6 @@ const Artist = (props) => {
   const { userId, userType } = props
 
   const [artist, setArtist] = useState({})
-  const [merch, setMerch] = useState([])
   const [posts, setPosts] = useState([])
   const [events, setEvents] = useState([])
   const [color, setColor] = useState('')
@@ -25,19 +24,14 @@ const Artist = (props) => {
           let data = response.data.Item
           setArtist(data)
         })
-
-      axios.get(`https://api.hoveringrecords.com/hover/store/${artistId}`)
-        .then(response => {
-          let data = response.data.Items
-          setMerch(data)
-        })
     
       axios.get(`https://api.hoveringrecords.com/hover/events/artist/${artistId}`)
         .then(response => {
           let data = response.data.Items
+          data.sort((a, b) => (a.date > b.date) ? 1 : -1)
           setEvents(data)
         })
-  }, [])
+  }, [artistId])
 
   return(
     <div className="flex gap-4 p-4 h-[80%] dark:bg-darkgray dark:text-lightgray ease-in duration-300">

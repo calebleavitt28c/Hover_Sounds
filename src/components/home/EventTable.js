@@ -15,14 +15,22 @@ class EventTable extends React.Component {
   }
 
   render() {
+    const { selected } = this.props
     const eventItems = []
     const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     for (let [i, v] of this.props.events.entries()) {
       let nd = new Date(v.date)
       let date = `${month[nd.getMonth()]} ${nd.getDay()}, ${nd.getFullYear()}`
-      eventItems.push(
-        <EventRow key={`event${i}`} id={v.id} artist={v.artist} venueId={v.venueId} artistId={v.artistId} venue={v.venue} date={date} time={v.time}></EventRow>
-      )
+      if (v.id === selected) {
+        eventItems.push(
+          <EventRow key={`event${i}`} id={v.id} artist={v.artist} venueId={v.venueId} artistId={v.artistId} venue={v.venue} date={date} time={v.time} selected={true}></EventRow>
+        )
+      }
+      else {
+        eventItems.push(
+          <EventRow key={`event${i}`} id={v.id} artist={v.artist} venueId={v.venueId} artistId={v.artistId} venue={v.venue} date={date} time={v.time} selected={false}></EventRow>
+        )
+      }
     }
 
     return(

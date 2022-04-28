@@ -27,6 +27,7 @@ const Venue = (props) => {
           axios.get(`https://api.hoveringrecords.com/hover/events/venue/${venueId}`)
             .then(response => {
               let data = response.data.Items
+              data.sort((a, b) => (a.date > b.date) ? 1 : -1)
               setEvents(data)
             })
         )
@@ -45,11 +46,11 @@ const Venue = (props) => {
             <VenueHome name={venue.name} venueId={venueId} fanId={userId} userType={userType} />
             <AboutVenue venue={venue} />
           </div>
-          <div className="w-[5%]"></div>
+          <div className="w-[5%]" />
           <div className="border-black w-[40%] dark:border-primary ease-in duration-300">
             <PostContainer />
           </div>
-          <div className="w-[5%]"></div>
+          <div className="w-[5%]" />
           <div id="eventTable" className="border-l w-4/12 ease-in duration-300">
             <EventTable events={events} page={'Venue'} />
           </div>

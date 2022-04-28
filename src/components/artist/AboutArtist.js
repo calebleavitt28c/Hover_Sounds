@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Vibrant from 'node-vibrant'
+import React from 'react'
+//import Vibrant from 'node-vibrant'
 
 class AboutArtist extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class AboutArtist extends React.Component {
       
       <div className="flex flex-col h-1/2">
         <div className='flex'>
-          <img className="w-1/3  dark:shadow-sm dark:shadow-gray rounded-3xl mt-2 mx-2" src={this.props.image} alt={this.props.name} />
+          <img className="w-1/3 dark:shadow-sm dark:shadow-gray rounded-3xl mt-2 mx-2" src={this.props.image} alt={this.props.name} />
           <div className={`bg-lightgray dark:bg-darkgray dark:shadow-sm dark:shadow-gray w-2/3 mt-2 mr-2 rounded-3xl grid place-items-center`}>
             <h1 className="text-center text-2xl font-semibold uppercase tracking-widest">{this.props.name}</h1>
           </div>

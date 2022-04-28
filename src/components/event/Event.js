@@ -43,14 +43,14 @@ const Event = (props) => {
           axios.get('https://api.hoveringrecords.com/hover/events')
             .then(response => {
               let data = response.data.Items
-              data.sort((a, b) => (a.date < b.date) ? 1 : -1)
+              data.sort((a, b) => (a.date > b.date) ? 1 : -1)
               setEvents(data)
             })
         )
         .then(
           setLoaded(true)
         )
-  }, [])
+  }, [eventId])
 
   const content = (dataLoaded) => {
     if (dataLoaded) {
@@ -67,7 +67,7 @@ const Event = (props) => {
           </div>
           <div className="w-[5%]"></div>
           <div id="eventTable" className="border-l w-4/12 ease-in duration-300">
-            <EventTable events={events} page={'Venue'} />
+            <EventTable events={events} page={'Venue'} selected={eventId} />
           </div>
         </div>
       )

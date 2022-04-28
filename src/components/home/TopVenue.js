@@ -11,7 +11,7 @@ class TopVenue extends React.Component {
   }
   render() {
     return(
-        <li className="hover:bg-lightgray dark:hover:bg-black hover:text-darkgray ease-in duration-100">
+        <li className="hover:bg-lightgray dark:hover:bg-gray hover:text-darkgray ease-in duration-100">
           <Link className="p-3 grid grid-cols-12" to={`/venue/${this.props.id}`}>
             <div className="col-span-1">
               <h1>{this.props.place}.</h1>

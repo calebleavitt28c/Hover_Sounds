@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 class Header extends React.Component {
   constructor(props) {
@@ -22,12 +23,12 @@ class Header extends React.Component {
     if (document.documentElement.classList.contains('dark')) {
       themeBtn.innerHTML = this.dim
       document.documentElement.classList = ''
-      localStorage.theme = 'light'
+      Cookies.set('theme', 'light')
     }
     else {
       themeBtn.innerHTML = this.bright
       document.documentElement.classList = 'dark'
-      localStorage.theme = 'dark'
+      Cookies.set('theme', 'dark')
     }
   }
 
@@ -37,15 +38,14 @@ class Header extends React.Component {
       this.setState({ status: '/profile' })
     }
     let themeBtn = document.getElementById('themeBtn')
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+
+    if (Cookies.get('theme') === 'dark') {
       themeBtn.innerHTML = this.bright
-      // document.documentElement.classList = 'dark'
-      localStorage.theme = 'dark'
+      document.documentElement.classList = 'dark'
     }
     else {
       themeBtn.innerHTML = this.dim
-      // document.documentElement.classList = ''
-      localStorage.theme = 'light'
+      document.documentElement.classList = ''
     }
   }
 
@@ -58,11 +58,6 @@ class Header extends React.Component {
           className="button button--aylen px-5 py-3 bg-secondary dark:bg-darkgray dark:hover:bg-black hover:bg-darkgray hover:text-white text-primary dark:text-lightgray relative block focus:outline-none border-2 border-solid rounded-lg text-sm text-center font-semibold uppercase tracking-widest overflow-hidden"
           // className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
           to="/" >Hover Sounds</Link>
-        </div>
-        <div className="block lg:hidden">
-          <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-            <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-          </button>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow">
