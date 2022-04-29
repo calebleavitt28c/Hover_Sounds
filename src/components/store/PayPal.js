@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
 const PayPal = (props) => {
-    const { order } = props
+    const { order, hidePayPal } = props
     const paypal = useRef()
 
     useEffect(() => {
@@ -24,6 +24,7 @@ const PayPal = (props) => {
                 const order = await actions.order.capture()
                 console.log(order)
                 console.log(data)
+                props.hidePayPal()
             },
             onError: (err) => {
                 console.log("Error in bringing up PayPal")

@@ -2,7 +2,7 @@ import React from 'react'
 import Checkout from './Checkout'
 
 const Cart = (props) => {
-    const { cartItems, onAdd, onRemove } = props
+    const { cartItems, onAdd, onRemove, clearCart } = props
 
     const subotal = cartItems.reduce((a, c) => a + c.price * c.qty, 0)
     const taxPrice = subotal * 0.14
@@ -58,7 +58,7 @@ const Cart = (props) => {
                 </>
             )}
             <div >
-                <Checkout cart={cart}/>
+                <Checkout cart={cart} clearCart={clearCart}/>
             </div>
         </div>
     )

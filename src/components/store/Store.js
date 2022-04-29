@@ -33,6 +33,7 @@ const Store = (props) => {
     }, [])
 
     const [cartItems, setCartItems] = useState([])
+
     const onAdd = (item) => {
         const exist = cartItems.find(x => x.id === item.id)
         if (exist) {
@@ -45,6 +46,7 @@ const Store = (props) => {
             setCartItems([...cartItems, {...item, qty: 1 }])
         }
     }
+
     const onRemove = (item) => {
         const exist = cartItems.find((x) => x.id === item.id)
         if (exist.qty === 1) {
@@ -56,6 +58,10 @@ const Store = (props) => {
                 )
             )
         }
+    }
+
+    const clearCart = () => {
+        setCartItems([])
     }
 
     const hideComponent = (name) => {
@@ -88,6 +94,7 @@ const Store = (props) => {
                             cartItems={cartItems}
                             onAdd={onAdd}
                             onRemove={onRemove}
+                            clearCart={clearCart}
                         />
                     </div>
                     <div>

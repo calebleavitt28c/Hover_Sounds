@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PayPal from './PayPal'
 
 const Checkout = (props) => {
-    const { cart } = props
+    const { cart, clearCart } = props
     const [order, setOrder] = useState({})
     const [checkout, setCheckout] = useState(false)
 
@@ -21,11 +21,15 @@ const Checkout = (props) => {
         setCheckout(true)
     }
 
+    const hidePayPal = () => {
+        setCheckout(false)
+        props.clearCart()
+    }
 
     return (
         <div>
             {checkout ? 
-            (<PayPal order={order}/>) : 
+            (<PayPal order={order} hidePayPal={hidePayPal}/>) : 
             ( 
                 <button className="w-full r bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
                     onClick={() => {createOrder()}}>Checkout
