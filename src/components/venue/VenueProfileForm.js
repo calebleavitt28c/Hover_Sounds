@@ -65,16 +65,29 @@ const VenueProfileForm = (props ) => {
     }
 
    return (
-       <div>
-           <button onClick={(event) => BackToProfile()}>Back button</button><br></br>
-           <label>Venue Profile</label>
-           <form onSubmit={updateVenue}>
+       <div className="flex flex-col place-items-center">
+           <div className="grid grid-cols-5">            
+                <button className='dark:text-lightgray mr-12' onClick={(event) => BackToProfile()}>◄ Back</button>
+                <label className="col-span-3 block text-center uppercase tracking-wide text-gray text-xs font-bold mb-2">
+                    Venue Profile
+                </label>
+            </div>
+           <form onSubmit={updateVenue} className="grid grid-cols-4 gap-2 w-1/3">
                 <input
                     name="name"
                     placeholder="Venue Name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
+
+                <input
+                    name="venue-profile-pic"
+                    placeholder="Add Profile Picture"
+                    value={profilePic}
+                    onChange={(event) => setProfilePic(event.target.value)}
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
                 <textarea
                     name="bio"
@@ -84,51 +97,53 @@ const VenueProfileForm = (props ) => {
                     cols="60"
                     maxLength="255"
                     onChange={(event) => setBio(event.target.value)}
-                ></textarea><br></br>
+                    className={`appearance-none block w-full col-span-${ profilePic !== '' || profilePic !== undefined ? '3' : '4'} bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                ></textarea>
 
-                <input
-                    name="venue-profile-pic"
-                    placeholder="Add Profile Picture"
-                    value={profilePic}
-                    onChange={(event) => setProfilePic(event.target.value)}
-                ></input><br></br>
+                { profilePic !== '' || undefined ? (<img className="rounded" src={profilePic} alt={name} />) : <div />}
 
                 <input
                     name="address"
                     placeholder="Address"
                     value={address}
                     onChange={(event) => setAddress(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
                 <input
                     name="city"
                     placeholder="City"
                     value={city}
                     onChange={(event) => setCity(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
                 <input
                     name="state"
                     placeholder="State"
                     value={state}
                     onChange={(event) => setState(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-1 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
                 <input
                     name="zipCode"
                     placeholder="zipCode"
                     value={zipCode}
                     onChange={(event) => setzipCode(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-1 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
-<input
+                <input
                     name="twitterHandle"
                     placeholder="Venues Twitter Handle"
                     value={twitterHandle}
                     onChange={(event) => setTwitterHandle(event.target.value)}
-                ></input><br></br>
+                    className="appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                ></input>
 
-                <button type="submit">Update Profile</button>
+                <div />
+                <button type="submit"  className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Update Profile</button>
            </form>
        </div>
    )

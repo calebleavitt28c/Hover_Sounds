@@ -89,7 +89,7 @@ const ArtistProfileForm = (props) => {
    return (
        <div className="flex flex-col place-items-center">
            <div className="grid grid-cols-5">            
-                <button className='dark:text-lightgray mr-12' onClick={(event) => BackToProfile()}>◄ Back</button>
+                <button onClick={(event) => BackToProfile()} className='dark:text-lightgray mr-12'>◄ Back</button>
                 <label className="col-span-3 block text-center uppercase tracking-wide text-gray text-xs font-bold mb-2">Artist Profile</label>
             </div>
            <form onSubmit={updateArtist} className="grid grid-cols-4 gap-2 w-1/3">

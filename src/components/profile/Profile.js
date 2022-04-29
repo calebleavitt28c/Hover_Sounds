@@ -14,7 +14,7 @@ import ChangePassword from "../auth/ChangePassword"
 import DeleteAccount from "../auth/DeleteAccount"
 //import { createHashHistory } from "history"
 
-const UserInfo = (props) => {
+const Profile = (props) => {
     const { userType, userId } = props
 
     const [showAttributes, setShowAttributes] = useState(true)
@@ -184,4 +184,4 @@ const UserInfo = (props) => {
     )
 }
 
-export default UserInfo
+export default Profile
