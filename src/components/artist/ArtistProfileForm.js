@@ -11,15 +11,9 @@ const ArtistProfileForm = (props) => {
     const [bio, setBio] = useState(artistAttributes.bio) 
     const [profilePic, setProfilePic] = useState(artistAttributes.profilePic) 
     const [spotifyId, setSpotifyId] = useState(artistAttributes.spotifyId) 
-    const [twitterHandle, setTwitterHandle] = useState('') //twitter?
+    const [twitterHandle, setTwitterHandle] = useState('')
 
-    useEffect = () => {
-        if (artistAttributes.twitterHandle !== undefined) {
-            setTwitterHandle(artistAttributes.twitterHandle)
-        }
-    }
-
-    const updateArtist = (event) => {
+    const updateArtist = async (event) => {
         event.preventDefault()
         axios.put('https://api.hoveringrecords.com/hover/artists', {
             id: artistAttributes.id,
@@ -65,6 +59,7 @@ const ArtistProfileForm = (props) => {
             axios.get(`https://api.spotify.com/v1/artists/${spotifyId}`, { headers })
                 .then(response => {
                     let images = response.data.images
+                    console.log(response.data)
                     setProfilePic(images[0].url)
                 })
         }
