@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { toast, ToastContainer } from 'react-toastify'
 
 const EventForm = (props) => {
-    const { selected, userId, userType } = props
+    const { userId, userType } = props
 
     const [artist, setArtist] = useState('')
     const [artistId, setArtistId] = useState('')
@@ -12,6 +12,7 @@ const EventForm = (props) => {
     const [venueId, setVenueId] = useState('')
     const [eventDate, setEventDate] = useState('')
     const [eventTime, setEventTime] = useState('')
+    const [selected, setSelected] = useState({})
 
     const [buttonText, setButtonText] = useState('Update Event')
     const [create, setHideButton] = useState(props.create)
@@ -57,8 +58,7 @@ const EventForm = (props) => {
     }
 
     const newEvent = () => {
-        window.history.pushState({}, {}, '/events/edit')
-        if (userType === 'artist') {
+        if (userType === 'artists') {
             setVenue('')
             setVenueId('')
         }
@@ -74,7 +74,7 @@ const EventForm = (props) => {
     }
 
     useEffect(() => {
-        if (userType === 'artist') {
+        if (userType === 'artists') {
             setVenueId(selected.venueId)
             setArtistId(userId)
         }
@@ -82,11 +82,12 @@ const EventForm = (props) => {
             setArtistId(selected.artistId)
             setVenueId(userId)
         }
+        setSelected(props.selected)
         setArtist(selected.artist)
         setVenue(selected.venue)
         setEventDate(selected.date)
         setEventTime(selected.time)
-    }, [selected, setArtistId, setVenueId, userType, userId])
+    }, [props.selected, userType, userId])
     
    return (
        <div className="flex flex-col place-items-center">
@@ -94,41 +95,79 @@ const EventForm = (props) => {
                 Event Details
             </label>
             <form className="grid grid-cols-4 gap-2 w-2/3">
-                <input
-                    name="artist"
-                    placeholder="Artist"
-                    value={artist}
-                    onChange={(event) => setArtist(event.target.value)}
-                    className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                    disabled={userType === 'artists' ? true : false } 
-                ></input>
+                {userType === 'artists' ? (
+                    <div className="col-span-4 grid grid-cols-2 gap-2">
+                        <input
+                            name="artist"
+                            placeholder="Artist"
+                            value={artist}
+                            onChange={(event) => setArtist(event.target.value)}
+                            className={`appearance-none block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                            disabled
+                        ></input>
 
-                <input
-                    name="artistId"
-                    placeholder="Artist ID"
-                    value={artistId}
-                    onChange={(event) => setArtistId(event.target.value)}
-                    className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                    disabled={userType === 'artists' ? true : false } 
-                ></input>
+                        <input
+                            name="artistId"
+                            placeholder="Artist ID"
+                            value={artistId}
+                            onChange={(event) => setArtistId(event.target.value)}
+                            className={`appearance-none block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                            disabled
+                        ></input>
+                        <input
+                            name="venue"
+                            placeholder="Venue"
+                            value={venue}
+                            onChange={(event) => setVenue(event.target.value)}
+                            className={`appearance-none block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                        ></input>
 
-                <input
-                    name="venue"
-                    placeholder="Venue"
-                    value={venue}
-                    onChange={(event) => setVenue(event.target.value)}
-                    className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                    disabled={userType === 'venues' ? true : false } 
-                ></input>
+                        <input
+                            name="venueId"
+                            placeholder="Venue"
+                            value={venueId}
+                            onChange={(event) => setVenueId(event.target.value)}
+                            className={`appearance-none block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                        ></input>
+                    </div>
+                )
+                :
+                (
+                    <div className="col-span-4 grid grid-cols-2 gap-2">
+                        <input
+                            name="artist"
+                            placeholder="Artist"
+                            value={artist}
+                            onChange={(event) => setArtist(event.target.value)}
+                            className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                        ></input>
 
-                <input
-                    name="venueId"
-                    placeholder="Venue"
-                    value={venueId}
-                    onChange={(event) => setVenueId(event.target.value)}
-                    className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                    disabled={userType === 'venues' ? true : false } 
-                ></input>
+                        <input
+                            name="artistId"
+                            placeholder="Artist ID"
+                            value={artistId}
+                            onChange={(event) => setArtistId(event.target.value)}
+                            className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                        ></input>
+                        <input
+                            name="venue"
+                            placeholder="Venue"
+                            value={venue}
+                            onChange={(event) => setVenue(event.target.value)}
+                            className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                            disabled
+                        ></input>
+
+                        <input
+                            name="venueId"
+                            placeholder="Venue"
+                            value={venueId}
+                            onChange={(event) => setVenueId(event.target.value)}
+                            className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
+                            disabled
+                        ></input>
+                    </div>
+                )}
 
                 <input
                     name="date"

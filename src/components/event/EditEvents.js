@@ -4,7 +4,15 @@ import axios from 'axios'
 
 const EditEvents = (props) => {
   const { userId, userType } = props
-  const [selected, setSelected] = useState({})
+  const [selected, setSelected] = useState({
+    id: '',
+    artist: '',
+    artistId: '',
+    venue: '',
+    venueId: '',
+    date: '',
+    time: ''
+})
   const [events, setEvents] = useState([])
   const [create, setCreate] = useState(false)
 

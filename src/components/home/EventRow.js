@@ -17,9 +17,9 @@ class EventRow extends React.Component {
     const { selected } = this.props
     return(
       <li className={ selected ? this.selectedClass : this.nonSelectedClass} data-href={`/events/${this.props.id}`}>
-        <Link to={`/events/${this.props.venueId}/${this.props.artistId}/${this.props.id}`} className="grid grid-cols-12">
-          <div className="col-span-4 py-2 text-center">{this.props.artist}</div>
-          <div className="col-span-4 py-2 text-center">{this.props.venue}</div>
+        <Link to={`/events/${this.props.venueId}/${this.props.artistId}/${this.props.id}`} className="grid grid-cols-10">
+          <div className="col-span-3 py-2 text-center">{this.props.artist}</div>
+          <div className="col-span-3 py-2 text-center">{this.props.venue}</div>
           <div className="col-span-2 py-2 text-center">{this.props.date}</div>
           <div className="col-span-2 py-2 text-center">{this.props.time}</div>
         </Link>

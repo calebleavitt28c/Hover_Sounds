@@ -33,7 +33,7 @@ class Home extends React.Component {
       axios.get('https://api.hoveringrecords.com/hover/events')
         .then(response => {
           let data = response.data.Items
-          data.sort((a, b) => (a.date > b.date) ? 1 : -1)
+          data.sort((a, b) => new Date(a.date) - new Date(b.date))
           this.setState({ events: data })
         })
   }
