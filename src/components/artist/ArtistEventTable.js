@@ -16,10 +16,14 @@ class ArtistEventTable extends React.Component {
 
   render() {
     const eventItems = []
-
+    const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     for (let [i, v] of this.props.events.entries()) {
+      let nd = new Date(v.date)
+      let date = `${month[nd.getMonth()]} ${nd.getDay()}, ${nd.getFullYear()}`
+      let hr = nd.getHours()
+      let time = `${ hr > 12 ? hr-12 : hr }:${nd.getMinutes().toString().padStart(2, '0')} ${hr > 12 ? 'PM' : 'AM'}`
       eventItems.push(
-        <EventRow key={`event${i}`} id={v.id} artist={v.artist} venue={v.venue} date={v.date} time={v.time}></EventRow>
+        <EventRow key={`event${i}`} id={v.id} artist={v.artist} artistId={v.artistId} venueId={v.venueId} venue={v.venue} date={date} time={time}></EventRow>
       )
     }
 

@@ -51,7 +51,7 @@ class Home extends React.Component {
         </div>
         <div id="eventTable" className="border-l w-4/12 border-black dark:border-lightgray">
           {/* EVENTS */}
-          <EventTable events={this.state.events} h={'h-[33.1rem]'} page={'Home'} />
+          <EventTable events={this.state.events} page={'Home'} />
         </div>
       </div>
     );

@@ -21,14 +21,16 @@ class EventTable extends React.Component {
     for (let [i, v] of this.props.events.entries()) {
       let nd = new Date(v.date)
       let date = `${month[nd.getMonth()]} ${nd.getDay()}, ${nd.getFullYear()}`
+      let hr = nd.getHours()
+      let time = `${ hr > 12 ? hr-12 : hr }:${nd.getMinutes().toString().padStart(2, '0')} ${hr > 12 ? 'PM' : 'AM'}`
       if (v.id === selected) {
         eventItems.push(
-          <EventRow key={`event${i}`} id={v.id} artist={v.artist} venueId={v.venueId} artistId={v.artistId} venue={v.venue} date={date} time={v.time} selected={true}></EventRow>
+          <EventRow key={`event${i}`} id={v.id} artist={v.artist} venueId={v.venueId} artistId={v.artistId} venue={v.venue} date={date} time={time} selected={true}></EventRow>
         )
       }
       else {
         eventItems.push(
-          <EventRow key={`event${i}`} id={v.id} artist={v.artist} venueId={v.venueId} artistId={v.artistId} venue={v.venue} date={date} time={v.time} selected={false}></EventRow>
+          <EventRow key={`event${i}`} id={v.id} artist={v.artist} venueId={v.venueId} artistId={v.artistId} venue={v.venue} date={date} time={time} selected={false}></EventRow>
         )
       }
     }
