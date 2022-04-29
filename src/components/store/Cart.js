@@ -16,13 +16,13 @@ const Cart = (props) => {
 
     return (
         <div className="">
-            <h1 className="bg-primary text-center p-2 rounded-b-sm" ><strong>
+            <h1 className="bg-primary text-center p-2 rounded-b-md" ><strong>
                 Cart
                 </strong></h1>
-            <div>{cartItems.length === 0 && <div>Cart Is Empty</div>}</div>
+            <div>{cartItems.length === 0 && <div className='text-center'>Cart Is Empty</div>}</div>
             {cartItems.map((item) => (
-                <div key={item.id} className='row shadow-lg'>
-                    <div>{item.name}</div>
+                <div key={item.id} className='row shadow-lg mx-1'>
+                    <div><strong>{item.name}</strong></div>
                     <div className="grid grid-cols-6 content-center">
                         <div className="col-span-1">
                             <button className="bg-primary rounded-full text-white font-bold item-center mx-1 py-2 px-4"
