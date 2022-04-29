@@ -85,8 +85,6 @@ class ArtistHome extends React.Component {
     let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
 
     if (this.state.favorited) {
-      artistFavoriteBtn.innerHTML = this.openHeart
-      artistFavoriteBtn.classList.remove('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: artistId,
@@ -94,14 +92,22 @@ class ArtistHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-
+        artistFavoriteBtn.innerHTML = this.openHeart
+        artistFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
       })
+      .catch(err => {
+        console.error(err)
+        toast.error('Error unfavoriting.', {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
+      })
     }
     else {
-      artistFavoriteBtn.innerHTML = this.closedHeart
-      artistFavoriteBtn.classList.add('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: artistId,
@@ -109,9 +115,19 @@ class ArtistHome extends React.Component {
         dir: '+'
       })
       .then(response => {
-
+        artistFavoriteBtn.innerHTML = this.closedHeart
+        artistFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
+      })
+      .catch(err => {
+        console.error(err)
+        toast.error('Error favoriting.', {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
       })
     }
   }

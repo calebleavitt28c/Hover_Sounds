@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Post from './Post'
 
 class PostContainer extends React.Component {
