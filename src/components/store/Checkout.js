@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PayPal from './PayPal'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Checkout = (props) => {
     const { cart } = props
@@ -14,7 +15,12 @@ const Checkout = (props) => {
 
     const createOrder = () => {
         if (cart.item_total === 0) {
-            alert("Your cart is empty") //turn this into a toast notification
+            toast.error(`Your cart is empty`, { //why are two notifications created???????
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+              })
             return
         }
         setOrder(
@@ -41,6 +47,7 @@ const Checkout = (props) => {
                     onClick={() => {createOrder()}}>Checkout
                 </button> 
             )}
+            <ToastContainer />
         </div>
     )   
 }

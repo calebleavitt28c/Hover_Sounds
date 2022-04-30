@@ -9,9 +9,6 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const [errMsg, setErrMsg] = useState('')
-    const [scsMsg, setScsMsg] = useState('')
-
     const { authenticate } = useContext(AccountContext)
 
     const onSubmit = (event) => {
@@ -20,8 +17,6 @@ const Login = () => {
         authenticate(email, password)
             .then(data => {
                 console.log("Logged in!", data)
-                setScsMsg(data.message) //TEST
-                setErrMsg('')
                 navigate('/')
                 toast.success(`Successful Login`, {
                     position: 'bottom-right',
@@ -32,8 +27,12 @@ const Login = () => {
             })
             .catch(err => {
                 console.error("Failed to login", err)
-                setErrMsg(err.message) //TEST
-                setScsMsg('')
+                toast.error(err.message, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                  })
             })
     }
 
@@ -59,12 +58,6 @@ const Login = () => {
                 <button type="submit" className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Login</button>
                 <div className="col-span-1"></div>
             </form>
-            {scsMsg && (
-                <div>{scsMsg}</div>
-            )}
-            {errMsg && (
-                <div>{errMsg}</div>
-            )}
             <ToastContainer />
         </div>
     )

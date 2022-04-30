@@ -99,14 +99,20 @@ const Store = (props) => {
                     </div>
                     <div>
                         {artistId && (
-                            <div>
-                                <button
-                                    onClick={(event) => hideComponent('showMerchForm')}
-                                >Add Merch</button>
-                                <br></br><br></br>
-                                <button
-                                    onClick={(event) => hideComponent('showEditMerch')}
-                                >Edit Merch</button>
+                            <div className="flex flex-row">
+                                <div className="">
+                                    <button
+                                        className="w-full r bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                                        onClick={(event) => hideComponent('showMerchForm')}
+                                    >Add Merch</button>
+                                    <br></br><br></br>
+                                </div>
+                                <div  className="mx-2">
+                                    <button
+                                        className="w-full r bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                                        onClick={(event) => hideComponent('showEditMerch')}
+                                    >Manage Merch</button>
+                                </div>
                             </div>
                         )}
                     </div>

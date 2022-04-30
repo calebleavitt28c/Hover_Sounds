@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { ToastContainer, toast } from 'react-toastify';
 
 import MerchTable from './MerchTable'
 
@@ -14,7 +15,12 @@ const EditMerch = (props) => {
         axios.delete(`https://api.hoveringrecords.com/hover/store/${artistId}/${item.id}`)
         .then(response => {
             console.log(response)
-            alert("Item has been deleted")
+            toast.error(`Item has been deleted`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+              })
         })
         .catch((error) => {
             if (error.response) {
@@ -27,14 +33,19 @@ const EditMerch = (props) => {
                 console.log('Error', error.message);
             }
             console.log(error.config);
-            alert("An error occurred while deleting your store item: " + error.message)
+            toast.error(error.message, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+              })
         })
     }
 
     return (
         <div>
             <button onClick={(event) => BackToStore('showMerchForm')}>Back Arrow</button><br></br>
-            <div>Edit Merch</div>
+            <div>Manage the items in your Store</div>
             <div className="col-span-3 border-2 border-black dark:border-primary">
                 <MerchTable 
                     items={items}
@@ -44,6 +55,7 @@ const EditMerch = (props) => {
             <div className="col-span-3 border-2 border-black dark:border-primary">
 
             </div>
+            <ToastContainer />
         </div>
     )
 }

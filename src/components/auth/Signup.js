@@ -98,12 +98,12 @@ const Signup = (props) => {
         Pool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
-                toast.error(`Error creating your account`, {
+                toast.error(`Error creating your account. Please try again.`, {
                     position: 'bottom-right',
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: true
-                  }) //TEST
+                  }) 
                 } else {
                     console.log(data)
             }
@@ -154,7 +154,12 @@ const Signup = (props) => {
         Pool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
-
+                toast.error(`Error creating your account. Please try again.`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                  }) 
             } else {
                 console.log(data)
             }
@@ -301,14 +306,20 @@ const VerifyEmail = (props) => {
         cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
             if (err) {
                 console.error(err)
-                toast.error(`Error verifying`, {
+                toast.error(`Error confirming your email.`, {
                     position: 'bottom-right',
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: true
-                  }) //TEST
+                  }) 
             } else {
                 console.log(result)
+                toast.success(`Your account has been created! Now just login.`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                  }) 
                 props.afterSignup()
                 toast.success(`Successfully verified`, {
                     position: 'bottom-right',
@@ -341,7 +352,6 @@ const VerifyEmail = (props) => {
             )}
             <ToastContainer />
         </div>
-
     )
 }
 
