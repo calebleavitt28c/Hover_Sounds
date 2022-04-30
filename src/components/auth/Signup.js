@@ -216,7 +216,7 @@ const Signup = (props) => {
                             placeholder="phone"
                             type='tel'
                             value={phone}
-                            onChange={(event) => setPhone( event.target.value)}
+                            onChange={(event) => setPhone(event.target.value)}
                             pattern="^[0-9]{10}$" 
                             title="Required format: 0123456789 Don't include parenthesis or dashes in your phone number"
                         ></input>
