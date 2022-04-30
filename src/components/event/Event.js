@@ -62,11 +62,12 @@ const Event = (props) => {
     if (dataLoaded) {
       return(
         <div className='flex gap-4 p-4 h-[80%] dark:bg-darkgray dark:text-lightgray ease-in duration-300'>
-          <div className="border-r w-3/12 ease-in duration-300">
+          <div className="flex flex-col border-r w-3/12 ease-in duration-300">
             <EventHome date={date} time={event.time} />
             <ArtistHome name={artist.name} artistId={artistId} spotifyId={artist.spotifyId} fanId={userId} userType={userType} event={true} />
             <VenueHome name={venue.name} venueId={venueId} fanId={userId} userType={userType} event={true} />
-            <AboutVenue venue={venue} />
+            <AboutVenue venue={venue} words={false} />
+            <a href={`https://seatgeek.com/`} target="_blank" rel="noreferrer"  className="bg-primary hover:bg-secondary text-white text-center font-bold py-2 px-4 mt-6 mx-2 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Buy Tickets</a>
           </div>
           <div className="border-black w-[50%] dark:border-primary ease-in duration-300">
             <PostContainer />

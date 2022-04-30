@@ -33,9 +33,15 @@ class AboutVenue extends React.Component {
               />
           </Map>
         )}
-        <div className='bg-lightgray dark:bg-darkgray dark:shadow-sm dark:shadow-gray rounded-xl p-2 my-4 h-full shadow-lg'>
-          <p className='block mt-2 px-2 overflow-scroll scrollbar-none text-xs uppercase tracking-widest'>{bio}</p>
-        </div>
+        { this.props.words ? (
+          <div className='bg-lightgray dark:bg-darkgray dark:shadow-sm dark:shadow-gray rounded-xl p-2 my-4 h-full shadow-lg'>
+            <p className='block mt-2 px-2 overflow-scroll scrollbar-none text-xs uppercase tracking-widest'>{bio}</p>
+          </div>
+        )
+        :
+        (
+          <div />
+        )}
       </div>
       )
   }

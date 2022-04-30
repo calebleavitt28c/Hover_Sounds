@@ -111,7 +111,7 @@ class VenueHome extends React.Component {
         )
         :
         (<div></div>)}
-          <ToastContainer toastStyle={{  }}/>
+          <ToastContainer />
         </div>
       </div>
     );

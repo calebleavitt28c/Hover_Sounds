@@ -44,7 +44,7 @@ const Venue = (props) => {
         <div className='flex gap-4 p-4 h-[80%] dark:bg-darkgray dark:text-lightgray ease-in duration-300'>
           <div id="" className="border-r w-3/12 ease-in duration-300">
             <VenueHome name={venue.name} venueId={venueId} fanId={userId} userType={userType} />
-            <AboutVenue venue={venue} />
+            <AboutVenue venue={venue} words={true} />
           </div>
           <div className="border-black w-[50%] dark:border-primary ease-in duration-300">
             <PostContainer />
