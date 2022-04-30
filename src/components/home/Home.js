@@ -33,7 +33,7 @@ class Home extends React.Component {
       axios.get('https://api.hoveringrecords.com/hover/events')
         .then(response => {
           let data = response.data.Items
-          data.sort((a, b) => (a.date > b.date) ? 1 : -1)
+          data.sort((a, b) => new Date(a.date) - new Date(b.date))
           this.setState({ events: data })
         })
   }
@@ -45,15 +45,13 @@ class Home extends React.Component {
           {/* top artists, events, venues */}
           <TopContainer topArtists={this.state.topArtists} topVenues={this.state.topVenues} />
         </div>
-        <div className="w-[5%]"></div>
-        <div className="border-black w-[40%] dark:border-lightgray">
+        <div className="border-black w-[50%] dark:border-lightgray">
           {/* POSTS */}
           <PostContainer />
         </div>
-        <div className="w-[5%]"></div>
         <div id="eventTable" className="border-l w-4/12 border-black dark:border-lightgray">
           {/* EVENTS */}
-          <EventTable events={this.state.events} h={'h-[33.1rem]'} page={'Home'} />
+          <EventTable events={this.state.events} page={'Home'} />
         </div>
       </div>
     );

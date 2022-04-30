@@ -127,7 +127,7 @@ const Profile = (props) => {
                                 <Link to={`/store/${artistAttributes.id}`} className="col-span-2 py-2 px-4 bg-primary hover:bg-secondary text-center text-white font-bold rounded focus:outline-none focus:shadow-outline ease-in duration-300">Edit Your Store</Link>
                             )}
                             {(userType === 'artists' || userType === 'venues') && (
-                                <Link to={`/events/${userType.slice(0, -1)}/${userId}`} className="bg-primary col-span-2 text-center hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Edit Your Events</Link>
+                                <Link to={`/events/edit`} className="bg-primary col-span-2 text-center hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Edit Your Events</Link>
                             )}
                         </div>
                     </div>

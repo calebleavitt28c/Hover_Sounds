@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 
 import Pool from '../auth/UserPool'
 
@@ -21,8 +22,6 @@ class VenueHome extends React.Component {
     let venueFavoriteBtn = document.getElementById('venueFavoriteBtn')
 
     if (this.state.favorited) {
-      venueFavoriteBtn.innerHTML = this.openHeart
-      venueFavoriteBtn.classList.remove('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'venues',
         id: venueId,
@@ -30,14 +29,22 @@ class VenueHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-
+        venueFavoriteBtn.innerHTML = this.openHeart
+        venueFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
       })
+      .catch(err => {
+        console.error(err)
+        toast.error('Error unfavoriting.', {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
+      })
     }
     else {
-      venueFavoriteBtn.innerHTML = this.closedHeart
-      venueFavoriteBtn.classList.add('filled')
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'venues',
         id: venueId,
@@ -45,9 +52,19 @@ class VenueHome extends React.Component {
         dir: '+'
       })
       .then(response => {
-
+        venueFavoriteBtn.innerHTML = this.closedHeart
+        venueFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
+      })
+      .catch(err => {
+        console.error(err)
+        toast.error('Error favoriting.', {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
       })
     }
   }
@@ -94,7 +111,7 @@ class VenueHome extends React.Component {
         )
         :
         (<div></div>)}
-          
+          <ToastContainer toastStyle={{  }}/>
         </div>
       </div>
     );

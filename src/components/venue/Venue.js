@@ -11,7 +11,7 @@ const Venue = (props) => {
   const { userId, userType } = props
 
   const [venue, setVenue] = useState({})
-  const [posts, setPosts] = useState([])
+  //const [posts, setPosts] = useState([])
   const [events, setEvents] = useState([])
   const [dataLoaded, setLoaded] = useState(false)
 
@@ -36,7 +36,7 @@ const Venue = (props) => {
         )
         
       
-  }, [])
+  }, [venueId])
 
   const content = (dataLoaded) => {
     if (dataLoaded) {
@@ -46,11 +46,9 @@ const Venue = (props) => {
             <VenueHome name={venue.name} venueId={venueId} fanId={userId} userType={userType} />
             <AboutVenue venue={venue} />
           </div>
-          <div className="w-[5%]" />
-          <div className="border-black w-[40%] dark:border-primary ease-in duration-300">
+          <div className="border-black w-[50%] dark:border-primary ease-in duration-300">
             <PostContainer />
           </div>
-          <div className="w-[5%]" />
           <div id="eventTable" className="border-l w-4/12 ease-in duration-300">
             <EventTable events={events} page={'Venue'} />
           </div>

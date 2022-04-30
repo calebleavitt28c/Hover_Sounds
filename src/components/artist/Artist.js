@@ -40,12 +40,10 @@ const Artist = (props) => {
         <ArtistHome name={artist.name} artistId={artistId} fanId={userId} userType={userType} spotifyId={artist.spotifyId} />
         <ArtistMerchContainer artistId={artistId}/>
       </div>
-      <div className="w-[5%]"></div>
-      <div className="border-black w-[40%] dark:border-primary ease-in duration-300">
+      <div className="border-black w-[50%] dark:border-primary ease-in duration-300">
         {/* POSTS */}
         <PostContainer />
       </div>
-      <div className="w-[5%]"></div>
       <div id="eventTable" className="flex flex-col border-l w-4/12 ease-in duration-300">
         {/* EVENTS */}
         <ArtistEventTable events={events} page={'Artist'} />
