@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PayPal from './PayPal'
 
 const Checkout = (props) => {
-    const { cart, clearCart } = props
+    const { cart } = props
     const [order, setOrder] = useState({})
     const [checkout, setCheckout] = useState(false)
 
+    useEffect(() => {
+        if (cart.item_total === 0) {
+            setCheckout(false)
+        }
+    }, [cart.item_total])
+
     const createOrder = () => {
         if (cart.item_total === 0) {
-            alert("Your cart is empty")
+            alert("Your cart is empty") //turn this into a toast notification
             return
         }
         setOrder(
@@ -28,7 +34,7 @@ const Checkout = (props) => {
 
     return (
         <div>
-            {checkout ? 
+            {checkout  ? 
             (<PayPal order={order} hidePayPal={hidePayPal}/>) : 
             ( 
                 <button className="w-full r bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
