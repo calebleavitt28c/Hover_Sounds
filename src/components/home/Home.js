@@ -21,18 +21,21 @@ class Home extends React.Component {
       axios.get('https://api.hoveringrecords.com/hover/artists')
         .then(response => {
           let data = response.data.Items
+          localStorage.setItem('artists', JSON.stringify(data))
           data.sort((a, b) => (a.favorites < b.favorites) ? 1 : -1)
           this.setState({ topArtists: data.slice(0, 50) })
         })
       axios.get('https://api.hoveringrecords.com/hover/venues')
         .then(response => {
           let data = response.data.Items
+          localStorage.setItem('venues', JSON.stringify(data))
           data.sort((a, b) => (a.favorites < b.favorites) ? 1 : -1)
           this.setState({ topVenues: data.slice(0, 50) })
         })
       axios.get('https://api.hoveringrecords.com/hover/events')
         .then(response => {
           let data = response.data.Items
+          localStorage.setItem('events', JSON.stringify(data))
           data.sort((a, b) => new Date(a.date) - new Date(b.date))
           this.setState({ events: data })
         })

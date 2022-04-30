@@ -23,8 +23,7 @@ const AuthPage = () => {
     }
 
     return (
-        <div className='grid grid-cols-11 pt-4'>
-            <div className="col-span-4"></div>
+        <div className='flex flex-col place-items-center h-full mt-auto'>
             {!loggedIn && (
                 <div className="col-span-3">
                     <label id="switch" className="grid grid-cols-11 p-2 uppercase tracking-wide text-gray text-center text-xs font-bold mb-2">
@@ -37,7 +36,7 @@ const AuthPage = () => {
                             onChange={(event) => setStage(stage === 1 ? 2 : 1)}
                         />
                         <div className="col-span-4"></div>
-                        <span id="slider" className="col-span-1 mt-2 w-8 h-5 flex items-center flex-shrink-0 p-1 bg-lightgray rounded-full after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md peer-checked:bg-secondary ease-in-out duration-300 after:duration-300 peer-checked:after:translate-x-2"></span>
+                        <span id="slider" className="col-span-1 mt-2 w-8 h-5 flex items-center flex-shrink-0 p-1 bg-lightgray rounded-full after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md peer-checked:bg-secondary dark:peer-checked:bg-primary ease-in-out duration-300 after:duration-300 peer-checked:after:translate-x-2"></span>
                         <div className="col-span-5"></div>
                     </label>
                     {stage === 1 && (
@@ -62,7 +61,6 @@ const AuthPage = () => {
                     )}
                 </div>
             )}
-            <div className="col-span-4"></div>
         </div>
     )
 }

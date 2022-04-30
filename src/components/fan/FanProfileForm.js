@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import axios from 'axios'
+import { ToastContainer, toast } from "react-toastify"
 
 const FanProfileForm = (props) => {
     const { fanAttributes } = props
@@ -18,10 +19,16 @@ const FanProfileForm = (props) => {
             email: fanAttributes.email,
             phone: phone,
             birthdate: birthdate,
-            favArtists: fanAttributes.favArtists
+            favArtists: { SS: fanAttributes.favArtists },
+            favVenues: { SS: fanAttributes.favVenues }
         })
         .then(response => {
-            console.log(response)
+            toast.success(`Account Updated`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+              })
         })
         .catch((error) => {
             if (error.response) {
@@ -34,7 +41,12 @@ const FanProfileForm = (props) => {
                 console.log('Error', error.message);
             }
             console.log(error.config);
-            alert("An error occurred editing your profile: " + error.message)
+            toast.error(`Error updating your profile`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+              })
         })
     }
 
@@ -85,6 +97,7 @@ const FanProfileForm = (props) => {
                     <div className="col-span-1"></div>
                 </div>
             </form>
+            <ToastContainer />
        </div>
    )
 }

@@ -1,6 +1,7 @@
 import React, { useState, useContext, } from "react"
 import { AccountContext } from "./Account"
 import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify"
 
 const Login = () => {
     let navigate = useNavigate()
@@ -22,6 +23,12 @@ const Login = () => {
                 setScsMsg(data.message) //TEST
                 setErrMsg('')
                 navigate('/')
+                toast.success(`Successful Login`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                  })
             })
             .catch(err => {
                 console.error("Failed to login", err)
@@ -58,6 +65,7 @@ const Login = () => {
             {errMsg && (
                 <div>{errMsg}</div>
             )}
+            <ToastContainer />
         </div>
     )
 }

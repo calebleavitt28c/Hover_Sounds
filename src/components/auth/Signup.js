@@ -286,8 +286,6 @@ const Signup = (props) => {
 }
 
 const VerifyEmail = (props) => {
-    let navigate = useNavigate()
-
     const [showHideConfirm, setShowHideConfirm] = useState(true)
 
     const [verificationCode, setVerificationCode] = useState('')
@@ -303,10 +301,21 @@ const VerifyEmail = (props) => {
         cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
             if (err) {
                 console.error(err)
-
+                toast.error(`Error verifying`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                  }) //TEST
             } else {
                 console.log(result)
                 props.afterSignup()
+                toast.success(`Successfully verified`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                  }) //TEST
             }
         })
     }
@@ -330,6 +339,7 @@ const VerifyEmail = (props) => {
                     </form>
                 </div>
             )}
+            <ToastContainer />
         </div>
 
     )
