@@ -76,7 +76,7 @@ const Signup = (props) => {
         }
         var dataPhone = {
             Name: 'phone_number',
-            Value: '+'+phone.replace(/\s+/g, ''),
+            Value: '+1'+phone.replace(/\s+/g, ''),
         }
         var dataBirthdate = {
             Name: 'birthdate',
@@ -218,7 +218,7 @@ const Signup = (props) => {
                             name="phone"
                             placeholder="phone"
                             value={phone}
-                            onChange={(event) => setPhone( event.target.value)}
+                            onChange={(event) => setPhone(event.target.value)}
                             pattern="^[0-9]{10}$" 
                             title="Required format: 0123456789 Don't include parenthesis or dashes in your phone number"
                         ></input>
