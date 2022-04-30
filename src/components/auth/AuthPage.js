@@ -18,6 +18,10 @@ const AuthPage = () => {
             })
     })
 
+    const afterSignup = ()  => {
+        setStage(2)
+    }
+
     return (
         <div className='grid grid-cols-11 pt-4'>
             <div className="col-span-4"></div>
@@ -38,7 +42,7 @@ const AuthPage = () => {
                     </label>
                     {stage === 1 && (
                         <div>
-                            <Signup />
+                            <Signup afterSignup={afterSignup}/>
                         </div>
                     )}
                     {stage === 2 && (

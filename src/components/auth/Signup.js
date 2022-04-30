@@ -3,6 +3,7 @@ import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
 import React, { useState } from "react"
 import Pool from "./UserPool"
 import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify'
 
 //TODO: look up what a useState hook is 
 const Signup = (props) => {
@@ -18,9 +19,6 @@ const Signup = (props) => {
     const [phone, setPhone] = useState('')
     const [birthdate, setBirthdate] = useState('')
     const [password, setPassword] = useState('')
-
-    const [errMsg, setErrMsg] = useState('')
-    const [scsMsg, setScsMsg] = useState('')
 
     const hideComponent = (name) => {
         switch (name) {
@@ -76,7 +74,7 @@ const Signup = (props) => {
         }
         var dataPhone = {
             Name: 'phone_number',
-            Value: '+'+phone.replace(/\s+/g, ''),
+            Value: '+1'+phone.replace(/\s+/g, ''),
         }
         var dataBirthdate = {
             Name: 'birthdate',
@@ -100,12 +98,14 @@ const Signup = (props) => {
         Pool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
-                setErrMsg(err.message) //TEST
-                setScsMsg('')
-            } else {
-                console.log(data)
-                setScsMsg(data.message) //TEST
-                setErrMsg('')
+                toast.error(`Error creating your account`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                  }) //TEST
+                } else {
+                    console.log(data)
             }
         })
 
@@ -154,12 +154,9 @@ const Signup = (props) => {
         Pool.signUp(email, password, attributeList, null, (err, data) => {
             if (err) {
                 console.error(err)
-                setErrMsg(err.message) //TEST
-                setScsMsg('')
+
             } else {
                 console.log(data)
-                setScsMsg(data.message) //TEST
-                setErrMsg('')
             }
         })
 
@@ -217,6 +214,7 @@ const Signup = (props) => {
                             className="appearance-none col-span-2 block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             name="phone"
                             placeholder="phone"
+                            type='tel'
                             value={phone}
                             onChange={(event) => setPhone( event.target.value)}
                             pattern="^[0-9]{10}$" 
@@ -280,14 +278,9 @@ const Signup = (props) => {
                     </form>
                 )}
                 {showHideConfirm && (
-                    <VerifyEmail username={email} />
+                    <VerifyEmail username={email} afterSignup={props.afterSignup}/>
                 )}
-                {scsMsg && (
-                    <div>{scsMsg}</div>
-                )}
-                {errMsg && (
-                    <div>{errMsg}</div>
-                )}
+                <ToastContainer /> 
         </div>
     )
 }
@@ -298,13 +291,6 @@ const VerifyEmail = (props) => {
     const [showHideConfirm, setShowHideConfirm] = useState(true)
 
     const [verificationCode, setVerificationCode] = useState('')
-
-    const [errMsg, setErrMsg] = useState('')
-    const [scsMsg, setScsMsg] = useState('')
-
-    const hideVerifyEmail = () => {
-        setShowHideConfirm(!showHideConfirm)
-    }
 
     const confirmUser = (event) => {
         event.preventDefault()
@@ -317,17 +303,12 @@ const VerifyEmail = (props) => {
         cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
             if (err) {
                 console.error(err)
-                setErrMsg(err.message) //TEST
-                setScsMsg('')
+
             } else {
                 console.log(result)
-                setScsMsg(result.message) //TEST
-                setErrMsg('')
+                props.afterSignup()
             }
         })
-        
-        hideVerifyEmail()
-        navigate('/')
     }
 
 
@@ -347,15 +328,10 @@ const VerifyEmail = (props) => {
 
                         <button type='submit' className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Verify Email</button>
                     </form>
-                    {scsMsg && (
-                        <div>{scsMsg}</div>
-                    )}
-                    {errMsg && (
-                        <div>{errMsg}</div>
-                    )}
                 </div>
             )}
         </div>
+
     )
 }
 
