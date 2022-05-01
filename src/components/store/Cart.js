@@ -16,7 +16,7 @@ const Cart = (props) => {
 
     return (
         <div className="">
-            <h1 className="bg-primary text-center p-2 rounded-b-md" ><strong>
+            <h1 className="bg-primary text-center p-2" ><strong>
                 Cart
                 </strong></h1>
             <div>{cartItems.length === 0 && <div className='text-center'>Cart Is Empty</div>}</div>

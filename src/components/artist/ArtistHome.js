@@ -96,6 +96,12 @@ class ArtistHome extends React.Component {
         artistFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
+        toast.info(`Unfavorited ${this.props.name}`, {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
       })
       .catch(err => {
         console.error(err)
@@ -119,6 +125,12 @@ class ArtistHome extends React.Component {
         artistFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
+        toast.info(`Favorited ${this.props.name}`, {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
       })
       .catch(err => {
         console.error(err)
