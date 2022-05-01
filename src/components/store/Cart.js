@@ -29,7 +29,7 @@ const Cart = (props) => {
                                 onClick={() => onAdd(item)} id='add'
                             >+</button>
                         </div>
-                        <div className="col-span-1 content-center">
+                        <div className="col-span-1">
                             <button className="bg-red rounded-full text-white font-bold item-center py-2 px-4"
                                 onClick={() => onRemove(item)} id='remove'
                             >-</button>

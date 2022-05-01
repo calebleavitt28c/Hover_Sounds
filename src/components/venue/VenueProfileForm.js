@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
-
 import geocoder from 'google-geocoder'
+import { ToastContainer, toast } from "react-toastify"
 
 let geo = geocoder({
     key: 'AIzaSyBAx1Dk5NOMiAPeYbK0GtJlx4RA3uem40U'
@@ -43,6 +43,12 @@ const VenueProfileForm = (props ) => {
             })
             .then(response => {
                 console.log(response)
+                toast.success(`Profile updated successfully`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
             })
             .catch((error) => {
                 if (error.response) {
@@ -55,7 +61,12 @@ const VenueProfileForm = (props ) => {
                     console.log('Error', error.message);
                 }
                 console.log(error.config);
-                alert("An error occurred editing your profile: " + error.message)
+                toast.error(`Error updating your profile`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
             })
         })
     }
@@ -145,6 +156,7 @@ const VenueProfileForm = (props ) => {
                 <div />
                 <button type="submit"  className="bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Update Profile</button>
            </form>
+           <ToastContainer />
        </div>
    )
 }

@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js'
 import { AccountContext } from './Account'
+import { ToastContainer, toast } from 'react-toastify';
 
 const ChangeEmail = (props) => {
     const [newEmail, setNewEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const [errMsg, setErrMsg] = useState('')
-    const [scsMsg, setScsMsg] = useState('')
 
     const { getSession, authenticate  } = useContext(AccountContext)
 
@@ -23,12 +21,20 @@ const ChangeEmail = (props) => {
                 user.updateAttributes(attributes, (err, results) => {
                     if (err) {
                         console.log(err)
-                        setErrMsg(err.message) //TEST
-                        setScsMsg('')
+                        toast.error(`There was an error changing your email`, {
+                            position: 'bottom-right',
+                            closeOnClick: true,
+                            pauseOnHover: false,
+                            draggable: true
+                        })
                     } else {
                         console.log(results)
-                        setScsMsg(results.message) //TEST
-                        setErrMsg('')
+                        toast.success(`Email successfully changed`, {
+                            position: 'bottom-right',
+                            closeOnClick: true,
+                            pauseOnHover: false,
+                            draggable: true
+                        })
                     }
                 })
             })
@@ -64,12 +70,7 @@ const ChangeEmail = (props) => {
                     <div className="col-span-1"></div>
                 </div>
             </form>
-            {scsMsg && (
-                <div>{scsMsg}</div>
-            )}
-            {errMsg && (
-                <div>{errMsg}</div>
-            )}
+            <ToastContainer />
         </div>
     )
 }

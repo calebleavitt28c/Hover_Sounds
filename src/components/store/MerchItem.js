@@ -14,7 +14,7 @@ const MerchItem = (props) => {
             <p className=''>{item.stock} in stock</p>
           </div>
         </div>
-        <div className="w-2/3 h-48">
+        <div className="w-auto h-48 ">
           <img className="h-48 rounded-2xl"
             src={item.image} alt={item.name} />
         </div>

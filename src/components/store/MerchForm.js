@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
 
 const MerchForm = (props) => {
 
@@ -22,7 +23,13 @@ const MerchForm = (props) => {
         })
         .then(response => {
             console.log(response)
-            props.hideComponent('showMerchForm') //takes you back to the store
+            toast.success(`Item successfully added to your store`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+            })
+            props.hideComponent('showMerchForm') 
         })
         .catch((error) => {
             if (error.response) {
@@ -35,7 +42,12 @@ const MerchForm = (props) => {
                 console.log('Error', error.message);
             }
             console.log(error.config);
-            alert("An error occurred adding your merch: " + error.message)
+            toast.error(`An error occurred adding your merch. Check your input.`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+            })
         })
     }
 
@@ -91,6 +103,7 @@ const MerchForm = (props) => {
                     type="submit"
                 >Create Merch</button>
            </form>
+           <ToastContainer />
        </div>
    )
 }

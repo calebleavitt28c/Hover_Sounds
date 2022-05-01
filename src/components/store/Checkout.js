@@ -13,14 +13,14 @@ const Checkout = (props) => {
         }
     }, [cart.item_total])
 
-    const createOrder = () => {
+    const createOrder = (event) => {
         if (cart.item_total === 0) {
-            toast.error(`Your cart is empty`, { //why are two notifications created???????
+            toast.info(`Your cart is empty`, {
                 position: 'bottom-right',
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: true
-              })
+            })
             return
         }
         setOrder(
@@ -44,7 +44,7 @@ const Checkout = (props) => {
             (<PayPal order={order} hidePayPal={hidePayPal}/>) : 
             ( 
                 <button className="w-full r bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
-                    onClick={() => {createOrder()}}>Checkout
+                    onClick={(event) => {createOrder()}}>Checkout
                 </button> 
             )}
             <ToastContainer />

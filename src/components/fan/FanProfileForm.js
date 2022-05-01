@@ -23,12 +23,13 @@ const FanProfileForm = (props) => {
             favVenues: { SS: fanAttributes.favVenues }
         })
         .then(response => {
-            toast.success(`Account Updated`, {
+            console.log(response)
+            toast.success(`Profile updated successfully`, {
                 position: 'bottom-right',
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: true
-              })
+            })
         })
         .catch((error) => {
             if (error.response) {
@@ -46,7 +47,7 @@ const FanProfileForm = (props) => {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: true
-              })
+            })
         })
     }
 

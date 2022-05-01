@@ -15,7 +15,7 @@ const EditMerch = (props) => {
         axios.delete(`https://api.hoveringrecords.com/hover/store/${artistId}/${item.id}`)
         .then(response => {
             console.log(response)
-            toast.error(`Item has been deleted`, {
+            toast.success(`Item has been deleted`, {
                 position: 'bottom-right',
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -33,7 +33,7 @@ const EditMerch = (props) => {
                 console.log('Error', error.message);
             }
             console.log(error.config);
-            toast.error(error.message, {
+            toast.error(`There was an error deleting your item from the store`, {
                 position: 'bottom-right',
                 closeOnClick: true,
                 pauseOnHover: false,

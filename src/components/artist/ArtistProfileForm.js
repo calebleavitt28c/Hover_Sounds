@@ -3,7 +3,6 @@ import axios from "axios"
 import Cookies from 'js-cookie'
 import { ToastContainer, toast } from 'react-toastify'
 
-
 const ArtistProfileForm = (props) => {
     const { artistAttributes } = props
 
@@ -27,6 +26,12 @@ const ArtistProfileForm = (props) => {
         })
         .then(response => {
             console.log(response)
+            toast.success(`Profile updated successfully`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+            })
         })
         .catch((error) => {
             if (error.response) {
@@ -39,7 +44,12 @@ const ArtistProfileForm = (props) => {
                 console.log('Error', error.message);
             }
             console.log(error.config);
-            alert("An error occurred editing your profile: " + error.message)
+            toast.error(`Error updating your profile`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+            })
         })
     }
 

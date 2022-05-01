@@ -1,12 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { AccountContext } from './Account'
+import { ToastContainer, toast } from 'react-toastify';
 
 const ChangePassword = (props) => {
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
-
-    const [errMsg, setErrMsg] = useState('')
-    const [scsMsg, setScsMsg] = useState('')
 
     const { getSession } = useContext(AccountContext)
 
@@ -17,12 +15,20 @@ const ChangePassword = (props) => {
             user.changePassword(password, newPassword, (err, result) => {
                 if (err) {
                     console.log(err)
-                    setErrMsg(err.message) //TEST
-                    setScsMsg('')
+                    toast.error(`There was an error changing your password`, {
+                        position: 'bottom-right',
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true
+                    })
                 } else {
                     console.log(result)
-                    setScsMsg(result.message) //TEST
-                    setErrMsg('')
+                    toast.success(`Password successfully changed`, {
+                        position: 'bottom-right',
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true
+                    })
                 }
             })
         })
@@ -57,12 +63,7 @@ const ChangePassword = (props) => {
                     <div className="col-span-1"></div>
                 </div>
             </form>
-            {scsMsg && (
-                <div>{scsMsg}</div>
-            )}
-            {errMsg && (
-                <div>{errMsg}</div>
-            )}
+            <ToastContainer />
         </div>
     )
 }

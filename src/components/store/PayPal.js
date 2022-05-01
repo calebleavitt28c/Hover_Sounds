@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
 
 const PayPal = (props) => {
     const { order, hidePayPal } = props
@@ -29,7 +30,12 @@ const PayPal = (props) => {
             onError: (err) => {
                 console.log("Error in bringing up PayPal")
                 console.log(err)
-                alert("Hover Sounds is ready but PayPal had an error: " + err.message)
+                toast.error(`Hover Sounds is ready but PayPal had an error. Please try again.`, { 
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
             }
         }).render(paypal.current)
     }, [])
@@ -37,6 +43,7 @@ const PayPal = (props) => {
     return (
         <div>
             <div ref={paypal}></div>
+            <ToastContainer />
         </div>
     )
 }

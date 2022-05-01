@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AccountContext } from './Account'
+import { ToastContainer, toast } from 'react-toastify';
 
 const DeleteAccount = (props) => {
     let navigate = useNavigate()
@@ -12,10 +13,20 @@ const DeleteAccount = (props) => {
             user.deleteUser((err, result) => {
                 if (err) {
                     console.log(err)
-                    alert(err.message || JSON.stringify(err))
+                    toast.error(`There was an error deleting your account`, {
+                        position: 'bottom-right',
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true
+                    })
                 } else {
                     console.log(result)
-                    alert('User Deleted ' + JSON.stringify(result))
+                    toast.success(`Account successfully deleted`, {
+                        position: 'bottom-right',
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true
+                    })
                     navigate('/home')
                 }
             })
@@ -41,6 +52,7 @@ const DeleteAccount = (props) => {
                 >Yes</button>
                 <div className='col-span-2'></div>
             </div>
+            <ToastContainer />
         </div>
     )
 }

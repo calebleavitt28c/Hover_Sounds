@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CognitoUser } from 'amazon-cognito-identity-js'
 import Pool from "./UserPool"
+import { ToastContainer, toast } from 'react-toastify';
 
 const ForgotPassword = () => {
     const [stage, setStage] = useState(1) //1 = email stage, 2 = code stage
@@ -8,10 +9,6 @@ const ForgotPassword = () => {
     const [code, setCode] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-
-    const [errMsg, setErrMsg] = useState('')
-    const [scsMsg, setScsMsg] = useState('')
-    const [infoMsg, setInfoMsg] = useState('')
 
     const getUser = () => {
         return new CognitoUser({
@@ -26,23 +23,32 @@ const ForgotPassword = () => {
         getUser().forgotPassword({
             onSuccess: data => {
                 console.log('Success: ', data)
-                setScsMsg(data.message)
-                setErrMsg('')
-                setInfoMsg('')
+                toast.success(`${data.message}`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
             },
             onFailure: err => {
                 console.error('Failure: ', err)
-                setErrMsg(err.message)
-                setScsMsg('')
-                setInfoMsg('')
-
+                toast.error(`${err.message}`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
             },
             inputVerificationCode: data => {
                 console.log('Input code: ', data)
+                toast.info(`${data.message}`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
                 setStage(2)
-                setInfoMsg(data.message)
-                setScsMsg('')
-                setErrMsg('')
+
             }
         })
     }
@@ -52,24 +58,33 @@ const ForgotPassword = () => {
 
         if (password !== confirmPassword) {
             console.error('Passwords do not match')
-            setErrMsg('Passwords do not match')
-            setScsMsg('')
-            setInfoMsg('')
+            toast.error(`Passwords do not match`, {
+                position: 'bottom-right',
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true
+            })
             return
         }
 
         getUser().confirmPassword(code, password, {
             onSuccess: data => {
                 console.log('onSuccess: ', data)
-                setScsMsg(data.message)
-                setErrMsg('')
-                setInfoMsg('')
+                toast.success(`Your password was successfully changed`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
             },
             onFailure: err => {
                 console.error('onFailure: ', err)
-                setErrMsg(err.message)
-                setScsMsg('')
-                setInfoMsg('')
+                toast.error(`There was an error changing your password`, {
+                    position: 'bottom-right',
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true
+                })
             }
         })
     }
@@ -108,15 +123,7 @@ const ForgotPassword = () => {
                     <div className="col-span-1"></div>
                 </form>
             )}
-            {scsMsg && (
-                <div>{scsMsg}</div>
-            )}
-            {errMsg && (
-                <div>{errMsg}</div>
-            )}
-            {infoMsg && (
-                <div>{infoMsg}</div>
-            )}
+            <ToastContainer />
         </div>
     )
 }
