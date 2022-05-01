@@ -44,8 +44,11 @@ const EditMerch = (props) => {
 
     return (
         <div>
-            <button onClick={(event) => BackToStore('showMerchForm')}>Back Arrow</button><br></br>
-            <div>Manage the items in your Store</div>
+            <button 
+                className="bg-gray col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
+                onClick={(event) => BackToStore('showEditMerch')}
+            >◄ Back</button><br></br>
+            <div className="block text-center uppercase tracking-wide text-gray text-xs font-bold mb-2" >Manage the items in your Store</div>
             <div className="col-span-3 border-2 border-black dark:border-primary">
                 <MerchTable 
                     items={items}

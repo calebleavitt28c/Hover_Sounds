@@ -118,9 +118,12 @@ const Store = (props) => {
                     </div>
                 </div>
             )}
-            <div>
+            <div className="flex flex-col place-items-center h-full mt-auto">
                 {showMerchForm && (
-                    <MerchForm userId={userId} hideComponent={hideComponent}/>
+                    <MerchForm 
+                        userId={userId} 
+                        hideComponent={hideComponent}
+                    />
                 )}
                 {showEditMerch && (
                     <EditMerch 

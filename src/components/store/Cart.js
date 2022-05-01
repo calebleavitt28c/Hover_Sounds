@@ -15,7 +15,7 @@ const Cart = (props) => {
     }
 
     return (
-        <div className="">
+        <div className="scrollbar-thin scrollbar-thumb-primary scrollbar-track-lightgray max-h-[35rem]">
             <h1 className="bg-primary text-center p-2" ><strong>
                 Cart
                 </strong></h1>
