@@ -77,12 +77,14 @@ const VenueProfileForm = (props ) => {
 
    return (
        <div className="flex flex-col place-items-center">
-           <div className="grid grid-cols-5">            
-                <button className='dark:text-lightgray mr-12' onClick={(event) => BackToProfile()}>◄ Back</button>
-                <label className="col-span-3 block text-center uppercase tracking-wide text-gray text-xs font-bold mb-2">
-                    Venue Profile
-                </label>
-            </div>
+           <div className="grid sm:text-xxs sm:grid-cols-1 md:grid-cols-3 lg:text-sm lg:grid-cols-4 w-1/3">            
+                <button className="bg-gray col-span-1 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"  
+                    onClick={(event) => BackToProfile()}
+                >◄ Back</button>
+            </div><br></br>
+            <label className="col-span-3 block text-center uppercase tracking-wide text-gray text-xs font-bold mb-2">
+                Venue Profile
+            </label>
            <form onSubmit={updateVenue} className="grid grid-cols-4 gap-2 w-1/3">
                 <input
                     name="name"
