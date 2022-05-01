@@ -7,6 +7,7 @@ import { Account } from "./components/auth/Account"
 import HoverSounds from './components/HoverSounds';
 
 function App() {
+  
   return (
     <Account>
       <HoverSounds />

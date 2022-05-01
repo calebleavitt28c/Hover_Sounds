@@ -21,11 +21,10 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    getSession()
-      .then(session => {
-        Cookies.set('userId', session.sub)
-        Cookies.set('userType', session.profile)
-      })
+    getSession(session => {
+      Cookies.set('userId', session.sub)
+      Cookies.set('userType', session.profile)
+    })
     axios.get('https://api.hoveringrecords.com/hover/artists')
       .then(response => {
         let data = response.data.Items

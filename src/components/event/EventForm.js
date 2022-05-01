@@ -36,6 +36,15 @@ const EventForm = (props) => {
                     pauseOnHover: false,
                     draggable: true
                   })
+                props.handleSubmit({
+                    id,
+                    artist,
+                    artistId,
+                    venue,
+                    venueId,
+                    date: eventDate,
+                    time: eventTime
+                })
             })
             .catch((error) => {
                 if (error.response) {
@@ -83,10 +92,10 @@ const EventForm = (props) => {
             setVenueId(userId)
         }
         setSelected(props.selected)
-        setArtist(selected.artist)
-        setVenue(selected.venue)
-        setEventDate(selected.date)
-        setEventTime(selected.time)
+        setArtist(props.selected.artist)
+        setVenue(props.selected.venue)
+        setEventDate(props.selected.date)
+        setEventTime(props.selected.time)
     }, [props.selected, userType, userId])
     
    return (

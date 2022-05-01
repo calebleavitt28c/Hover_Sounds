@@ -151,7 +151,8 @@ class ArtistHome extends React.Component {
       let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
   
       artistFavoriteBtn.innerHTML = this.openHeart
-  
+      
+      //axios.get(`${Cookies.get('userId')}`)
       getSession()
         .then(session => {
           axios.get(`https://api.hoveringrecords.com/hover/fans/${session.sub}`)

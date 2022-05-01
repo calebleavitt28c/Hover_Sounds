@@ -14,6 +14,8 @@ import Store from './store/Store'
 import Spotify from './spotify/Spotify'
 import Callback from './spotify/Callback'
 
+import Cookies from 'js-cookie'
+
 function HoverSounds() {
 
     const [status, setStatus] = useState(false)
@@ -29,6 +31,8 @@ function HoverSounds() {
                 setStatus(true)
                 setUserType(session.accessToken.payload['cognito:groups'][0])
                 setUserId(session.sub)
+                Cookies.set('userId', session.sub)
+                Cookies.set('userType', session.profile)
             }, reason => {
                 setStatus(false)
                 console.log("User not logged in. " + reason)
