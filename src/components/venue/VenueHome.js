@@ -33,6 +33,12 @@ class VenueHome extends React.Component {
         venueFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
+        toast.info(`Unfavorited ${this.props.name}`, {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
       })
       .catch(err => {
         console.error(err)
@@ -56,6 +62,12 @@ class VenueHome extends React.Component {
         venueFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
+        toast.error('Error unfavoriting.', {
+          position: 'bottom-right',
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true
+        })
       })
       .catch(err => {
         console.error(err)

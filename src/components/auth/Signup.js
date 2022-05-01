@@ -336,16 +336,18 @@ const VerifyEmail = (props) => {
         <div>
             {showHideConfirm && (
                 <div>
-                    <form onSubmit={confirmUser}>
-                        <label name='fromTitle' className="block uppercase tracking-wide text-gray text-xs font-bold mb-2">Verify Email</label><br></br>
+                    <form onSubmit={confirmUser} className='grid grid-cols-3 gap-2'>
+                        <div />
+                        <label name='fromTitle' className="block uppercase tracking-wide text-gray text-xs font-bold">Verify Email</label>
+                        <div />
                         <input 
-                            className="appearance-none block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray"
+                            className="col-span-3 appearance-none block w-full bg-white text-gray border border-lightgray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray"
                             name="verificationCode"
                             placeholder="Verification Code"
                             value={verificationCode} 
                             onChange={event => setVerificationCode(event.target.value)} 
                         />
-
+                        <div />
                         <button type='submit' className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Verify Email</button>
                     </form>
                 </div>
