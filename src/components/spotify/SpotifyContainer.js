@@ -63,7 +63,6 @@ class SpotifyContainer extends React.Component {
 
     this.player.on('ready', async data => {
       let { device_id } = data
-      console.log('Play')
       await this.setState({ deviceId: device_id })
       Cookies.set('deviceId', device_id)
       this.transferPlaybackHere()
