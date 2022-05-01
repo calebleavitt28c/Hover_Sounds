@@ -174,11 +174,11 @@ class ArtistHome extends React.Component {
         <div className="flex items-center justify-between border-b">
           { this.props.event ? (
             <Link to={`/artist/${this.props.artistId}`}>
-              <h1 className="ml-2 text-xl text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
+              <h1 className="ml-2 text-dynamic text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
             </Link>
           )
           :
-          <h1 className="ml-2 text-xl text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
+          <h1 className="ml-2 text-dynamic text-center font-semibold uppercase tracking-widest">{this.props.name}</h1>
           }
           <div className="inline-block mt-2">
             <button id="playBtn" 

@@ -10,8 +10,8 @@ class EventRow extends React.Component {
     }
   }
 
-  selectedClass = 'bg-lightgray text-xxs hover:text-xs dark:bg-gray dark:text-darkgray hover:bg-lightgray dark:hover:bg-gray hover:text-darkgray ease-in duration-300'
-  nonSelectedClass = 'bg-white text-xxs hover:text-xs dark:bg-darkgray hover:bg-lightgray dark:hover:bg-gray hover:text-darkgray ease-in duration-300'
+  selectedClass = 'bg-lightgray text-xs font-bold hover:text-eventrow dark:bg-gray dark:text-darkgray hover:bg-lightgray dark:hover:bg-gray hover:text-darkgray ease-in duration-300'
+  nonSelectedClass = 'bg-white text-xxs hover:text-eventrow dark:bg-darkgray hover:bg-lightgray dark:hover:bg-gray hover:text-darkgray ease-in duration-300'
   
   render() {
     const { selected } = this.props

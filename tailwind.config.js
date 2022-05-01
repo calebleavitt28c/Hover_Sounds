@@ -31,7 +31,11 @@ module.exports = {
       '7xl': '5rem',
     },
     extend: {
-      
+      fontSize: {
+        dynamic: "clamp(.6rem, 1.25vw, 1.25rem)",
+        eventhome: "clamp(.6rem, 1.5vw, 1.5rem)",
+        eventrow: "clamp(.6rem, .7vw, .7rem)"
+      },
     },
   },
   plugins: [
