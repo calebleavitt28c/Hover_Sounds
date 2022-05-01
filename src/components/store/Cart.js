@@ -23,13 +23,13 @@ const Cart = (props) => {
             {cartItems.map((item) => (
                 <div key={item.id} className='row shadow-lg mx-1'>
                     <div><strong>{item.name}</strong></div>
-                    <div className="grid grid-cols-6 content-center">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
                         <div className="col-span-1">
                             <button className="bg-primary rounded-full text-white font-bold item-center mx-1 py-2 px-4"
                                 onClick={() => onAdd(item)} id='add'
                             >+</button>
                         </div>
-                        <div className="col-span-1">
+                        <div className="col-span-1 content-center">
                             <button className="bg-red rounded-full text-white font-bold item-center py-2 px-4"
                                 onClick={() => onRemove(item)} id='remove'
                             >-</button>
