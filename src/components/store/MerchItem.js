@@ -9,7 +9,7 @@ const MerchItem = (props) => {
         <div className="w-1/3 grid grid-rows-3 content-between h-48 text-center pt-2 bg-lightgray dark:bg-darkgray dark:shadow-sm dark:shadow-gray rounded-2xl">
           <h1 className="p-2 h-1/3"><strong>{item.name}</strong></h1>
           <div />
-          <div className='grid content-end h-2/3 align-bottom'>
+          <div className='grid h-2/3'>
             <p className='text-lg'>${item.price}</p>
             <p className=''>{item.stock} in stock</p>
           </div>
