@@ -1,9 +1,12 @@
 import React from 'react'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 import TopContainer from './TopContainer'
 import PostContainer from './PostContainer'
 import EventTable from './EventTable'
+
+import Pool from '../auth/UserPool'
 
 class Home extends React.Component {
   constructor(props) {
@@ -18,27 +21,32 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-      axios.get('https://api.hoveringrecords.com/hover/artists')
-        .then(response => {
-          let data = response.data.Items
-          localStorage.setItem('artists', JSON.stringify(data))
-          data.sort((a, b) => (a.favorites < b.favorites) ? 1 : -1)
-          this.setState({ topArtists: data.slice(0, 50) })
-        })
-      axios.get('https://api.hoveringrecords.com/hover/venues')
-        .then(response => {
-          let data = response.data.Items
-          localStorage.setItem('venues', JSON.stringify(data))
-          data.sort((a, b) => (a.favorites < b.favorites) ? 1 : -1)
-          this.setState({ topVenues: data.slice(0, 50) })
-        })
-      axios.get('https://api.hoveringrecords.com/hover/events')
-        .then(response => {
-          let data = response.data.Items
-          localStorage.setItem('events', JSON.stringify(data))
-          data.sort((a, b) => new Date(a.date) - new Date(b.date))
-          this.setState({ events: data })
-        })
+    getSession()
+      .then(session => {
+        Cookies.set('userId', session.sub)
+        Cookies.set('userType', session.profile)
+      })
+    axios.get('https://api.hoveringrecords.com/hover/artists')
+      .then(response => {
+        let data = response.data.Items
+        localStorage.setItem('artists', JSON.stringify(data))
+        data.sort((a, b) => (a.favorites < b.favorites) ? 1 : -1)
+        this.setState({ topArtists: data.slice(0, 50) })
+      })
+    axios.get('https://api.hoveringrecords.com/hover/venues')
+      .then(response => {
+        let data = response.data.Items
+        localStorage.setItem('venues', JSON.stringify(data))
+        data.sort((a, b) => (a.favorites < b.favorites) ? 1 : -1)
+        this.setState({ topVenues: data.slice(0, 50) })
+      })
+    axios.get('https://api.hoveringrecords.com/hover/events')
+      .then(response => {
+        let data = response.data.Items
+        localStorage.setItem('events', JSON.stringify(data))
+        data.sort((a, b) => new Date(a.date) - new Date(b.date))
+        this.setState({ events: data })
+      })
   }
 
   render() {
@@ -59,6 +67,38 @@ class Home extends React.Component {
       </div>
     );
   }
+}
+
+const getSession = async () => {
+  return await new Promise((resolve, reject) => {
+      const user = Pool.getCurrentUser()
+      if (user) {
+          user.getSession(async (err, session) => {
+              if (err) {
+                  reject()
+              } else {
+                  const attributes = await new Promise((resolve, reject) => {
+                      user.getUserAttributes((err, attributes) => {
+                          if (err) {
+                              reject(err) 
+                          } else {
+                              const results = {}
+
+                              for (let attribute of attributes) {
+                                  const { Name, Value } = attribute
+                                  results[Name] = Value
+                              }
+                              resolve(results)
+                          }
+                      })
+                  })
+                  resolve({ user, ...session, ...attributes })
+              }
+          })
+      } else {
+          reject()
+      }
+  })
 }
 
 export default Home

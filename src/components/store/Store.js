@@ -82,7 +82,7 @@ const Store = (props) => {
     return (
         <div>
             {showStore && (
-                <div className="grid grid-cols-10 gap-4 p-4 h-full dark:text-lightgray dark:border-primary">
+                <div className="grid grid-cols-10 gap-4 p-4 h-[80vh] dark:text-lightgray dark:border-primary">
                     <div className="col-span-8 border-2 border-black dark:border-primary">
                         <MerchTable 
                             items={items}
@@ -118,7 +118,7 @@ const Store = (props) => {
                     </div>
                 </div>
             )}
-            <div className="flex flex-col place-items-center h-full mt-auto">
+            <div className="flex flex-col place-items-center mt-auto">
                 {showMerchForm && (
                     <MerchForm 
                         userId={userId} 
