@@ -81,16 +81,16 @@ const Store = (props) => {
     }
 
     return (
-        <div>
+        <div className='h-[80vh]'>
             {showStore && (
-                <div className="grid grid-cols-10 gap-4 p-4 h-[80vh] dark:text-lightgray dark:border-primary">
-                    <div className="col-span-8 border-2 border-black dark:border-primary">
+                <div className="flex h-full gap-4 p-4 dark:text-lightgray dark:border-primary">
+                    <div className="border-2 w-[75%] border-black dark:border-primary h-full">
                         <MerchTable 
                             items={items}
                             onAdd={onAdd}
                         />
                     </div>
-                    <div className="col-span-2 border-2 border-black dark:border-primary">
+                    <div className="border-2 w-[25%] border-black dark:border-primary">
                         <Cart 
                             cartItems={cartItems}
                             onAdd={onAdd}
