@@ -44,7 +44,7 @@ const Checkout = (props) => {
             (<PayPal order={order} hidePayPal={hidePayPal}/>) : 
             ( 
                 <button className="w-full r bg-primary col-span-2 hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300"
-                    onClick={() => {createOrder()}}>Checkout
+                    onClick={createOrder}>Checkout
                 </button> 
             )}
             <ToastContainer />

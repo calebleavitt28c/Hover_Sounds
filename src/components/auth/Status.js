@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import React, { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AccountContext } from './Account'
@@ -20,6 +21,9 @@ const Status = () => {
 
     const logUserOut = () => {
         logout()
+        Cookies.remove('userId')
+        Cookies.remove('userType')
+        Cookies.remove('spotifyAuthToken')
         navigate('/auth')
     }
 
