@@ -7,6 +7,7 @@ import Cart from './Cart'
 import MerchForm from './MerchForm'
 import EditMerch from './EditMerch'
 
+//comment
 const Store = (props) => {
     const {userType, userId} = props
 
