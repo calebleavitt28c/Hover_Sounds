@@ -99,7 +99,7 @@ const Store = (props) => {
                         />
                     </div>
                     <div>
-                        {artistId && (
+                        {(artistId === userId) && (
                             <div className="flex flex-row">
                                 <div className="">
                                     <button
