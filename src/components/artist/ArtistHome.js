@@ -149,7 +149,6 @@ class ArtistHome extends React.Component {
     playBtn.innerHTML = this.play
     if (Cookies.get('userType') === 'fans') {
       let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
-  
       artistFavoriteBtn.innerHTML = this.openHeart
       axios.get(`https://api.hoveringrecords.com/hover/fans/${Cookies.get('userId')}`)
       .then(response => {
@@ -182,7 +181,7 @@ class ArtistHome extends React.Component {
               onClick={this.playClick}
               >
             </button>
-            { this.props.userType === 'fans' ? (
+            { Cookies.get('userType') === 'fans' ? (
               <button id="artistFavoriteBtn" 
                 className="mr-2 ease-in duration-300 filled"
                 onClick={this.heartClick}>

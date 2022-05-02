@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import Cookies from 'js-cookie'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 class SpotifyContainer extends React.Component {
   constructor(props) {
@@ -24,12 +25,14 @@ class SpotifyContainer extends React.Component {
 
   handleLogin() {
     if (Cookies.get('spotifyAuthToken') === undefined) {
-      window.location.href = '/spotify'
+      this.props.navigate('/spotify')
     }
     else {
       this.setState({ loggedIn: true })
-      
       this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000)
+      if (window.location.href.indexOf('spotify') > -1) {
+        this.props.navigate('/')
+      }
     }
   }
 
@@ -100,7 +103,7 @@ class SpotifyContainer extends React.Component {
   onPlayClick() {
     const { trackName } = this.state
     if (trackName === '') {
-      toast.error(`Select a song on an Artist's page`, {
+      toast.error(`Press play on an Artist's page`, {
         position: 'bottom-right',
         closeOnClick: true,
         pauseOnHover: false,
@@ -202,4 +205,9 @@ class SpotifyContainer extends React.Component {
   }
 }
 
-export default SpotifyContainer
+function WithNavigate(props) {
+  let navigate = useNavigate();
+  return <SpotifyContainer navigate={navigate} />
+}
+
+export default WithNavigate
