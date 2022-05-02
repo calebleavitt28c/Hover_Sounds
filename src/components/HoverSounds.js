@@ -15,6 +15,7 @@ import Spotify from './spotify/Spotify'
 import Callback from './spotify/Callback'
 
 import Cookies from 'js-cookie'
+import Logo from './universal/Logo'
 
 function HoverSounds() {
 
@@ -56,6 +57,7 @@ function HoverSounds() {
                     <Route exact path="/store/:artistId" element={<Store userType={userType} userId={userId}/>}></Route>
                     <Route exact path="/spotify" element={<Spotify />}></Route>
                     <Route path="/spotify/callback" element={<Callback />}></Route>
+                    <Route exact path="/logo" element={<Logo />}></Route>
                 </Routes>
                 <Footer />
             </div>

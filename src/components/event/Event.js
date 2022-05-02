@@ -48,7 +48,11 @@ const Event = (props) => {
           axios.get('https://api.hoveringrecords.com/hover/events')
             .then(response => {
               let data = response.data.Items
-              data.sort((a, b) => (a.date > b.date) ? 1 : -1)
+              data.sort((a, b) => {
+                let da = new Date(`${a.date} ${a.time}`)
+                let db =  new Date(`${b.date} ${b.time}`)
+                return da - db
+              })
               setEvents(data)
             })
         )

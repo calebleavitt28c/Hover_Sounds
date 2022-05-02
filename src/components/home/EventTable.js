@@ -15,12 +15,17 @@ class EventTable extends React.Component {
   }
 
   render() {
-    const { selected } = this.props
+    const { selected, events } = this.props
     const eventItems = []
     const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    for (let [i, v] of this.props.events.entries()) {
+    events.sort((a, b) => {
+      let da = new Date(`${a.date} ${a.time}`)
+      let db =  new Date(`${b.date} ${b.time}`)
+      return da - db
+    })
+    for (let [i, v] of events.entries()) {
       let nd = new Date(`${v.date} ${v.time}`)
-      let date = `${month[nd.getMonth()]} ${nd.getDay()}, ${nd.getFullYear()}`
+      let date = `${month[nd.getMonth()]} ${nd.getDate()}, ${nd.getFullYear()}`
       let hr = nd.getHours()
       let time = `${ hr > 12 ? hr-12 : hr }:${nd.getMinutes().toString().padStart(2, '0')} ${hr > 12 ? 'PM' : 'AM'}`
       if (v.id === selected) {
