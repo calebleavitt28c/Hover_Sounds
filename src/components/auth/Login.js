@@ -2,6 +2,7 @@ import React, { useState, useContext, } from "react"
 import { AccountContext } from "./Account"
 import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
+import Cookies from "js-cookie"
 
 const Login = () => {
     let navigate = useNavigate()
@@ -17,6 +18,8 @@ const Login = () => {
         authenticate(email, password)
             .then(data => {
                 console.log("Logged in!", data)
+                Cookies.set('userId', data.idToken.payload.sub)
+                Cookies.set('userType', data.idToken.payload.profile)
                 navigate('/')
                 toast.success(`Successful Login`, {
                     position: 'bottom-right',
@@ -25,6 +28,7 @@ const Login = () => {
                     draggable: true
                   })
             })
+            
             .catch(err => {
                 console.error("Failed to login", err)
                 toast.error(err.message, {

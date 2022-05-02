@@ -12,10 +12,14 @@ import VenueProfileForm from "../venue/VenueProfileForm"
 import ChangeEmail from "../auth/ChangeEmail"
 import ChangePassword from "../auth/ChangePassword"
 import DeleteAccount from "../auth/DeleteAccount"
+import Cookies from "js-cookie"
 //import { createHashHistory } from "history"
 
 const Profile = (props) => {
     const { userType, userId } = props
+
+    const UT = Cookies.get('userType')
+    const UID = Cookies.get('userId')
 
     const [showAttributes, setShowAttributes] = useState(true)
     const [showEditAttributes, setShowEditAttributes] = useState(false)
@@ -29,9 +33,9 @@ const Profile = (props) => {
 
     
     useEffect(() => {
-        switch (userType) {
+        switch (UT) {
             case 'fans':
-                axios.get(`https://api.hoveringrecords.com/hover/fans/${userId}`)
+                axios.get(`https://api.hoveringrecords.com/hover/fans/${UID}`)
                     .then(response => {
                         setFanAttributes(fanAttributes => ({
                             ...fanAttributes,
@@ -40,7 +44,7 @@ const Profile = (props) => {
                     })
             break
             case 'artists':
-                axios.get(`https://api.hoveringrecords.com/hover/artists/${userId}`)
+                axios.get(`https://api.hoveringrecords.com/hover/artists/${UID}`)
                     .then(response => {
                         setArtistAttributes(artistAttributes => ({
                             ...artistAttributes,
@@ -49,7 +53,7 @@ const Profile = (props) => {
                     })
             break
             case 'venues':
-                axios.get(`https://api.hoveringrecords.com/hover/venues/${userId}`)
+                axios.get(`https://api.hoveringrecords.com/hover/venues/${UID}`)
                     .then(response => {
                         setVenueAttributes(venueAttributes => ({
                             ...venueAttributes,
@@ -60,7 +64,7 @@ const Profile = (props) => {
             default:
                 break
         }
-    }, [userType, userId])
+    }, [UT, UID])
     
     const hideComponent = (name) => {
         switch (name) {
@@ -94,14 +98,14 @@ const Profile = (props) => {
                         <Status />
                         <p className="block text-center uppercase tracking-wide text-gray text-xs font-bold">User attributes:</p>
                         <div>
-                            {userType === 'fans' && (
-                                <FanInfo fanAttributes={fanAttributes}/>
+                            {UT === 'fans' && (
+                                <FanInfo fanAttributes={fanAttributes} />
                             )}
-                            {userType === 'artists' && (
-                                <ArtistInfo artistAttributes={artistAttributes}/>
+                            {UT === 'artists' && (
+                                <ArtistInfo artistAttributes={artistAttributes} />
                             )}
-                            {userType === 'venues' && (
-                                <VenueInfo venueAttributes={venueAttributes}/>
+                            {UT === 'venues' && (
+                                <VenueInfo venueAttributes={venueAttributes} />
                             )}
                         </div>
                         <div className="grid grid-cols-4 gap-2 mt-2">
@@ -123,10 +127,10 @@ const Profile = (props) => {
 
                         </div>
                         <div className="grid grid-cols-4 gap-2 mt-4">
-                            {userType === 'artists' && (
+                            {UT === 'artists' && (
                                 <Link to={`/store/${artistAttributes.id}`} className="col-span-2 py-2 px-4 bg-primary hover:bg-secondary text-center text-white font-bold rounded focus:outline-none focus:shadow-outline ease-in duration-300">Edit Your Store</Link>
                             )}
-                            {(userType === 'artists' || userType === 'venues') && (
+                            {(UT === 'artists' || UT === 'venues') && (
                                 <Link to={`/events/edit`} className="bg-primary col-span-2 text-center hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ease-in duration-300">Edit Your Events</Link>
                             )}
                         </div>
@@ -137,20 +141,20 @@ const Profile = (props) => {
             <div>
                 {showEditAttributes && (
                     <div>
-                        {userType === 'fans' && (
+                        {UT === 'fans' && (
                             <FanProfileForm
-                                userId={userId}
+                                userId={UID}
                                 fanAttributes={fanAttributes}
                                 hideComponent={hideComponent}
                             />
                         )}
-                        {userType === 'artists' && (
+                        {UT === 'artists' && (
                             <ArtistProfileForm
                                 artistAttributes={artistAttributes}
                                 hideComponent={hideComponent}
                                 />
                                 )}
-                        {userType === 'venues' && (
+                        {UT === 'venues' && (
                             <VenueProfileForm
                                 venueAttributes={venueAttributes}
                                 hideComponent={hideComponent}
