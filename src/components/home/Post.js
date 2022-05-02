@@ -15,7 +15,7 @@ class Post extends React.Component {
 
   render() {
     return(
-      <li className='mb-2 px-2 mx-24'>
+      <li className='mb-2 px-2 xl:mx-24 lg:mx-12 md:mx-0'>
           <div className='px-5 py-4 bg-lightgray dark:bg-darkgray shadow-md hover:shadow-lg dark:shadow-gray dark:shadow-sm rounded-lg transition ease-in duration-300'>
             <a className="" href={this.props.url} target="_blank" rel="noreferrer">
               <div className='p-2 dark:hover:bg-[#243447] rounded-xl transition ease-in duration-300'>
@@ -30,7 +30,7 @@ class Post extends React.Component {
                     </span>
                   </div>
                 </div>
-                <p className='text-darkgray dark:text-lightgray leading-snug md:leading-normal'>
+                <p className='text-darkgray dark:text-lightgray leading-snug sm:text-xs'>
                   {this.props.caption}
                 </p>
               </div>

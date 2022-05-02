@@ -56,14 +56,13 @@ class Header extends React.Component {
         <div className="flex items-center flex-shrink-0 text-secondary mr-6">
           <Link 
           className="button button--aylen px-5 py-3 bg-secondary dark:bg-darkgray dark:hover:bg-black hover:bg-darkgray hover:text-white text-primary dark:text-lightgray relative block focus:outline-none border-2 border-solid rounded-lg text-sm text-center font-semibold uppercase tracking-widest overflow-hidden"
-          // className="inline-block text-xl px-4 py-2 leading-none border rounded text-primary bg-white dark:bg-secondary dark:text-lightgray dark:hover:bg-darkgray border-transparent hover:border-white hover:text-white hover:bg-secondary mt-4 lg:mt-0 ease-in duration-300"
           to="/" >Hover Sounds</Link>
         </div>
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-sm lg:flex-grow">
+        <div className="flex-grow flex items-center w-auto">
+          <div className="text-sm flex-grow">
             <Link id="store"
               to="/store"
-              className="block mt-4 lg:inline-block lg:mt-0 text-secondary dark:text-lightgray hover:text-white dark:hover:text-white font-semibold uppercase tracking-widest mr-4 ease-in duration-300"
+              className="mt-4 inline-block text-secondary dark:text-lightgray hover:text-white dark:hover:text-white font-semibold uppercase tracking-widest mr-4 ease-in duration-300"
             >Store</Link>
           </div>
           <div className="grid grid-cols-2">

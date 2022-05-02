@@ -34,7 +34,8 @@ module.exports = {
       fontSize: {
         dynamic: "clamp(.6rem, 1.25vw, 1.25rem)",
         eventhome: "clamp(.6rem, 1.5vw, 1.5rem)",
-        eventrow: "clamp(.6rem, .7vw, .7rem)"
+        eventrow: "clamp(.6rem, .7vw, .7rem)",
+        toptext: "clamp(.6rem, 1vw, 1rem)"
       },
     },
   },
