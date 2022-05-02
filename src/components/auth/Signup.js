@@ -321,12 +321,6 @@ const VerifyEmail = (props) => {
                     draggable: true
                   }) 
                 props.afterSignup()
-                toast.success(`Successfully verified`, {
-                    position: 'bottom-right',
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true
-                  }) //TEST
             }
         })
     }
