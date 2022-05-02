@@ -43,7 +43,11 @@ class Home extends React.Component {
       .then(response => {
         let data = response.data.Items
         localStorage.setItem('events', JSON.stringify(data))
-        data.sort((a, b) => new Date(a.date) - new Date(b.date))
+        data.sort((a, b) => {
+          let da = new Date(`${a.date} ${a.time}`)
+          let db =  new Date(`${b.date} ${b.time}`)
+          return da - db
+        })
         this.setState({ events: data })
       })
   }
