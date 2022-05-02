@@ -13,6 +13,7 @@ import Event from './event/Event'
 import Store from './store/Store'
 import Spotify from './spotify/Spotify'
 import Callback from './spotify/Callback'
+import NotFound from './universal/NotFound'
 
 import Cookies from 'js-cookie'
 import Logo from './universal/Logo'
@@ -45,6 +46,7 @@ function HoverSounds() {
             <div className="App flex flex-col h-screen max-h-screen justify-between dark:bg-darkgray ease-in duration-300">
                 <Header status={status}/>          
                 <Routes>
+                    <Route path="*" element={<NotFound />} />
                     <Route path="/" element={<Home />}></Route>
                     <Route exact path="/auth" element={<AuthPage />}></Route>
                     <Route exact path="/profile" element={<Profile userType={userType} userId={userId}/>}></Route>

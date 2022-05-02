@@ -23,6 +23,7 @@ class VenueHome extends React.Component {
     let venueFavoriteBtn = document.getElementById('venueFavoriteBtn')
 
     if (this.state.favorited) {
+      venueFavoriteBtn.innerHTML = this.openHeart
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'venues',
         id: venueId,
@@ -30,7 +31,6 @@ class VenueHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-        venueFavoriteBtn.innerHTML = this.openHeart
         venueFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
@@ -42,6 +42,7 @@ class VenueHome extends React.Component {
         })
       })
       .catch(err => {
+        venueFavoriteBtn.innerHTML = this.closedHeart
         console.error(err)
         toast.error('Error unfavoriting.', {
           position: 'bottom-right',
@@ -52,6 +53,7 @@ class VenueHome extends React.Component {
       })
     }
     else {
+      venueFavoriteBtn.innerHTML = this.closedHeart
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'venues',
         id: venueId,
@@ -59,7 +61,6 @@ class VenueHome extends React.Component {
         dir: '+'
       })
       .then(response => {
-        venueFavoriteBtn.innerHTML = this.closedHeart
         venueFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
@@ -71,6 +72,7 @@ class VenueHome extends React.Component {
         })
       })
       .catch(err => {
+        venueFavoriteBtn.innerHTML = this.openHeart
         console.error(err)
         toast.error('Error favoriting.', {
           position: 'bottom-right',
@@ -85,7 +87,6 @@ class VenueHome extends React.Component {
   componentDidMount() {
     if (Cookies.get('userType') === 'fans') {
     let venueFavoriteBtn = document.getElementById('venueFavoriteBtn')
-    venueFavoriteBtn.innerHTML = this.openHeart
     axios.get(`https://api.hoveringrecords.com/hover/fans/${Cookies.get('userId')}`)
     .then(response => {
       let data = response.data.Item
@@ -94,6 +95,12 @@ class VenueHome extends React.Component {
           this.setState({ favorited: true })
           venueFavoriteBtn.innerHTML = this.closedHeart
         }
+        else {
+          venueFavoriteBtn.innerHTML = this.openHeart
+        }
+      }
+      else {
+        venueFavoriteBtn.innerHTML = this.openHeart
       }
     })
     }

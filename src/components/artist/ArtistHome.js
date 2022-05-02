@@ -85,6 +85,7 @@ class ArtistHome extends React.Component {
     let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
 
     if (this.state.favorited) {
+      artistFavoriteBtn.innerHTML = this.openHeart
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: artistId,
@@ -92,7 +93,6 @@ class ArtistHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-        artistFavoriteBtn.innerHTML = this.openHeart
         artistFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
@@ -104,6 +104,7 @@ class ArtistHome extends React.Component {
         })
       })
       .catch(err => {
+        artistFavoriteBtn.innerHTML = this.closedHeart
         console.error(err)
         toast.error('Error unfavoriting.', {
           position: 'bottom-right',
@@ -114,6 +115,7 @@ class ArtistHome extends React.Component {
       })
     }
     else {
+      artistFavoriteBtn.innerHTML = this.closedHeart
       axios.post('https://api.hoveringrecords.com/hover/favorite', {
         table: 'artists',
         id: artistId,
@@ -121,7 +123,6 @@ class ArtistHome extends React.Component {
         dir: '+'
       })
       .then(response => {
-        artistFavoriteBtn.innerHTML = this.closedHeart
         artistFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
@@ -133,6 +134,7 @@ class ArtistHome extends React.Component {
         })
       })
       .catch(err => {
+        artistFavoriteBtn.innerHTML = this.openHeart
         console.error(err)
         toast.error('Error favoriting.', {
           position: 'bottom-right',
@@ -149,7 +151,6 @@ class ArtistHome extends React.Component {
     playBtn.innerHTML = this.play
     if (Cookies.get('userType') === 'fans') {
       let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
-      artistFavoriteBtn.innerHTML = this.openHeart
       axios.get(`https://api.hoveringrecords.com/hover/fans/${Cookies.get('userId')}`)
       .then(response => {
         let data = response.data.Item
@@ -158,6 +159,12 @@ class ArtistHome extends React.Component {
             this.setState({ favorited: true })
             artistFavoriteBtn.innerHTML = this.closedHeart
           }
+          else {
+            artistFavoriteBtn.innerHTML = this.openHeart
+          }
+        }
+        else {
+          artistFavoriteBtn.innerHTML = this.openHeart
         }
       })
     }
