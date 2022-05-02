@@ -147,25 +147,20 @@ class ArtistHome extends React.Component {
   componentDidMount() {
     let playBtn = document.getElementById('playBtn')
     playBtn.innerHTML = this.play
-    if (this.props.userType === 'fans') {
+    if (Cookies.get('userType') === 'fans') {
       let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
   
       artistFavoriteBtn.innerHTML = this.openHeart
-      
-      //axios.get(`${Cookies.get('userId')}`)
-      getSession()
-        .then(session => {
-          axios.get(`https://api.hoveringrecords.com/hover/fans/${session.sub}`)
-          .then(response => {
-            let data = response.data.Item
-            if (data.hasOwnProperty('favArtists')) {
-              if (data.favArtists.indexOf(this.props.artistId) > -1) {
-                this.setState({ favorited: true })
-                artistFavoriteBtn.innerHTML = this.closedHeart
-              }
-            }
-          })
-        })
+      axios.get(`https://api.hoveringrecords.com/hover/fans/${Cookies.get('userId')}`)
+      .then(response => {
+        let data = response.data.Item
+        if (data.hasOwnProperty('favArtists')) {
+          if (data.favArtists.indexOf(this.props.artistId) > -1) {
+            this.setState({ favorited: true })
+            artistFavoriteBtn.innerHTML = this.closedHeart
+          }
+        }
+      })
     }
   }
 

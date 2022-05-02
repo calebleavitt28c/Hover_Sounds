@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
+import Cookies from 'js-cookie'
 
 import Pool from '../auth/UserPool'
 
@@ -82,24 +83,19 @@ class VenueHome extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.userType === 'fans') {
+    if (Cookies.get('userType') === 'fans') {
     let venueFavoriteBtn = document.getElementById('venueFavoriteBtn')
-
     venueFavoriteBtn.innerHTML = this.openHeart
-
-    getSession()
-      .then(session => {
-        axios.get(`https://api.hoveringrecords.com/hover/fans/${session.sub}`)
-        .then(response => {
-          let data = response.data.Item
-          if (data.hasOwnProperty('favVenues')) {
-            if (data.favVenues.indexOf(this.props.venueId) > -1) {
-              this.setState({ favorited: true })
-              venueFavoriteBtn.innerHTML = this.closedHeart
-            }
-          }
-        })
-      })
+    axios.get(`https://api.hoveringrecords.com/hover/fans/${Cookies.get('userId')}`)
+    .then(response => {
+      let data = response.data.Item
+      if (data.hasOwnProperty('favVenues')) {
+        if (data.favVenues.indexOf(this.props.venueId) > -1) {
+          this.setState({ favorited: true })
+          venueFavoriteBtn.innerHTML = this.closedHeart
+        }
+      }
+    })
     }
   }
 

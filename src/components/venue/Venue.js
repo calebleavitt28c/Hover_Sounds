@@ -61,7 +61,9 @@ const Venue = (props) => {
     }
     else {
       return(
-        <div>Loading...</div>
+        <div className='grid place-items-center'>
+          <p>Loading...</p>
+        </div>
       )
     }
   }
