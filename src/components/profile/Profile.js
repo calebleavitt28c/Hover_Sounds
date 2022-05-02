@@ -13,7 +13,6 @@ import ChangeEmail from "../auth/ChangeEmail"
 import ChangePassword from "../auth/ChangePassword"
 import DeleteAccount from "../auth/DeleteAccount"
 import Cookies from "js-cookie"
-//import { createHashHistory } from "history"
 
 const Profile = (props) => {
     const { userType, userId } = props

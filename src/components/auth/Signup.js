@@ -2,7 +2,6 @@
 import { CognitoUserAttribute, CognitoUser } from "amazon-cognito-identity-js"
 import React, { useState } from "react"
 import Pool from "./UserPool"
-import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify'
 
 //TODO: look up what a useState hook is 
