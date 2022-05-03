@@ -93,7 +93,6 @@ class ArtistHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-        artistFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
         toast.info(`Unfavorited ${this.props.name}`, {
@@ -123,7 +122,6 @@ class ArtistHome extends React.Component {
         dir: '+'
       })
       .then(response => {
-        artistFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
         toast.info(`Favorited ${this.props.name}`, {

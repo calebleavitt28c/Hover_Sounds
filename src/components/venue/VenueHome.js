@@ -31,7 +31,6 @@ class VenueHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-        venueFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
         toast.info(`Unfavorited ${this.props.name}`, {
@@ -64,7 +63,7 @@ class VenueHome extends React.Component {
         venueFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
-        toast.error('Error unfavoriting.', {
+        toast.success(`Favorited ${this.props.name}`, {
           position: 'bottom-right',
           closeOnClick: true,
           pauseOnHover: false,
