@@ -62,7 +62,7 @@ class Header extends React.Component {
           <div className="text-sm flex-grow">
             <Link id="store"
               to="/store"
-              className="mt-4 inline-block text-secondary dark:text-lightgray hover:text-white dark:hover:text-white font-semibold uppercase tracking-widest mr-4 ease-in duration-300"
+              className="mt-4 text-secondary dark:text-lightgray hover:text-white dark:hover:text-white font-semibold uppercase tracking-widest mr-4 ease-in duration-300"
             >Store</Link>
           </div>
           <div className="grid grid-cols-2">
