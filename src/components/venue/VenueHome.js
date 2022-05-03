@@ -19,7 +19,8 @@ class VenueHome extends React.Component {
   closedHeart = '<svg class="bi bi-heart-fill text-pink" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>'
 
   heartClick = () => {
-    const { venueId, fanId } = this.props
+    const { venueId } = this.props
+    const fanId = Cookies.get('userId')
     let venueFavoriteBtn = document.getElementById('venueFavoriteBtn')
 
     if (this.state.favorited) {

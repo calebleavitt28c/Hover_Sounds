@@ -81,7 +81,8 @@ class ArtistHome extends React.Component {
   }
 
   heartClick = () => {
-    const { artistId, fanId } = this.props
+    const { artistId } = this.props
+    const fanId = Cookies.get('userId')
     let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
 
     if (this.state.favorited) {
