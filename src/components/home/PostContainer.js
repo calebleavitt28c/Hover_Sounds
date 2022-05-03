@@ -64,7 +64,7 @@ class PostContainer extends React.Component {
         id: 5,
         user: 'Twenty One Pilots',
         date: '04/20/2022',
-        time: '4:200 AM',
+        time: '4:20 AM',
         caption: 'High notes hit different',
         image: 'https://i.scdn.co/image/ab6761610000e5eb196972172c37d934d9ca8093',
         url: 'https://twitter.com',
