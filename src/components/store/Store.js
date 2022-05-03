@@ -6,10 +6,12 @@ import MerchTable from './MerchTable'
 import Cart from './Cart'
 import MerchForm from './MerchForm'
 import EditMerch from './EditMerch'
+import Cookies from 'js-cookie'
 
 //comment
 const Store = (props) => {
-    const {userType, userId} = props
+    const UT = Cookies.get('userType')
+    const UID = Cookies.get('userId')
 
     const [showStore, setShowStore] = useState(true)
     const [showMerchForm, setShowMerchForm] = useState(false)
@@ -99,7 +101,7 @@ const Store = (props) => {
                         />
                     </div>
                     <div>
-                        {(artistId === userId) && (
+                        {(artistId === UID) && (
                             <div className="flex flex-row">
                                 <div className="">
                                     <button
@@ -122,7 +124,7 @@ const Store = (props) => {
             <div className="flex flex-col place-items-center mt-auto">
                 {showMerchForm && (
                     <MerchForm 
-                        userId={userId} 
+                        userId={UID} 
                         hideComponent={hideComponent}
                     />
                 )}
