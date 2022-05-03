@@ -31,7 +31,7 @@ const Spotify = () => {
         <div className='bg-lightgray dark:bg-lightgray p-4 rounded-3xl'>
           <p className='rounded-lg text-sm text-center font-semibold uppercase tracking-widest pb-2'>Click to Login</p>
           <SpotifyAuth
-            redirectUri='http://localhost:3000/spotify/callback'
+            redirectUri='https//hoveringrecords.com/spotify/callback'
             clientID='69c20f98b37e41729bdb78027dc7c2ca'
             scopes={[Scopes.all]}
             onAccessToken={(token) => setToken(token)}
