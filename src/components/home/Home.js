@@ -22,6 +22,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     getSession(session => {
+      console.log(session.sub)
       Cookies.set('userId', session.sub)
       Cookies.set('userType', session.profile)
     })

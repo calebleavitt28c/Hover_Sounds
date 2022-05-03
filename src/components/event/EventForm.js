@@ -112,7 +112,6 @@ const EventForm = (props) => {
                             value={artist}
                             onChange={(event) => setArtist(event.target.value)}
                             className={`appearance-none block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                            disabled
                         ></input>
 
                         <input
@@ -121,7 +120,7 @@ const EventForm = (props) => {
                             value={artistId}
                             onChange={(event) => setArtistId(event.target.value)}
                             className={`appearance-none block w-full bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                            disabled
+                            
                         ></input>
                         <input
                             name="venue"
@@ -164,7 +163,7 @@ const EventForm = (props) => {
                             value={venue}
                             onChange={(event) => setVenue(event.target.value)}
                             className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                            disabled
+                            
                         ></input>
 
                         <input
@@ -173,7 +172,7 @@ const EventForm = (props) => {
                             value={venueId}
                             onChange={(event) => setVenueId(event.target.value)}
                             className={`appearance-none block w-full col-span-2 bg-white text-gray border border-gray rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 disabled:bg-lightgray`}
-                            disabled
+                            
                         ></input>
                     </div>
                 )}
