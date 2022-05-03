@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AccountContext } from './Account'
 
 //this is simply used to tell if a user is logged in or not
-const Status = () => {
+const Status = (props) => {
     let navigate = useNavigate()
 
     const [status, setStatus] = useState(false)
