@@ -30,7 +30,7 @@ class Post extends React.Component {
                     </span>
                   </div>
                 </div>
-                <p className='text-darkgray dark:text-lightgray leading-snug sm:text-xs'>
+                <p className='text-darkgray dark:text-lightgray leading-snug xl:text-base lg:text-sm md:text-xs'>
                   {this.props.caption}
                 </p>
               </div>
