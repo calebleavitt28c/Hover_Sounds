@@ -81,7 +81,8 @@ class ArtistHome extends React.Component {
   }
 
   heartClick = () => {
-    const { artistId, fanId } = this.props
+    const { artistId } = this.props
+    const fanId = Cookies.get('userId')
     let artistFavoriteBtn = document.getElementById('artistFavoriteBtn')
 
     if (this.state.favorited) {
@@ -93,7 +94,6 @@ class ArtistHome extends React.Component {
         dir: '-'
       })
       .then(response => {
-        artistFavoriteBtn.classList.remove('filled')
         console.log('unfavorited')
         this.setState({ favorited: false })
         toast.info(`Unfavorited ${this.props.name}`, {
@@ -123,7 +123,6 @@ class ArtistHome extends React.Component {
         dir: '+'
       })
       .then(response => {
-        artistFavoriteBtn.classList.add('filled')
         console.log('favorited')
         this.setState({ favorited: true })
         toast.info(`Favorited ${this.props.name}`, {

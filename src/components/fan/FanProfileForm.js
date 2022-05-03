@@ -12,15 +12,13 @@ const FanProfileForm = (props) => {
 
     const updateFan = (event) => {
         event.preventDefault()
-        axios.put('https://api.hoveringrecords.com/hover/fans', {
+        axios.put(`https://api.hoveringrecords.com/hover/fans`, {
             id: props.userId,
             firstName: firstName,
             lastName: lastName,
             email: fanAttributes.email,
             phone: phone,
-            birthdate: birthdate,
-            favArtists: { SS: fanAttributes.favArtists },
-            favVenues: { SS: fanAttributes.favVenues }
+            birthdate: birthdate
         })
         .then(response => {
             console.log(response)
